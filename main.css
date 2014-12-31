@@ -1,0 +1,310 @@
+/*
+Crohn's Kitchen main styling
+Version: 1
+Date: Dec 2014
+*/
+
+html {
+	background-color: #DDD;
+}
+
+.green-gradient {
+    background: linear-gradient(#006132, #00451f);
+}
+
+#header-bg {
+	display: block;
+	background-color: #005329;
+	height: 95px;
+}
+
+#header-content {
+	width: 800px;
+	margin: auto;
+}
+
+#header-logo {
+	width: 100px;
+	height: 100%;
+	position: relative;
+	top: 20px;
+	padding-right: 20px;
+	display: inline;
+	float: left;
+}
+
+#header-title {
+	width: 300px;
+	margin-left: 40px;
+	margin-top: 15px;
+	color: #F00;
+	float: left;
+}
+#header-title p {
+	color: #FFF;
+	font-size: 135%;
+}
+
+#header-byline {
+	font-size: 75%;
+	color: #fff;
+	margin-top: -20px;
+	margin-left: 20px;
+}
+
+#header-sidebar {
+	display: inline;
+	width: 200px;
+	color: #FFF;
+	text-decoration: none;
+	font-family: "Helvetica", sans-serif;
+	font-weight: normal;
+	font-size: 0.9em;
+	float: right;
+	text-align: right;
+}
+#header-sidebar li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#header-sidebar a {
+	color: #fff;
+	text-decoration: none;
+}
+
+
+#nav {
+	display: block;
+	/*background-color: #EEE;*/
+	width: 800px;
+	margin: auto;
+}
+
+hr {
+    display: block;
+    height: 10px;
+    border: 0;
+    border-top: 5px solid #bfa739;
+    margin: 0;
+    padding: 0;
+}
+
+a.button {
+	display: inline-block;
+	padding: 10px 25px;
+	background-color: rgba(255,255,255,0.35);
+	cursor: default;
+	margin: 0;
+	color: #000;
+	text-decoration: none;
+}
+a.button:hover {
+	background-color: rgba(255,255,255,0.9);
+}
+
+body.main-page a.current-page {
+/* current page */
+background: #FFF;
+font-weight: bold;
+}
+
+
+
+#pagecontent {
+	width: 780px;
+	background-color: #FFF;
+	margin: auto;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#pagecontent h2 {
+	margin: 0;
+	font-family: "Helvetica", sans-serif;
+	color: #005329;
+}
+
+#pagecontent h3, h4, h5 {
+	color: #005329;
+	font-family: "Helvetica", sans-serif;
+	text-decoration: none;
+	font-weight: normal;
+	margin-bottom: -0.5em;
+}
+
+#pagecontent p {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+
+#main img{
+/* Coded by Zachery Slocum; Nov. 2014.*/
+}
+
+body {
+	margin: 0;
+}
+
+#myfooter {
+	background-color: #e8e8e4;
+	width: 800px;
+	border: 0;
+	margin: auto;
+	height: 110px;
+	color: #005329;
+	font-family: "Helvetica", sans-serif;
+	font-weight: bold;
+}
+
+#myfooter p {
+	margin: 0;
+	padding: 0px 10px 10px 10px;
+	font-family: "Helvetica", sans-serif;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.footer-nav {
+	background-color: #005329;
+	color: #FFF;
+	width: 780px;
+	border: 0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2px;
+	clear: both;
+	height: 32px;
+	line-height: 32px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight: normal;
+	font-size: 85%;
+}
+
+.footer-nav a {
+	color: #fff;
+	text-decoration: none;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.footer-nav img {
+	padding-right: 12px;
+	position: relative;
+	top: 2px;
+}
+
+#myfooter hr {
+    display: block;
+    height: 10px;
+    border: 0;
+    border-top: 1px solid #005329;
+    margin-top: 2px;
+    padding: 0;
+}
+#myfooter {
+	font-weight: normal;
+	text-decoration: none;
+}
+
+#myfooter h4 {
+	margin: 0;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+#myfooter p {
+	color: #666;
+	font-weight: lighter;
+}
+#myfooter a {
+	text-decoration: none;
+	color: #005329;
+
+}
+#myfooter .footer-nav a {
+	color: #fff;
+}
+/* Page specific items */
+
+#form {
+	/*background-color: #AAD;*/
+	margin: auto;
+	width: 90%;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #000;
+}
+#form ul {
+	margin: auto;
+	width: 20%;
+}
+#printerblock {
+	background-color: #005329;
+	color: #FFF;
+	margin: auto;
+	width: 50%;
+	text-align: left;
+}
+
+table {
+	border-collapse: collapse;
+	}
+
+th, td, tr #printerblock {
+	border: 2px solid black;
+}
+
+#smallform {
+	background-color: #005329;
+	margin: auto;
+	text-decoration: none;
+	vertical-align: middle;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	color: #FFF;
+	width: 50%;
+}
+
+#smallform h2 {
+	font-family: "Helvetica", sans-serif;
+	color: #fff;
+}
+
+.leftalign {
+	text-align: left !important;
+}
+.rightalign {
+	text-align: right !important;
+}
+.thin {
+	width: 60%;
+	clear: both;
+}
+.indented {
+margin-left: 40%;
+}
+
+/* Override the Google Chrome 'useragent stylesheet' with very specific css */
+input[type="button"], input[type="submit"], button {
+	display: inline-block;
+	padding: 10px 25px;
+	background-color: #bfa739;
+	cursor: default;
+	margin: 0;
+	color: #FFF;
+	text-decoration: none;
+	border: 0;
+	font-family: "Helvetica", sans-serif;
+	width: 100%;
+}
