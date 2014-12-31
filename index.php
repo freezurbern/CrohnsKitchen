@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-.php>
+<html>
 <head>
 	<title>Crohn's Kitchen</title>
 	<link rel="stylesheet" href="main.css" />
@@ -10,9 +10,7 @@
 	
 		<div id="header-bg" class="green-gradient">
 		<div id="header-content">
-			<div id="header-logo">
-				<a href="index.php"><img src="img/logo.png" alt="CK Logo"></a>
-			</div>
+			<a href="index.php"><img src="img/logo.png" alt="CK Logo"></a>
 			<div id="header-title">
 			<p>Crohn's Kitchen</p>
 			<div id="header-byline">Main page</div>
@@ -25,9 +23,9 @@
 				<li><a href="user.php?logout">Logout</a></li>
 				</ul>
 			</div>
-		</div>
-		</div>
 		<hr />
+		</div>
+		</div>
 		
 		<div id="nav">
 			<a href="index.php" id="nav-main" class="button main-navlink">Main</a>
@@ -39,6 +37,8 @@
 		<div id="pagecontent">
 			<p>
 				<!-- CONTENT GOES HERE -->
+				<h1>Welcome to Crohn's Kitchen!</h1>
+				<p>Using this site you can keep track irritant foods, analyse meals, and more.</p>
 			</p>
 		</div>
 
@@ -46,7 +46,6 @@
 	<a href="index.php"><img src="img/footer-nav-logo.png" alt="CK Logo"></a>
 	<a href="index.php">Main</a>
 	<a href="about.php">About</a>
-	<hr />
 	<p><a href="https://github.com/freezurbern/CrohnsKitchen">&copy; MIT License 2014 freezurbern.com</a> <b>&middot;</b> blahh
 	<!-- Validation links -->| Validate <a href="http://validator.w3.org/check?uri=referer">HTML</a>&amp;<a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>
 	</p>

@@ -5,22 +5,25 @@ Date: Dec 2014
 */
 
 html {
-	background-color: #DDD;
-}
-
-.green-gradient {
-    background: linear-gradient(#006132, #00451f);
+	background-color: #fff;
 }
 
 #header-bg {
 	display: block;
-	background-color: #005329;
-	height: 95px;
+	background-color: #fff;
+	height: 100px;
 }
 
 #header-content {
-	width: 800px;
+	min-width: 600px;
+	max-width: 1200px;
 	margin: auto;
+	font-family: "Helvetica", sans-serif;
+}
+
+#header-content a {
+	color: #444;
+	text-decoration: none;
 }
 
 #header-logo {
@@ -37,17 +40,16 @@ html {
 	width: 300px;
 	margin-left: 40px;
 	margin-top: 15px;
-	color: #F00;
 	float: left;
 }
 #header-title p {
-	color: #FFF;
+	color: #000;
 	font-size: 135%;
 }
 
 #header-byline {
 	font-size: 75%;
-	color: #fff;
+	color: #222;
 	margin-top: -20px;
 	margin-left: 20px;
 }
@@ -55,9 +57,8 @@ html {
 #header-sidebar {
 	display: inline;
 	width: 200px;
-	color: #FFF;
+	color: #222;
 	text-decoration: none;
-	font-family: "Helvetica", sans-serif;
 	font-weight: normal;
 	font-size: 0.9em;
 	float: right;
@@ -69,16 +70,10 @@ html {
 	padding: 0;
 }
 
-#header-sidebar a {
-	color: #fff;
-	text-decoration: none;
-}
-
-
 #nav {
 	display: block;
 	/*background-color: #EEE;*/
-	width: 800px;
+	width: 900px;
 	margin: auto;
 }
 
@@ -86,9 +81,10 @@ hr {
     display: block;
     height: 10px;
     border: 0;
-    border-top: 5px solid #bfa739;
+    border-top: 5px solid #eee;
     margin: 0;
     padding: 0;
+	width: 100%;
 }
 
 a.button {
@@ -106,15 +102,13 @@ a.button:hover {
 
 body.main-page a.current-page {
 /* current page */
-background: #FFF;
+background: #efe;
 font-weight: bold;
 }
 
-
-
 #pagecontent {
-	width: 780px;
-	background-color: #FFF;
+	width: 900px;
+	background-color: #eee;
 	margin: auto;
 	padding-top: 25px;
 	padding-bottom: 25px;
@@ -125,11 +119,11 @@ font-weight: bold;
 #pagecontent h2 {
 	margin: 0;
 	font-family: "Helvetica", sans-serif;
-	color: #005329;
+	color: #000;
 }
 
 #pagecontent h3, h4, h5 {
-	color: #005329;
+	color: #000;
 	font-family: "Helvetica", sans-serif;
 	text-decoration: none;
 	font-weight: normal;
@@ -143,25 +137,24 @@ font-weight: bold;
 
 
 #main img{
-/* Coded by Zachery Slocum; Nov. 2014.*/
 }
 
 body {
 	margin: 0;
 }
 
-#myfooter {
-	background-color: #e8e8e4;
-	width: 800px;
+footer {
+	background-color: #eee;
+	width: 900px;
 	border: 0;
 	margin: auto;
 	height: 110px;
-	color: #005329;
+	color: #f00;
 	font-family: "Helvetica", sans-serif;
 	font-weight: bold;
 }
 
-#myfooter p {
+footer p {
 	margin: 0;
 	padding: 0px 10px 10px 10px;
 	font-family: "Helvetica", sans-serif;
@@ -170,9 +163,9 @@ body {
 }
 
 .footer-nav {
-	background-color: #005329;
-	color: #FFF;
-	width: 780px;
+	background-color: #eee;
+	color: #aaa;
+	width: 900px;
 	border: 0;
 	margin-left: auto;
 	margin-right: auto;
@@ -187,7 +180,7 @@ body {
 }
 
 .footer-nav a {
-	color: #fff;
+	color: #000;
 	text-decoration: none;
 	padding-left: 8px;
 	padding-right: 8px;
@@ -199,36 +192,28 @@ body {
 	top: 2px;
 }
 
-#myfooter hr {
-    display: block;
-    height: 10px;
-    border: 0;
-    border-top: 1px solid #005329;
-    margin-top: 2px;
-    padding: 0;
-}
-#myfooter {
+footer {
 	font-weight: normal;
 	text-decoration: none;
 }
 
-#myfooter h4 {
+footer h4 {
 	margin: 0;
 	padding-left: 10px;
 	font-weight: bold;
 }
 
-#myfooter p {
-	color: #666;
+footer p {
+	color: #000;
 	font-weight: lighter;
 }
-#myfooter a {
+footer a {
 	text-decoration: none;
-	color: #005329;
+	color: #000;
 
 }
-#myfooter .footer-nav a {
-	color: #fff;
+footer .footer-nav a {
+	color: #aaa;
 }
 /* Page specific items */
 
@@ -243,28 +228,22 @@ body {
 	padding-bottom: 20px;
 	color: #000;
 }
+
 #form ul {
 	margin: auto;
 	width: 20%;
-}
-#printerblock {
-	background-color: #005329;
-	color: #FFF;
-	margin: auto;
-	width: 50%;
-	text-align: left;
 }
 
 table {
 	border-collapse: collapse;
 	}
 
-th, td, tr #printerblock {
+th, td, tr {
 	border: 2px solid black;
 }
 
 #smallform {
-	background-color: #005329;
+	background-color: #f00;
 	margin: auto;
 	text-decoration: none;
 	vertical-align: middle;
@@ -272,13 +251,13 @@ th, td, tr #printerblock {
 	padding-bottom: 10px;
 	padding-right: 10px;
 	padding-left: 10px;
-	color: #FFF;
+	color: #0f0;
 	width: 50%;
 }
 
 #smallform h2 {
 	font-family: "Helvetica", sans-serif;
-	color: #fff;
+	color: #020;
 }
 
 .leftalign {
@@ -287,10 +266,7 @@ th, td, tr #printerblock {
 .rightalign {
 	text-align: right !important;
 }
-.thin {
-	width: 60%;
-	clear: both;
-}
+
 .indented {
 margin-left: 40%;
 }
@@ -302,7 +278,7 @@ input[type="button"], input[type="submit"], button {
 	background-color: #bfa739;
 	cursor: default;
 	margin: 0;
-	color: #FFF;
+	color: #000;
 	text-decoration: none;
 	border: 0;
 	font-family: "Helvetica", sans-serif;
