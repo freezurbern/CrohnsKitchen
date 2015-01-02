@@ -1,0 +1,142 @@
+/*
+Crohn's Kitchen main styling for template
+Version: 1
+Date: Dec 2014
+*/
+
+html {
+	background-color: #fff;
+	color: #000;
+}
+
+header {
+	max-width: 64em;
+	min-width: 30em;
+	margin: auto;
+	font-family: "Helvetica", sans-serif;
+	height: 5em;
+	background-color: #efefef;
+	padding: 0em 0.5em;
+}
+
+header a {
+	color: #444;
+	text-decoration: none;
+}
+
+header img {
+	margin: auto;
+	vertical-align: middle;
+}
+
+header h1 {
+	color: #666;
+	width: 6em;
+	margin: auto;
+	display: inline;
+	font-family: "Helvetica", sans-serif;
+	vertical-align: middle;
+	font-size: 1.75em;
+	line-height: 1.75em;
+	padding-top: 4px;
+}
+
+header ul {
+	display: inline;
+	width: 8em;
+	color: #222;
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 0.9em;
+	float: right;
+	text-align: right;
+}
+
+header ul .special {
+	font-style: italic;
+}
+
+header ul li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	display: block;
+	background-color: #EEE;
+	max-width: 64em;
+	min-width: 36em;
+	margin: auto;
+	clear: both;
+	padding: 0em 0.5em;
+}
+
+hr {
+    display: block;
+    height: 10px;
+    border: 0;
+    border-top: 5px solid #eee;
+    margin: 0;
+    padding: 0;
+	width: 100%;
+	
+}
+
+a.button {
+	display: inline;
+	padding: 0.5em 2em;
+	background-color: rgba(196,196,196,0.35);
+	cursor: default;
+	margin: 0;
+	color: #222;
+	text-decoration: none;
+	border-top-left-radius: 15%;
+	border-top-right-radius: 15%;
+	clear: both;
+}
+a.button:hover {
+	background-color: rgba(196,196,196,0.1);
+}
+
+body.main-page a.current-page {
+/* current page */
+background: #efe;
+font-weight: bold;
+}
+
+article {
+	max-width: 64em;
+	min-width: 36em;
+	background-color: #ddd;
+	clear: both;
+	margin: auto;
+	padding: 1em 0.5em 1em 0.5em;
+}
+
+footer {
+	background-color: #ddd;
+	max-width: 64em;
+	min-width: 36em;
+	border: 0;
+	margin: auto;
+	height: 3em;
+	color: #222;
+	font-family: "Helvetica", sans-serif;
+	clear: both;
+	vertical-align: middle;
+	line-height: 2em;
+	padding: 0em 0.5em;
+}
+
+footer a {
+	color: #222;
+	text-decoration: none;
+}
+
+footer img {
+	height: 1.75em;
+	width: 1.75em;
+	vertical-align: middle;
+	line-height: 2em;
+}

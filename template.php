@@ -2,22 +2,22 @@
 <html>
 <head>
 	<title>Crohn's Kitchen</title>
-	<link rel="stylesheet" href="main.css" />
+	<link rel="stylesheet" href="style\reset.css" />
+	<link rel="stylesheet" href="style\template.css" />
+	<link rel="stylesheet" href="style\content.css" />
 	<script type="text/javascript" src="features.js"></script>
 	<meta charset="utf-8"/>
 </head>
-<body class="main-page" onload="" >
+<body>
 	<header>
-		<a href="index.php"><img src="img/logo.png" alt="CK Logo"></a>
-		<div id="header-byline">Main page</div>
-		<div id="header-sidebar">
-			<ul>
-			<li><span class="">Quick Links</span></li>
-			<li><a href="user.php?profile">Profile</a></li>
-			<li><a href="user.php?login">Login</a></li>
-			<li><a href="user.php?logout">Logout</a></li>
-			</ul>
-		</div>
+		<img src="img/logo.png" alt="CK Logo" />
+		<h1>Main page</h1>
+		<ul>
+		<li><span class="special">Quick Links</span></li>
+		<li><a href="user.php?profile">Profile</a></li>
+		<li><a href="user.php?login">Login</a></li>
+		<li><a href="user.php?logout">Logout</a></li>
+		</ul>
 		<nav>
 			<a href="index.php" id="nav-main" class="button main-navlink">Main</a>
 			<a href="add-meal.php" id="nav-meal" class="button meal-navlink">Add Meal</a>
@@ -26,17 +26,15 @@
 		</nav>
 	</header>
 
-		<div id="pagecontent">
-			<p>
+		<article id="pagecontent">
 				<!-- CONTENT GOES HERE -->
 				<h1>Welcome to Crohn's Kitchen!</h1>
-				<p>Using this site you can keep track irritant foods, analyse meals, and more.</p>
-			</p>
-		</div>
+				<p>Using this site you can track irritant foods, analyse meals, and more.</p>
+		</article>
 
 <footer>
-	<hr style="background-color: #222; height: 0.1em;" />
-	<a href="index.php"><img src="img/footer-nav-logo.png" alt="CK Logo"></a>
+	<hr style="background-color: #666; height: 0.1em;" />
+	<a href="index.php"><img src="favicon.ico" alt="CK Logo"></a>
 	<a href="https://github.com/freezurbern/CrohnsKitchen">&copy; MIT License 2014 freezurbern.com</a>
 	&nbsp;<b>&middot;</b>&nbsp;blahh
 	<b>&middot;</b>&nbsp;

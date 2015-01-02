@@ -1,0 +1,10 @@
+article h1, h2, h3, h4, h5 {
+	color: #000;
+	font-family: "Helvetica", sans-serif;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+article p {
+	padding: 0em 1em;
+}
