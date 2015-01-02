@@ -1,5 +1,8 @@
-<?php
-require ("../../protected/db_auth.php");
+<?php 
+
+echo (__dir__);
+
+require("../../protected/db_auth.php");
 
 function db_connect() {
 
@@ -8,7 +11,7 @@ function db_connect() {
     // Try and connect to the database, if a connection has not been established yet
     if(!isset($connection)) {
          // Load configuration as an array. Use the actual location of your configuration file
-        $connection = mysqli_connect($host,$username,$password,$dbname);
+        $connection = mysqli_connect(db_host,db_username,db_password,db_name);
     }
 
     // If connection was not successful, handle the error
