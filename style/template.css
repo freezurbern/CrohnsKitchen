@@ -19,12 +19,8 @@ header {
 	padding: 0em 0.5em;
 	
 	/* no selecting with mouse */
-	-webkit-touch-callout: none;
+	-moz-user-select: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 	cursor:default;
 }
 
@@ -161,12 +157,8 @@ footer {
 	line-height: 2em;
 	
 	/* no selecting with mouse */
-	-webkit-touch-callout: none;
+	-moz-user-select: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 	cursor: default;
 }
 

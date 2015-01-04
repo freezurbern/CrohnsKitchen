@@ -9,8 +9,12 @@
 	<script type="text/javascript" src="/js/features.js"></script>
 	<meta charset="utf-8"/>
 </head>
-<?php/*The body ID is found using the end of the url like so: http://crohns.zachery.ninja/index.php -> index*/?>
-<body id="<?php echo basename($_SERVER['REQUEST_URI'], ".php"); ?>">
+<?php
+	/*The body ID is found using the end of the url like so: http://crohns.zachery.ninja/index.php -> index*/
+	$pagename = basename($_SERVER['REQUEST_URI'], ".php");
+	if (empty($pagename)) {$pagename = "index";}
+?>
+<body id="<?php echo $pagename;?>">
 	<header>
 		<h1>Crohn's Kitchen</h1>
 		<h2>eat bits, not bytes!</h2>
