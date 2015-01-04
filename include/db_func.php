@@ -1,7 +1,4 @@
 <?php 
-
-echo (__dir__);
-
 require("../../protected/db_auth.php");
 
 function db_connect() {

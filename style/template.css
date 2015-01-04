@@ -1,11 +1,11 @@
 /*
 Crohn's Kitchen main styling for template
 Version: 1
-Date: Dec 2014
+Date: Jan 2015
 */
 
 html {
-	background-color: #fff;
+	background-color: #FFF;
 	color: #000;
 }
 
@@ -15,13 +15,23 @@ header {
 	margin: auto;
 	font-family: "Helvetica", sans-serif;
 	height: 5em;
-	background-color: #efefef;
+	background-color: #fff;
 	padding: 0em 0.5em;
+	
+	/* no selecting with mouse */
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	cursor:default;
 }
 
 header a {
-	color: #444;
+	color: #000;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 header img {
@@ -30,21 +40,39 @@ header img {
 }
 
 header h1 {
-	color: #666;
-	width: 6em;
-	margin: auto;
-	display: inline;
-	font-family: "Helvetica", sans-serif;
-	vertical-align: middle;
+	color: rgb(255,128,0);
+	width: 9em;
+	display: inline-block;
+	margin-bottom: 1em;
+	
+	font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
 	font-size: 1.75em;
-	line-height: 1.75em;
-	padding-top: 4px;
+	font-style: normal;
+
+}
+
+
+header h2 {
+	color: #A9A9A9;
+	width: 12em;
+	display: inline-block;
+	
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-variant: normal;
+
+}
+
+header h2:before {
+	content:'\00BB';
+	font-size: 1.5em;
 }
 
 header ul {
 	display: inline;
 	width: 8em;
-	color: #222;
+	color: #000;
 	text-decoration: none;
 	font-weight: normal;
 	font-size: 0.9em;
@@ -64,7 +92,6 @@ header ul li {
 
 nav {
 	display: block;
-	background-color: #EEE;
 	max-width: 64em;
 	min-width: 36em;
 	margin: auto;
@@ -74,64 +101,79 @@ nav {
 
 hr {
     display: block;
-    height: 10px;
-    border: 0;
-    border-top: 5px solid #eee;
+    color: #A9A9A9;
+	height: 0;
+	border: 2px solid #A9A9A9;
     margin: 0;
     padding: 0;
-	width: 100%;
-	
 }
 
-a.button {
+a.navbtn {
 	display: inline;
 	padding: 0.5em 2em;
-	background-color: rgba(196,196,196,0.35);
+	background-color: #A9A9A9;
 	cursor: default;
 	margin: 0;
-	color: #222;
+	color: #000;
+	font-size: 1em;
 	text-decoration: none;
 	border-top-left-radius: 15%;
 	border-top-right-radius: 15%;
 	clear: both;
+	cursor: pointer;
 }
-a.button:hover {
-	background-color: rgba(196,196,196,0.1);
+a.navbtn:hover {
+	background-color: rgba(255,128,0,0.8);
 }
 
-body.main-page a.current-page {
+body#index a#nav-index,
+body#add-meal a#nav-meal,
+body#add-food a#nav-food,
+body#research a#nav-research
+{
 /* current page */
-background: #efe;
+background: #D3D3D3;
 font-weight: bold;
+padding: 0.35em 2em 0.5em 2em;
 }
 
 article {
 	max-width: 64em;
 	min-width: 36em;
-	background-color: #ddd;
+	background-color: #D3D3D3;
 	clear: both;
 	margin: auto;
 	padding: 1em 0.5em 1em 0.5em;
 }
 
 footer {
-	background-color: #ddd;
+	background-color: #D3D3D3;
 	max-width: 64em;
 	min-width: 36em;
 	border: 0;
+	border-top: 2px solid #A9A9A9;
 	margin: auto;
-	height: 3em;
-	color: #222;
+	height: 2em;
+	color: #000;
 	font-family: "Helvetica", sans-serif;
 	clear: both;
-	vertical-align: middle;
-	line-height: 2em;
 	padding: 0em 0.5em;
+	line-height: 2em;
+	
+	/* no selecting with mouse */
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	cursor: default;
 }
 
 footer a {
-	color: #222;
+	color: #000;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 footer img {

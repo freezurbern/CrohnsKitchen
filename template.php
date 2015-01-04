@@ -29,7 +29,7 @@
 		<article id="pagecontent">
 				<!-- CONTENT GOES HERE -->
 				<h1>Welcome to Crohn's Kitchen!</h1>
-				<p>Using this site you can track irritant foods, analyse meals, and more.</p>
+				<p>This is the template page for mocking up how the end result will look.</p>
 		</article>
 
 <footer>

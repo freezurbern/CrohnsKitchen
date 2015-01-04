@@ -1,8 +1,8 @@
 
 <!-- @@ Begin footer.php -->
 <footer>
-	<hr style="background-color: #666; height: 0.1em;" />
-	<a href="index.php"><img src="favicon.ico" alt="CK Logo"></a>
+
+	<a href="/index.php"><img src="/favicon.ico" alt="CK Logo"></a>
 	<a href="https://github.com/freezurbern/CrohnsKitchen">&copy; MIT License 2014 freezurbern.com</a>
 	&nbsp;<b>&middot;</b>&nbsp;blahh
 	<b>&middot;</b>&nbsp;

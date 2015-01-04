@@ -20,6 +20,9 @@ print_r(array_values($rows));
 
 if ($rows[0]["mynum"] == 5) {echo "<br>Database connection was successful.<br>";} else {echo "Failure.";}
 
+echo json_encode($rows, JSON_PRETTY_PRINT);
 
+// echo $rows[1]["memo"];
+// echo $var[rownum]["column-name"]; // outputs 
 
 ?>
