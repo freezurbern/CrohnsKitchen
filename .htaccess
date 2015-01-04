@@ -5,11 +5,11 @@ RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} !^.*crohns.*$ [NC]
 RewriteRule \.(ico|gif|jpg|png|bmp|jpeg|zip|tiff|svg)$ http://photojournal.jpl.nasa.gov/jpeg/PIA12577.jpg [NC,R,L]
 
-ErrorDocument 400 "<body bgcolor=#2222FF><h1>You are <b>LOST</b>, Colonel! (400)
-ErrorDocument 401 "<body bgcolor=#2222FF><h1>You are <b>LOST</b>, Colonel! (401)
-ErrorDocument 403 "<body bgcolor=#2222FF><h1>You are <b>LOST</b>, Colonel! (403)
-ErrorDocument 404 "<body bgcolor=#2222FF><h1>You are <b>LOST</b>, Colonel! (404)
-ErrorDocument 500 "<body bgcolor=#2222FF><h1>You are <b>LOST</b>, Colonel! (500)
+ErrorDocument 400 "<h1>You are <b>LOST</b>, Colonel! (400 - Bad request)
+ErrorDocument 401 "<h1>You are <b>LOST</b>, Colonel! (401 - Unauthorized)
+ErrorDocument 403 "<h1>You are <b>LOST</b>, Colonel! (403 - Forbidden)
+ErrorDocument 404 "<h1>You are <b>LOST</b>, Colonel! (404 - Not found)
+ErrorDocument 500 "<h1>You are <b>LOST</b>, Colonel! (500 - Server error)
 
 RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [OR] 
 RewriteCond %{HTTP_USER_AGENT} ^Bot\ mailto:craftbot@yahoo.com [OR] 

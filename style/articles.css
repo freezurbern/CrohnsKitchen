@@ -1,0 +1,29 @@
+/*
+ * Crohn's Kitchen article styling
+ * author: freezurbern
+ * date: Jan 2015
+*/
+
+@import url("content/table.css");
+@import url("content/form.css");
+
+article h1, h2, h3, h4, h5 {
+	color: #000;
+	font-family: 'Droid Sans', sans-serif;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+article p {
+	padding: 0em;
+}
+
+article hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	
+	margin-top: 1em;
+	margin-bottom: 1em;
+}

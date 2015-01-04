@@ -5,12 +5,13 @@
 	<title>Crohn's Kitchen</title>
 	<link rel="stylesheet" href="/style/reset.css" />
 	<link rel="stylesheet" href="/style/template.css" />
-	<link rel="stylesheet" href="/style/content.css"/>
+	<link rel="stylesheet" href="/style/articles.css"/>
 	<script type="text/javascript" src="/js/features.js"></script>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans" />
 	<meta charset="utf-8"/>
 </head>
 <?php
-	/*The body ID is found using the end of the url like so: http://crohns.zachery.ninja/index.php -> index*/
+	/* The body ID is found using the end of the url like so: http://crohns.zachery.ninja/index.php -> index */
 	$pagename = basename($_SERVER['REQUEST_URI'], ".php");
 	if (empty($pagename)) {$pagename = "index";}
 ?>

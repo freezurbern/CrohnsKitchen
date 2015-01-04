@@ -13,7 +13,7 @@ header {
 	max-width: 64em;
 	min-width: 30em;
 	margin: auto;
-	font-family: "Helvetica", sans-serif;
+	font-family: 'Droid Sans', sans-serif;
 	height: 5em;
 	background-color: #fff;
 	padding: 0em 0.5em;
@@ -47,13 +47,12 @@ header h1 {
 
 }
 
-
 header h2 {
 	color: #A9A9A9;
 	width: 12em;
 	display: inline-block;
 	
-	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: 'Droid Sans', sans-serif;
 	font-size: 1em;
 	font-style: normal;
 	font-variant: normal;
@@ -151,7 +150,7 @@ footer {
 	margin: auto;
 	height: 2em;
 	color: #000;
-	font-family: "Helvetica", sans-serif;
+	font-family: 'Droid Sans', sans-serif;
 	clear: both;
 	padding: 0em 0.5em;
 	line-height: 2em;
