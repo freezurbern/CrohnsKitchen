@@ -21,9 +21,9 @@
 		<h2>eat bits, not bytes!</h2>
 		<ul>
 		<li><span class="special">Quick Links</span></li>
-		<li><a href="/user.php?profile">Profile</a></li>
-		<li><a href="/user.php?login">Login</a></li>
-		<li><a href="/user.php?logout">Logout</a></li>
+		<li><a href="/user/profile.php?profile">Profile</a></li>
+		<li><a href="/user/profile.php?login">Login</a></li>
+		<li><a href="/user/profile.php?logout">Logout</a></li>
 		</ul>
 		<nav>
 			<a href="/index.php" id="nav-index" class="navbtn">Main</a>
