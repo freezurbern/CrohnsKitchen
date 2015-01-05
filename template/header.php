@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="/style/template.css" />
 	<link rel="stylesheet" href="/style/articles.css"/>
 	<script type="text/javascript" src="/js/features.js"></script>
+	<script type="text/javascript" src="/js/Chart.js"></script>
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans" />
 	<meta charset="utf-8"/>
 </head>
