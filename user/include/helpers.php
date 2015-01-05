@@ -4,7 +4,7 @@
  * author: freezurbern
  * 
 */
-require '../../protected/db_auth.php';
+require '../../../protected/db_auth.php';
 //db_host, db_user, db_pass, db_name;
 
 // DEBUG MODE: If enabled, OK to leak server setup details.
