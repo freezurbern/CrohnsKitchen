@@ -1,7 +1,7 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");?>
 <article id="pagecontent">
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<form action="user-man.php" method="POST" class="skinny">
+	<form action="user-form.php" method="POST" class="skinny">
 	<fieldset>
 	<legend>Create a new user</legend>
 		E-mail: 
@@ -15,7 +15,7 @@
 	</fieldset>
 	</form>
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<form action="user-man.php" method="POST" class="skinny">
+	<form action="user-form.php" method="POST" class="skinny">
 	<fieldset>
 	<legend>Login as existing</legend>
 		Username: 
@@ -27,7 +27,7 @@
 	</fieldset>
 	</form>
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<form action="user-man.php" method="POST" class="skinny">
+	<form action="user-form.php" method="POST" class="skinny">
 	<fieldset>
 	<legend>Change password</legend>
 		Username: 

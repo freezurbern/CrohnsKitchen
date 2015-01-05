@@ -80,7 +80,7 @@ $db = new mysqli(db_host, db_user, db_pass, db_name);
 
 <?php // Test the user
 
-	$url = 'http://crohns.zachery.ninja/user/user-man.php';
+	$url = 'http://crohns.zachery.ninja/user/user-form.php';
 	$data = array('user' => 'testme', 'pass' => 'crohnskitchen', 'op' => 'login');
 
 	// use key 'http' even if you send the request to https://...
