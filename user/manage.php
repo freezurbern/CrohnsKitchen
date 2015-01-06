@@ -1,43 +1,19 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");?>
 <article id="pagecontent">
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<form action="include/form-handler.php" method="POST" class="skinny">
-	<fieldset>
-	<legend>Create a new user</legend>
-		E-mail: 
-			<input type="text" name="email" size="20" placeholder="E-mail" required><br>
-		Username: 
-			<input type="text" name="user" size="20" placeholder="Username" required><br>
-		Password: 
-			<input type="password" name="pass" size="20" placeholder="Password" required><br>
-		<input type="hidden" name="op" value="new">
-		<input type="submit" value="Create user">
-	</fieldset>
-	</form>
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<form action="include/form-handler.php" method="POST" class="skinny">
-	<fieldset>
-	<legend>Login as existing</legend>
-		Username: 
-			<input type="text" name="user" size="20" placeholder="Username" required><br>
-		Password: 
-			<input type="password" name="pass" size="20" placeholder="Password" required><br>
-		<input type="hidden" name="op" value="login">
-		<input type="submit" value="Login now">
-	</fieldset>
-	</form>
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<form action="include/form-handler.php" method="POST" class="skinny">
-	<fieldset>
-	<legend>Change password</legend>
-		Username: 
-			<input type="text" name="user" size="20" placeholder="Username" required><br>
-		Password: 
-			<input type="password" name="pass" size="20" placeholder="Password" required><br>
-		<input type="hidden" name="op" value="change">
-		<input type="submit" value="Change password">
-	</fieldset>
-	</form>
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+	<h2>Manage your user profile here.</h2>
+		<p>Blahhh</p>
+	<h3>Links</h3>
+	<p>
+	<nav>
+		<a href="/user/change-email.php">Change my Email</a>
+		<a href="/user/change-pass.php">Change my password</a>
+		<a href="/user/recover.php">Recover my account</a>
+		<a href="/user/register.php">Register a new account</a>
+		<a href="/user/login.php">Login to an existing account</a>
+		<a href="/user/logout.php">Logout of the current account</a>
+	</nav>
+	</p>
+
 </article>
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php");?>
