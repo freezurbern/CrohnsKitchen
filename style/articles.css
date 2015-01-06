@@ -14,8 +14,24 @@ article h1, h2, h3, h4, h5 {
 	font-weight: normal;
 }
 
+article h2 {
+	font-size: 1.75em;
+}
+article h3 {
+	font-size: 1.5em;
+}
+article h4 {
+	font-size: 1.25em;
+}
+article h5 {
+	font-size: 1.15em;
+}
+
 article p {
-	padding: 0em;
+	padding: 0;
+	padding-left: 1em;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
 }
 
 article hr {
@@ -26,4 +42,22 @@ article hr {
 	
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+legend {
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 1.5em;
+	padding-left: 0.5em;
+	padding-top: 0.5em;
+	background-color: #DDD;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding-right: 0.5em;
+	line-height: 0.5em;
+}
+
+fieldset {
+	background-color: #DDD;
+	padding: 0.5em;
+	border-radius: 5px;
 }
