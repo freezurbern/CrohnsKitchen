@@ -43,21 +43,3 @@ article hr {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
-
-legend {
-	font-family: 'Droid Sans', sans-serif;
-	font-size: 1.5em;
-	padding-left: 0.5em;
-	padding-top: 0.5em;
-	background-color: #DDD;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
-	padding-right: 0.5em;
-	line-height: 0.5em;
-}
-
-fieldset {
-	background-color: #DDD;
-	padding: 0.5em;
-	border-radius: 5px;
-}
