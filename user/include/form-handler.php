@@ -1,6 +1,6 @@
 <?php //http://www.openwall.com/articles/PHP-Users-Passwords demo4
 
-require '../PasswordHash.php';
+require '../include/PasswordHash.php';
 require 'user_db_func.php';
 
 $db = new mysqli(db_host, db_user, db_pass, db_name);
