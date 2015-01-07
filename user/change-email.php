@@ -8,7 +8,7 @@
 			<input type="email" name="email" size="24" placeholder="Email" required><br>
 		Password: 
 			<input type="password" name="pass" size="20" placeholder="Password" required><br>
-		<input type="hidden" name="op" value="change">
+		<input type="hidden" name="op" value="changeemail">
 		<input type="submit" value="Change password">
 	</fieldset>
 	</form>

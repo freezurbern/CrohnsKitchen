@@ -26,7 +26,7 @@
           <label for = "sizeLarge">Neither</label>
 		  
 			<input type="text" name="user" size="20" placeholder="Username" required><br>
-		<input type="hidden" name="op" value="change">
+		<input type="hidden" name="op" value="recover">
 		<input type="submit" value="Change password">
 	</fieldset>
 	</form>
