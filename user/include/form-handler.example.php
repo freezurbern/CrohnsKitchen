@@ -1,13 +1,13 @@
 <?php
 /*
  * Crohn's Kitchen, user form functions
- * This file accepts POST's from the /user/ forms and changes the database
+ * Examples of how to code the back end functions for forms.
  * author: freezurbern
  * date: Jan 2015
 */
 
-require '../../../protected/db_auth.php';
-include 'output.header.php';
+require '../../../protected/db_auth.php'; // grab the server connection details.
+include 'output.header.php'; // get our output destination ready
 
 $link = mysqli_connect(db_host, db_user, db_pass, db_name);
 if (!$link)
@@ -51,6 +51,20 @@ else
 	include 'output.part.php';
 }
 
+/* Completely delete a table */
+$sql = 'DROP TABLE users';
+if (!mysqli_query($link, $sql))
+{
+	$output = 'Error dropping table: ' . mysqli_error($link);
+	include 'output.part.php';
+	exit();
+}
+else
+{
+	$output = 'Deleted table successfully.';
+	include 'output.part.php';
+}
+
 
 /* Create a table */
 $sql = 'CREATE TABLE IF NOT EXISTS users (
@@ -72,22 +86,56 @@ if (!mysqli_query($link, $sql))
 $output = '\'users\' table successfully created.';
 include 'output.part.php';
 
+
 /* Create a new row with information */
 $username = 'testme';
 $useremail = 'freezurbern+no@gmail.com';
+$userpass = 'crohnskitchen';
 $username_conv = mysqli_real_escape_string($link, $username);
 $useremail_conv = mysqli_real_escape_string($link, $useremail);
- $sql = 'INSERT INTO users SET
-     user="' . $username_conv . '",
-     email="' . $useremail_conv . '"';
- if (!mysqli_query($link, $sql))
- {
-   $output = 'Error adding submitted row: ' . mysqli_error($link);
-   include 'output.part.php';
-   exit();
- }
- else
- {
+$userpass_conv = 'alkjdhfasdkjfh3424lkj15h1jh123kjh123jkh1239s8f';
+// now to create the query
+$sql = '
+	INSERT INTO users SET
+	user="' . $username_conv . '",
+	email="' . $useremail_conv . '",
+	pass="' . $userpass_conv . '",
+	date_registered=CURDATE()
+	';
+if (!mysqli_query($link, $sql))
+{
+	$output = 'Error adding submitted row: ' . mysqli_error($link);
+	include 'output.part.php';
+	exit();
+}
+else
+{
+	$output = 'Row inserted successfully.';
+	include 'output.part.php';
+}
+/* Create ANOTHER row with information */
+$username = 'thetestuser';
+$useremail = 'freezurbern+help@gmail.com';
+$userpass = 'kitchensink';
+$username_conv = mysqli_real_escape_string($link, $username);
+$useremail_conv = mysqli_real_escape_string($link, $useremail);
+$userpass_conv = 'lkj2lk4j524hkg5jhb1jhwie99f724fjhfidudtw8eh2fkjh'; // add the password code here.
+// now to create the query
+$sql = '
+	INSERT INTO users SET
+	user="' . $username_conv . '",
+	email="' . $useremail_conv . '",
+	pass="' . $userpass_conv . '",
+	date_registered=CURDATE()
+	';
+if (!mysqli_query($link, $sql))
+{
+	$output = 'Error adding submitted row: ' . mysqli_error($link);
+	include 'output.part.php';
+	exit();
+}
+else
+{
 	$output = 'Row inserted successfully.';
 	include 'output.part.php';
 }
@@ -113,12 +161,17 @@ if (!$result)
 
 while ($row = mysqli_fetch_array($result))
 {
-	$userdata[] = array('uid' => $row['uid'], 'user' => $row['user'], 'pass' => $row['pass'], 'email' => $row['email']);
+	$userdata[] = array(
+		'uid' => $row['uid'], 
+		'user' => $row['user'], 
+		'email' => $row['email'], 
+		'pass' => $row['pass'], 
+		'date_registered' => $row['date_registered']
+		);
 }
 
 include 'user_table.html.php';
 
-
-echo '</body>';
-echo '</html>';
+// this is the end of the examples, so we need to finish off the theme.
+include 'output.footer.php';
 ?>
