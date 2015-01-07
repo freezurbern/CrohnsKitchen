@@ -3,11 +3,11 @@
 	<table>
 		<thead>
 			<tr>
-				<td>uid</td>
-				<td>user</td>
-				<td>email</td>
-				<td>pass</td>
-				<td>Date Registered</td>
+				<th>Uid</th>
+				<th>User</th>
+				<th>Email</th>
+				<th>Pass</th>
+				<th>Date Registered</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -5,20 +5,27 @@
  * date: Jan 2015
 */
 table {
+	border-collapse: collapse;
 }
 thead tr:first-child { 
     background-color: #404040;
 	color: white;
 	font-weight: bold;
 }
-th{
+th {
+	padding: 0.25rem;
     width: 100px;
-    box-shadow: inset 0px 1px #808080;
+    box-shadow: inset 0px 2px #808080;
     border: 1px solid black;
-    border-left: none;
-    border-right: none;
+	vertical-align: middle;
+	text-align: center;
 }
-td, th { width: 100px; height: 40px; }
+td {
+	width: 100px; 
+	height: 40px; 
+	border: 1px solid #D3D3D3;
+	padding: 0.25rem;
+}
 thead td:first-child { border-left: 1px solid #808080; }
 thead td:last-child { border-right: 1px solid #808080; }
 tbody tr td:first-child { border-left: 1px solid #808080; }
