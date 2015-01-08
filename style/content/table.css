@@ -15,7 +15,6 @@ thead tr:first-child {
 th {
 	padding: 0.25rem;
     width: 100px;
-    box-shadow: inset 0px 2px #808080;
     border: 1px solid black;
 	vertical-align: middle;
 	text-align: center;
@@ -36,11 +35,11 @@ tbody tr:last-child td:first-child { border-bottom-left-radius:5px; }
 tbody tr:last-child td:last-child { border-bottom-right-radius:5px; }
 tr {background-color: #ebebe9; }
 tr:nth-child(odd) { background-color: white; }
-thead tr:first-child th:first-child {
+thead tr:first-child {
     border-top-left-radius:5px;
     border-left: 1px solid black;
 }
-thead tr:first-child th:last-child {
+thead tr:first-child {
     border-top-right-radius:5px;
     border-right: 1px solid black;
 }

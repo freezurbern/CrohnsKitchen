@@ -5,7 +5,7 @@
 	<fieldset>
 	<legend>Change Email</legend>
 		New email:
-			<input type="email" name="email" size="24" placeholder="Email" required><br>
+			<input type="email" name="email" size="20" placeholder="Email" required><br>
 		Password:
 			<input type="password" name="pass" size="20" placeholder="Password" required><br>
 		<input type="hidden" name="op" value="changeemail">

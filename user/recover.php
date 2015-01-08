@@ -4,28 +4,27 @@
 	<form action="include/form-handler.php" method="POST" class="skinny">
 	<fieldset>
 	<legend>Lost your account?</legend>
-		I know my...
-		<label>Radio buttons</label>
+		I know my...<br>
           <input type = "radio"
-                 name = "radSize"
-                 id = "sizeSmall"
-                 value = "small"
+                 name = "know_info"
+                 id = "know_username"
+                 value = "user"
                  checked = "checked" />
-          <label for = "sizeSmall">Username</label>
+          <label for="know_username">Username</label><br>
 
           <input type = "radio"
-                 name = "radSize"
-                 id = "sizeMed"
-                 value = "medium" />
-          <label for = "sizeMed">Email</label>
+                 name = "know_info"
+                 id = "know_email"
+                 value = "email" />
+          <label for="know_email">Email</label><br>
 
           <input type = "radio"
-                 name = "radSize"
-                 id = "sizeLarge"
-                 value = "large" />
-          <label for = "sizeLarge">Neither</label>
+                 name = "know_info"
+                 id = "know_neither"
+                 value = "neither" />
+          <label for="know_neither">Neither</label><br>
 
-			<input type="text" name="user" size="20" placeholder="Username" required><br>
+			<input type="text" name="know_text" size="20" placeholder="Known Information" required><br>
 		<input type="hidden" name="op" value="recover">
 		<input type="submit" value="Change password">
 	</fieldset>
