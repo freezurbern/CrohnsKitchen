@@ -3,12 +3,21 @@
  * author: freezurbern
  * date: Jan 2015
 */
-
-$operation = filter_var($_POST['op'], FILTER_SANITIZE_STRING);
+$myCount = 1;
+// Use this to clean up the post vars from the form a bit
+function get_post_var($var)
+{
+	$val = $_POST[$var];
+	if (get_magic_quotes_gpc())
+		$val = stripslashes($val);
+	return $val;
+}
+$operation = filter_var(get_post_var('op'), FILTER_SANITIZE_STRING);
 
 switch ($operation)
 {
 	case "register":
+		$myCount += 1;
 		// register a new user
 		require('form/register.php');
 		exit();
