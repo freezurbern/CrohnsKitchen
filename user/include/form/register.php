@@ -12,37 +12,32 @@ require 'PasswordHash.php'; // for creating the user passwords.
 require($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
-
-
-$link = mysqli_connect(db_host, db_user, db_pass, db_name);
-if (!$link)
+$db = new mysqli(db_host, db_user, db_pass, db_name);
+if (mysqli_connect_errno())
 {
- $output = 'Unable to connect to the database server.';
- include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
- exit();
+	fail('Unable to connect to the database server.', '');
+	exit();
 }
 else {
 	$myCount += 1;
 }
 
-if (!mysqli_set_charset($link, 'utf8'))
+if (!mysqli_set_charset($db, 'utf8'))
 {
- $output = 'Unable to set database connection encoding.';
- include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
- exit();
+	fail('Unable to set database connection encoding.', '');
+	exit();
 }
 $myCount += 1;
 
-if (!mysqli_select_db($link, 'ckdata'))
+if (!mysqli_select_db($db, 'ckdata'))
 {
- $output = 'Unable to locate the database.';
- include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
- exit();
+	fail('Unable to locate the database.', '');
+	exit();
 }
 $myCount += 1;
 
-$output = 'Server and database connection established.' . $myCount;
-include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+fail('Server and database connection established.', '');
+
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* @@@@@	End DB Setup	@@@@@ */
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
@@ -60,8 +55,7 @@ $user = get_post_var('user');
  * alone to prevent attacks on the SQL server via malicious usernames. */
 if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $user))
 {
-	$output = 'Username has invalid characters';
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+	fail('Username has invalid characters. ', $user);
 }
 
 $pass = get_post_var('pass');
@@ -69,62 +63,49 @@ $pass = get_post_var('pass');
  * Besides, bcrypt happens to use the first 72 characters only anyway. */
 if (strlen($pass) > 72)
 {
-	$output = 'Password too long.';
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+	fail('Password too long. ', '');
 }
 
 if (!preg_match('/^[a-zA-Z0-9_]{1,72}$/', $pass))
 {
-	$output = 'Password has invalid characters.';
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+	fail('Password has invalid characters. ', '');
 }
 
 $email = get_post_var('email');
 /* Sanity-check the email, don't rely on our use of prepared statements
  * alone to prevent attacks on the SQL server via malicious usernames. */
 if (!filter_var($email,FILTER_VALIDATE_EMAIL))
-	{
-	echo "|".$email."|";
-	$output = 'Invalid email.';
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
-	}
+{
+	fail('Invalid email. ', '');
+}
 
-$username = filter_var($user, FILTER_SANITIZE_STRING);
-$userpass = filter_var($pass, FILTER_SANITIZE_STRING);
-$useremail = filter_var($email, FILTER_SANITIZE_STRING);
-
-$hash = $hasher->HashPassword($userpass);
+$hash = $hasher->HashPassword( filter_var($pass, FILTER_SANITIZE_STRING) );
 if (strlen($hash) < 20)
 {
-	$output = 'Failed to hash password.';
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
 	unset($hasher);
+	fail('Failed to hash password. ', '');
 }
 
-$username_conv = mysqli_real_escape_string($link, $username);
-$useremail_conv = mysqli_real_escape_string($link, $useremail);
+$username_conv = mysqli_real_escape_string($db, filter_var($user, FILTER_SANITIZE_STRING));
+$useremail_conv = mysqli_real_escape_string($db, filter_var($email, FILTER_SANITIZE_STRING));
 $userpass_conv = $hash;
 
-// now to create the query
-$sql = '
-	INSERT INTO users SET
-	user="' . $username_conv . '",
-	email="' . $useremail_conv . '",
-	pass="' . $userpass_conv . '",
-	date_registered=CURDATE()
-	';
-if (!mysqli_query($link, $sql))
-{
-	$output = 'Error adding submitted: ' . mysqli_error($link);
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
-	unset($hasher);
-	exit();
-}
-else
-{
-	$output = 'User created successfully.';
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
-	unset($hasher);
+($stmt = $db->prepare('INSERT INTO users (user, pass, email, date_registered) values (?, ?, ?, CURDATE())'))
+	|| fail('MySQL prepare', $db->error);
+$stmt->bind_param('sss', $username_conv, $userpass_conv, $useremail_conv)
+	|| fail('MySQL bind_param', $db->error);
+if (!$stmt->execute()) {
+/* Figure out why this failed - maybe the username is already taken?
+ * It could be more reliable/portable to issue a SELECT query here.  We would
+ * definitely need to do that (or at least include code to do it) if we were
+ * supporting multiple kinds of database backends, not just MySQL.  However,
+ * the prepared statements interface we're using is MySQL-specific anyway. */
+		if ($db->errno === 1062 /* ER_DUP_ENTRY */)
+			fail('This username is already taken');
+		else
+			fail('MySQL execute', $db->error);
+} else { 
+	fail('User created successfully.');
 }
 
 // end of code, finish off the theme.

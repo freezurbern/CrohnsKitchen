@@ -4,21 +4,6 @@
  * date: Jan 2015
 */
 
-$debug = TRUE;
-function fail($pub, $pvt = '')
-{
-	global $debug;
-	$msg = $pub;
-	if ($debug && $pvt !== '')
-		$msg .= ": $pvt";
-/* The $pvt debugging messages may contain characters that would need to be
- * quoted if we were producing HTML output, like we would be in a real app,
- * but we're using text/plain here.  Also, $debug is meant to be disabled on
- * a "production install" to avoid leaking server setup details. */
-	exit("An error occurred ($msg).\n");
-}
-
-
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 // make sure we're using a form, first thing.
 
@@ -30,9 +15,8 @@ echo '<pre>'; // prettify my output.part.php stuff
 $db = new mysqli(db_host, db_user, db_pass, db_name);
 if (mysqli_connect_errno())
 {
- $output = 'Unable to connect to the database server.';
- include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
- exit();
+	fail('Unable to connect to the database server.', '');
+	exit();
 }
 else {
 	$myCount += 1;
@@ -40,22 +24,20 @@ else {
 
 if (!mysqli_set_charset($db, 'utf8'))
 {
- $output = 'Unable to set database connection encoding.';
- include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
- exit();
+	fail('Unable to set database connection encoding.', '');
+	exit();
 }
 $myCount += 1;
 
 if (!mysqli_select_db($db, 'ckdata'))
 {
- $output = 'Unable to locate the database.';
- include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
- exit();
+	fail('Unable to locate the database.', '');
+	exit();
 }
 $myCount += 1;
 
-$output = 'Server and database connection established.' . $myCount;
-include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+fail('Server and database connection established.', '');
+
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* @@@@@	End DB Setup	@@@@@ */
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
@@ -82,14 +64,11 @@ $stmt->bind_result($hash)
 if (!$stmt->fetch() && $db->errno)
 	fail('MySQL fetch', $db->error);
 if ($hasher->CheckPassword($pass, $hash)) {
-	$output = 'Authentication succeeded.';
-	$output .= $hash;
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+	fail('Authentication succeeded.', '');
 } else {
-	$output = 'Authentication failed.';
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
 	$output .= $user.'|'.$pass.'|'.$hash.'|'.$email;
-	$op = 'fail'; // Definitely not 'change'
+	fail('Authentication failed.', $output);
+	$op = 'fail'; // Definitely not 'login'
 }
 
 // end of code, finish off the theme.

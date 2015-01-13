@@ -4,6 +4,24 @@
  * date: Jan 2015
 */
 $myCount = 1;
+
+$debug = TRUE;
+function fail($pub, $pvt = '')
+{
+	global $debug;
+	$msg = $pub;
+	if ($debug && $pvt !== '')
+		$msg .= ": $pvt";
+/* The $pvt debugging messages may contain characters that would need to be
+ * quoted if we were producing HTML output, like we would be in a real app,
+ * but we're using text/plain here.  Also, $debug is meant to be disabled on
+ * a "production install" to avoid leaking server setup details. */
+	//exit("An error occurred ($msg).\n");
+$output = $msg;
+include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+}
+
+
 // Use this to clean up the post vars from the form a bit
 function get_post_var($var)
 {
@@ -13,6 +31,8 @@ function get_post_var($var)
 	return $val;
 }
 $operation = filter_var(get_post_var('op'), FILTER_SANITIZE_STRING);
+
+
 
 switch ($operation)
 {
