@@ -12,6 +12,29 @@ require 'PasswordHash.php'; // for creating the user passwords.
 require($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// Google ReCAPTCHA
+	if(isset($_POST['g-recaptcha-response'])){
+	  $captcha=$_POST['g-recaptcha-response'];
+	}
+	if(!$captcha){
+	  fail('reCAPTCHA error.');
+	  exit();
+	}
+	$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".recaptcha_secret."&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
+	if($response.success==false)
+	{
+	  fail('reCAPTCHA marked as robot.');
+	  exit();
+	} else
+	{
+	  fail('reCAPTCHA is okay.');
+	}
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
 $db = new mysqli(db_host, db_user, db_pass, db_name);
 if (mysqli_connect_errno())
 {

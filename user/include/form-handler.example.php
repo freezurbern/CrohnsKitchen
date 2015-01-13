@@ -8,6 +8,7 @@
 
 require '../../../protected/db_auth.php'; // grab the server connection details.
 include 'output.header.php'; // get our output destination ready
+echo '<pre>'; // prettify my output.part.php stuff
 
 $link = mysqli_connect(db_host, db_user, db_pass, db_name);
 if (!$link)
@@ -158,6 +159,8 @@ if (!$result)
  include 'output.part.php';
  exit();
 }
+
+echo '</pre>'; // end prettified for now.
 
 while ($row = mysqli_fetch_array($result))
 {
