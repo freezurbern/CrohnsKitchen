@@ -6,9 +6,9 @@
 	<table>
 		<thead>
 			<tr>
-				<td>fid</td>
-				<td>name</td>
-				<td>group</td>
+				<th>fid</th>
+				<th>name</th>
+				<th>group</th>
 			</tr>
 		</thead>
 		<tbody>

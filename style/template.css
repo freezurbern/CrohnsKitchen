@@ -85,7 +85,7 @@ header ul li {
 	padding: 0;
 }
 
-nav {
+header nav {
 	display: block;
 	max-width: 64em;
 	min-width: 36em;

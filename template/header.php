@@ -3,12 +3,13 @@
 <html>
 <head>
 	<title>Crohn's Kitchen</title>
-	<link rel="stylesheet" href="/style/reset.css" />
-	<link rel="stylesheet" href="/style/template.css" />
-	<link rel="stylesheet" href="/style/articles.css"/>
+	<link rel="stylesheet" type="text/css" href="/style/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/style/template.css" />
+	<link rel="stylesheet" type="text/css" href="/style/articles.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans" />
 	<script type="text/javascript" src="/js/features.js"></script>
 	<script type="text/javascript" src="/js/Chart.js"></script>
-	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans" />
+	<script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
 	<meta charset="utf-8"/>
 </head>
 <?php
@@ -22,9 +23,9 @@
 		<h2>eat bits, not bytes!</h2>
 		<ul>
 		<li><span class="special">Quick Links</span></li>
-		<li><a href="/user/profile.php?profile">Profile</a></li>
-		<li><a href="/user/profile.php?login">Login</a></li>
-		<li><a href="/user/profile.php?logout">Logout</a></li>
+		<li><a href="/user/manage.php">Profile</a></li>
+		<li><a href="/user/login.php">Login</a></li>
+		<li><a href="/user/logout.php">Logout</a></li>
 		</ul>
 		<nav>
 			<a href="/index.php" id="nav-index" class="navbtn">Main</a>
