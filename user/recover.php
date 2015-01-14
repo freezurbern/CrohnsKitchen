@@ -23,10 +23,11 @@
                  id = "know_neither"
                  value = "neither" />
           <label for="know_neither">Neither</label><br>
-
-			<input type="text" name="know_text" size="20" placeholder="Known Information" required><br>
+		<br>
+		<input type="text" name="know_text" size="20" placeholder="Write it here" required class="fullwide" ><br>
+		<div class="g-recaptcha" data-sitekey="6LdcaQATAAAAAH6NCoVL4sLAmRlgzuhAHt_ikJG4"></div><br>
 		<input type="hidden" name="op" value="recover">
-		<input type="submit" value="Change password">
+		<input type="submit" value="Next..">
 	</fieldset>
 	</form>
 

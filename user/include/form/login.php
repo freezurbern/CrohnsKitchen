@@ -37,7 +37,6 @@ if (!mysqli_select_db($db, 'ckdata'))
 $myCount += 1;
 
 fail('Server and database connection established.', '');
-
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* @@@@@	End DB Setup	@@@@@ */
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
@@ -52,21 +51,24 @@ $hash = '*'; // In case the user is not found
 
 $pass = filter_var(get_post_var('pass'), FILTER_SANITIZE_STRING);
 $user = filter_var(get_post_var('user'), FILTER_SANITIZE_STRING);
+$myuser = $user;
 
-($stmt = $db->prepare('SELECT pass FROM users WHERE user=?'))
+($stmt = $db->prepare('SELECT uid, pass FROM users WHERE user=?'))
 	|| fail('MySQL prepare', $db->error);
 $stmt->bind_param('s', $user)
 	|| fail('MySQL bind_param', $db->error);
 $stmt->execute()
 	|| fail('MySQL execute', $db->error);
-$stmt->bind_result($hash)
+$stmt->bind_result($user_uid, $hash)
 	|| fail('MySQL bind_result', $db->error);
 if (!$stmt->fetch() && $db->errno)
 	fail('MySQL fetch', $db->error);
 if ($hasher->CheckPassword($pass, $hash)) {
 	fail('Authentication succeeded.', '');
+	require($_SERVER['DOCUMENT_ROOT'] . "user/include/session-handler.php");
+	grant_session($user_uid, $myuser);
 } else {
-	$output .= $user.'|'.$pass.'|'.$hash.'|'.$email;
+	$output .= $user.'|'.$pass.'|'.$email;
 	fail('Authentication failed.', $output);
 	$op = 'fail'; // Definitely not 'login'
 }
