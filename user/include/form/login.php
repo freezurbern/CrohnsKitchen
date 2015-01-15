@@ -1,5 +1,5 @@
 <?php
-/* Crohn's Kitchen user registration code
+/* Crohn's Kitchen user login code
  * author: freezurbern
  * date: Jan 2015
 */
