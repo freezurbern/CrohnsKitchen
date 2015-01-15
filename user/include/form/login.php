@@ -9,10 +9,8 @@ if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); }
 
 require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
 require 'PasswordHash.php'; // for creating the user passwords.
-if($allow_output) {
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
-	echo '<pre>'; // prettify my output.part.php stuff
-}
+include($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
+echo '<pre>'; // prettify my output.part.php stuff
 
 $db = new mysqli(db_host, db_user, db_pass, db_name);
 if (mysqli_connect_errno())

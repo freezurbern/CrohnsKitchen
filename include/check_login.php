@@ -7,6 +7,7 @@
 		$un = $_SESSION['user'];
 		$uid = $_SESSION['uid'];
 		//echo 'username:'.$un;
+		$us = $_SESSION['super'];
 	}
 	else
 	{

@@ -9,10 +9,9 @@ if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); }
 
 require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
 require 'PasswordHash.php'; // for creating the user passwords.
-if($allow_output) {
-	require($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
-	echo '<pre>'; // prettify my output.part.php stuff
-}
+require($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
+echo '<pre>'; // prettify my output.part.php stuff
+
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // Google ReCAPTCHA
@@ -139,8 +138,5 @@ if (!$stmt->execute()) {
 }
 
 // end of code, finish off the theme.
-// end of code, finish off the theme.
-if($allow_output) {
 	require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
-}
 ?>
