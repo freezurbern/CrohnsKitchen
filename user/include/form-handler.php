@@ -5,9 +5,11 @@
 */
 $myCount = 1;
 
-$debug = TRUE;
+$debug = FALSE;
+$allow_output = FALSE;
 function fail($pub, $pvt = '')
 {
+	
 	global $debug;
 	$msg = $pub;
 	if ($debug && $pvt !== '')
@@ -18,9 +20,10 @@ function fail($pub, $pvt = '')
  * a "production install" to avoid leaking server setup details. */
 	//exit("An error occurred ($msg).\n");
 $output = $msg;
-include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
+if ($allow_output)
+	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.part.php");
 }
-
+}
 
 // Use this to clean up the post vars from the form a bit
 function get_post_var($var)
@@ -31,8 +34,6 @@ function get_post_var($var)
 	return $val;
 }
 $operation = filter_var(get_post_var('op'), FILTER_SANITIZE_STRING);
-
-
 
 switch ($operation)
 {
