@@ -11,8 +11,9 @@
 			<input type="email" name="email" size="20" placeholder="Email" required><br>
 		Password:
 			<input type="password" name="pass" size="20" placeholder="Password" required><br>
+		<input type="hidden" name="ot" value="<?php echo htmlspecialchars($_GET["ot"])?>">
 		<input type="hidden" name="op" value="changeemail">
-		<input type="submit" value="Change password">
+		<input type="submit" value="Change email">
 	</fieldset>
 	</form>
 <?php } else { ?>
