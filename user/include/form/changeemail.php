@@ -66,21 +66,40 @@ if ($hasher->CheckPassword($pass, $hash)) {
 	//grant_session($user_uid, $myuser);
 	//$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
 	//echo '<META HTTP-EQUIV=REFRESH CONTENT="1; '.$root.'">';
-		($stmt = $db->prepare('UPDATE users SET email=? WHERE user=?'))
-				|| fail('MySQL prepare', $db->error);
-			$stmt->bind_param('ss', $user_new_email, $user)
-				|| fail('MySQL bind_param', $db->error);
-			$stmt->execute()
-				|| fail('MySQL execute', $db->error);
-			$stmt->bind_result($email_update_result)
-				|| fail('MySQL bind_result', $db->error);
-			if (!$stmt->fetch() && $db->errno)
-				fail('MySQL fetch', $db->error);
-		fail('UPDATE done.');
+	$db = new mysqli(db_host, db_user, db_pass, db_name);
+	if (mysqli_connect_errno())
+	{
+		fail('Unable to connect to the database server.', '');
+		exit();
+	}
+	if (!mysqli_set_charset($db, 'utf8'))
+	{
+		fail('Unable to set database connection encoding.', '');
+		exit();
+	}
+	if (!mysqli_select_db($db, 'ckdata'))
+	{
+		fail('Unable to locate the database.', '');
+		exit();
+	}
+	fail('Server and database connection established.', '');
+	
+	($stmt = $db->prepare('UPDATE users SET email=? WHERE user=?'))
+			|| fail('MySQL prepare', $db->error);
+		$stmt->bind_param('ss', $user_new_email, $user)
+			|| fail('MySQL bind_param', $db->error);
+		$stmt->execute()
+			|| fail('MySQL execute', $db->error);
+		if ($stmt->errno)
+			echo "FAIL. " . $stmt->error;
+		if (!$stmt->fetch() && $db->errno)
+			fail('MySQL fetch', $db->error);
+	fail('UPDATE done.');
+	fail('users affected: ', $stmt->affected_rows);
 } else {
 	$output .= $user.'|'.$pass.'|'.$user_new_email;
 	fail('Authentication failed.', $output);
-	$op = 'fail'; // Definitely not 'login'
+	$op = 'fail'; // Definitely not 'login'!
 }
 
 // end of code, finish off the theme.
