@@ -1,15 +1,15 @@
 <?php
-/* Crohn's Kitchen user registration code
+/* Crohn's Kitchen user login code
  * author: freezurbern
  * date: Jan 2015
 */
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); }
 // make sure we're using a form, first thing.
 
 require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
 require 'PasswordHash.php'; // for creating the user passwords.
-require($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
+include($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
 $db = new mysqli(db_host, db_user, db_pass, db_name);
@@ -37,7 +37,6 @@ if (!mysqli_select_db($db, 'ckdata'))
 $myCount += 1;
 
 fail('Server and database connection established.', '');
-
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* @@@@@	End DB Setup	@@@@@ */
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
@@ -52,26 +51,32 @@ $hash = '*'; // In case the user is not found
 
 $pass = filter_var(get_post_var('pass'), FILTER_SANITIZE_STRING);
 $user = filter_var(get_post_var('user'), FILTER_SANITIZE_STRING);
+$myuser = $user;
 
-($stmt = $db->prepare('SELECT pass FROM users WHERE user=?'))
+($stmt = $db->prepare('SELECT uid, pass FROM users WHERE user=?'))
 	|| fail('MySQL prepare', $db->error);
 $stmt->bind_param('s', $user)
 	|| fail('MySQL bind_param', $db->error);
 $stmt->execute()
 	|| fail('MySQL execute', $db->error);
-$stmt->bind_result($hash)
+$stmt->bind_result($user_uid, $hash)
 	|| fail('MySQL bind_result', $db->error);
 if (!$stmt->fetch() && $db->errno)
 	fail('MySQL fetch', $db->error);
 if ($hasher->CheckPassword($pass, $hash)) {
 	fail('Authentication succeeded.', '');
+	require($_SERVER['DOCUMENT_ROOT'] . "user/include/session-handler.php");
+	grant_session($user_uid, $myuser);
+	$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+	echo '<META HTTP-EQUIV=REFRESH CONTENT="1; '.$root.'">';
 } else {
-	$output .= $user.'|'.$pass.'|'.$hash.'|'.$email;
+	$output .= $user.'|'.$pass.'|'.$email;
 	fail('Authentication failed.', $output);
 	$op = 'fail'; // Definitely not 'login'
 }
 
 // end of code, finish off the theme.
-require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
-} // close checking if using POST
+if($allow_output) {
+	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
+}
 ?>

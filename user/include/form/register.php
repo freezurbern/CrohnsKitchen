@@ -4,7 +4,7 @@
  * date: Jan 2015
 */
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); }
 // make sure we're using a form, first thing.
 
 require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
@@ -29,7 +29,7 @@ echo '<pre>'; // prettify my output.part.php stuff
 	  exit();
 	} else
 	{
-	  fail('reCAPTCHA is okay.');
+	  fail('reCAPTCHA is okay. Carrying on.');
 	}
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -79,6 +79,7 @@ $user = get_post_var('user');
 if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $user))
 {
 	fail('Username has invalid characters. ', $user);
+	exit();
 }
 
 $pass = get_post_var('pass');
@@ -87,11 +88,13 @@ $pass = get_post_var('pass');
 if (strlen($pass) > 72)
 {
 	fail('Password too long. ', '');
+	exit();
 }
 
 if (!preg_match('/^[a-zA-Z0-9_]{1,72}$/', $pass))
 {
 	fail('Password has invalid characters. ', '');
+	exit();
 }
 
 $email = get_post_var('email');
@@ -100,6 +103,7 @@ $email = get_post_var('email');
 if (!filter_var($email,FILTER_VALIDATE_EMAIL))
 {
 	fail('Invalid email. ', '');
+	exit();
 }
 
 $hash = $hasher->HashPassword( filter_var($pass, FILTER_SANITIZE_STRING) );
@@ -107,6 +111,7 @@ if (strlen($hash) < 20)
 {
 	unset($hasher);
 	fail('Failed to hash password. ', '');
+	exit();
 }
 
 $username_conv = mysqli_real_escape_string($db, filter_var($user, FILTER_SANITIZE_STRING));
@@ -129,9 +134,9 @@ if (!$stmt->execute()) {
 			fail('MySQL execute', $db->error);
 } else { 
 	fail('User created successfully.');
+	exit();
 }
 
 // end of code, finish off the theme.
-require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
-} // close checking if using POST
+	require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
 ?>
