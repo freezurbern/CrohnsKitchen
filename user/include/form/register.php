@@ -134,6 +134,14 @@ if (!$stmt->execute()) {
 			fail('MySQL execute', $db->error);
 } else { 
 	fail('User created successfully.');
+	
+	// generate uniqueurl for use in mail
+	$uniqueurl = 'blah';
+	// send mail to new user
+	require($_SERVER['DOCUMENT_ROOT'] . "/include/PHPMailer/load.php"); // email functions
+	// send_user_mail($ADDRESS, $SUBJECT, $MESSAGE);
+	send_user_mail($useremail_conv, 'Welcome to Crohns Kitchen', 'account name: '.$username_conv.'. Please click here: <a href="'.$uniqueurl.'">'.$uniqueurl.'</a> to finish registration.') || fail('send mail failed.');
+	// done with sending email code.
 	exit();
 }
 
