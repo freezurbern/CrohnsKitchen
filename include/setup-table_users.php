@@ -1,81 +1,98 @@
 <?php // FUNCTIONS
 
 require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
+require($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
+echo '<pre>'; // prettify my output.part.php stuff
 
-// Are we debugging this code?  If enabled, OK to leak server setup details.
-$debug = TRUE;
-
-function fail($pub, $pvt = '')
-{
-	global $debug;
-	$msg = $pub;
-	if ($debug && $pvt !== '')
-		$msg .= ": $pvt";
-/* The $pvt debugging messages may contain characters that would need to be
- * quoted if we were producing HTML output, like we would be in a real app,
- * but we're using text/plain here.  Also, $debug is meant to be disabled on
- * a "production install" to avoid leaking server setup details. */
-	exit("An error occurred ($msg).\n");
-}
-?>
-
-<?php // connect to the database.
 $db = new mysqli(db_host, db_user, db_pass, db_name);
-	if (mysqli_connect_errno())
-		fail('MySQL connect', mysqli_connect_error());
-?>
+if (mysqli_connect_errno())
+{
+	fail('Unable to connect to the database server.', '');
+	exit();
+}
+if (!mysqli_set_charset($db, 'utf8'))
+{
+	fail('Unable to set database connection encoding.', '');
+	exit();
+}
+if (!mysqli_select_db($db, 'ckdata'))
+{
+	fail('Unable to locate the database.', '');
+	exit();
+}
+fail('Server and database connection established.', '');
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+/* @@@@@	End DB Setup	@@@@@ */
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 
-<?php // Code to remove an existing users table, then create it correctly.
-	
+/* Remove a table's contents */
+$sql = 'TRUNCATE TABLE users';
+if (!mysqli_query($db, $sql))
+{
+	fail('Error truncating table: ', mysqli_error($db));
+	exit();
+}
+else
+{
+	fail('Truncated table successfully.');
+}
 
-	// sql to remove the table
-	$sql = "drop table users;";
-	if ($db->query($sql) === TRUE) {
-		echo "Table removed successfully<br>";
-	} else {
-		echo "Error removing table: " . $db->error;
-		echo "<br>";
+/* Completely delete a table */
+	$sql = 'DROP TABLE users';
+	if (!mysqli_query($db, $sql))
+	{
+		fail('Error dropping table: ', mysqli_error($db));
+		exit();
+	}
+	else
+	{
+		fail('Deleted table successfully.');
 	}
 
-	// sql to create table
-	$sql = "CREATE TABLE users (
-	uid int NOT NULL AUTO_INCREMENT,
-	user varchar(60), 
-	pass varchar(60), 
-	email varchar(60), 
-	unique (user), 
-	unique (email),
-	primary key (uid)
-	)";
+/* Create a table */
+	$sql = 'CREATE TABLE IF NOT EXISTS users (
+		uid int NOT NULL AUTO_INCREMENT,
+		user varchar(60),
+		email varchar(60),
+		pass varchar(60),
+		date_registered DATE,
+		unique (user),
+		unique (email),
+		primary key (uid)
+		) DEFAULT CHARACTER SET utf8';
+	if (!mysqli_query($db, $sql))
+	{
+		fail('Error creating users table: ', mysqli_error($db));
+		exit();
+	}
+fail('\'users\' table successfully created.');
 
-	if ($db->query($sql) === TRUE) {
-		echo "Table created successfully<br>";
-	} else {
-		echo "Error creating table: " . $db->error;
-		echo "<br>";
+/* Create a new row with information */
+	$username = 'hello';
+	$useremail = 'freezurbern+no@gmail.com';
+	$userpass = 'world';
+	$username_conv = mysqli_real_escape_string($db, $username);
+	$useremail_conv = mysqli_real_escape_string($db, $useremail);
+	$userpass_conv = '$2a$08$ncxrsnmtALVkobpzFQ/Ja.Dd.8zdknQU3sb1ZwNRoxIqJvPAYTpUG';
+// now to create the query
+	$sql = '
+		INSERT INTO users SET
+		user="' . $username_conv . '",
+		email="' . $useremail_conv . '",
+		pass="' . $userpass_conv . '",
+		date_registered=CURDATE()
+		';
+	if (!mysqli_query($db, $sql))
+	{
+		fail('Error adding submitted row: ', mysqli_error($db));
+		exit();
+	}
+	else
+	{
+		fail('Row inserted successfully.');
 	}
 
-?>
-
-<?php // Code to insert a test user
-
-	// sql to remove the table
-	$sql = "INSERT INTO users (
-				user, pass, email) VALUES (
-					'testme', 
-					'$2a$08$UWZa0A429pDpEfxDMepaUeaewXKH1rXwLIKNp8WS.bjOWa00EyTvC', 
-					'freezurbern+cktest@gmail.com'
-			);";
-	if ($db->query($sql) === TRUE) {
-		echo "<i>testme/hello</i> user added successfully<br>";
-	} else {
-		echo "Error adding user to table: " . $db->error;
-		echo "<br>";
-	}
-
-?>
-
-<?php // Test the user
+// Test the user
 /*
 	$url = 'http://crohns.zachery.ninja/user/user-form.php';
 	$data = array('user' => 'testme', 'pass' => 'crohnskitchen', 'op' => 'login');
@@ -93,4 +110,6 @@ $db = new mysqli(db_host, db_user, db_pass, db_name);
 
 	var_dump($result);
 */
+
+require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
 ?>

@@ -6,7 +6,7 @@
  * date: Jan 2015
 */
 
-require '../../../protected/db_auth.php'; // grab the server connection details.
+require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
 include 'output.header.php'; // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
