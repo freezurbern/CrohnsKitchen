@@ -3,9 +3,9 @@
  * author: freezurbern
  * date: Jan 2015
 */
-
+echo "hello.";
 require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php");
-	if ($ul && $us) {} else { quit(); }
+	if ($ul && $us) {} else { echo "not logged in." ; exit(); }
 require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
 
 /* Start DB connection */
@@ -41,7 +41,7 @@ fail('Server and database connection established.', '');
 	|| fail('MySQL prepare', $db->error);
 $stmt->execute()
 	|| fail('MySQL execute', $db->error);
-$stmt->bind_result($result)
+$stmt->bind_result($idarr, $userarr, $passarr, $emailarr)
 	|| fail('MySQL bind_result', $db->error);
 if (!$stmt->fetch() && $db->errno)
 	fail('MySQL fetch', $db->error);
@@ -62,6 +62,7 @@ while ($row = mysqli_fetch_array($result))
 		'date_registered' => $row['date_registered']
 		);
 }
+
 
 
 
