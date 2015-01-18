@@ -15,7 +15,7 @@ function fail($pub, $pvt = '')
 	exit("An error occurred ($msg).\n");
 }
 
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
+require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
 
 // construct a table for all the sessions
 function create_session_table()

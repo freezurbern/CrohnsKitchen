@@ -1,5 +1,5 @@
 <?php 
-require("../../protected/db_auth.php");
+require("../../protected/authcodes.php");
 
 function db_connect() {
 

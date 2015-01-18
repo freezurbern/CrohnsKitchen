@@ -6,7 +6,7 @@
 
 if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); } // make sure we're using a form, first thing
 
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
+require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
 require 'PasswordHash.php'; // for creating the user passwords.
 include($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
