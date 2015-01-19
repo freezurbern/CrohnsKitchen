@@ -134,16 +134,46 @@ if (!$stmt->execute()) {
 			fail('MySQL execute', $db->error);
 } else { 
 	fail('User created successfully.');
-	
+}
 	// generate uniqueurl for use in mail
-	$uniqueurl = 'blah';
+	function gen_str()
+	{
+		$length = '60';
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$string = '';
+		for ($i = 0; $i < $length; $i++) {
+			$string .= $characters[mt_rand(0, strlen($characters) - 1)];
+		}
+		return $string;
+	}
+	$ot_string = gen_str();
+	$uniqueurl = 'http://crohns.zachery.ninja/user/verify.php?ot='.$ot_string;
+	$uniqueurl .= '?un='.$username_conv;
+	// add to database
+	$db = new mysqli(db_host, db_user, db_pass, db_name);
+		if (mysqli_connect_errno())
+			{fail('Unable to connect to the database server.', ''); exit();}
+		if (!mysqli_set_charset($db, 'utf8'))
+			{fail('Unable to set database connection encoding.', ''); exit();}
+		if (!mysqli_select_db($db, 'ckdata'))
+			{fail('Unable to locate the database.', ''); exit();}
+		fail('Server and database connection established.', '');
+	($stmt = $db->prepare('INSERT INTO onetime (onekey, uid) VALUES(?, (SELECT uid FROM users WHERE user=?))'))
+			|| fail('MySQL prepare', $db->error);
+		$stmt->bind_param('ss', $ot_string, $username_conv)
+			|| fail('MySQL bind_param', $db->error);
+		if (!$stmt->execute()) {
+			fail('MySQL execute', $db->error);
+		} else { 
+			fail('added one-time row to table successfully:'.$username_conv.'|'.$ot_string);
+			}
 	// send mail to new user
 	require($_SERVER['DOCUMENT_ROOT'] . "/include/PHPMailer/load.php"); // email functions
 	// send_user_mail($ADDRESS, $SUBJECT, $MESSAGE);
 	send_user_mail($useremail_conv, 'Welcome to Crohns Kitchen', 'account name: '.$username_conv.'. Please click here: <a href="'.$uniqueurl.'">'.$uniqueurl.'</a> to finish registration.') || fail('send mail failed.');
 	// done with sending email code.
 	exit();
-}
+
 
 // end of code, finish off the theme.
 	require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");

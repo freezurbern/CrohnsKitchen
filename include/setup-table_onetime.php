@@ -48,6 +48,7 @@ fail('Server and database connection established.', '');
 	oid INT NOT NULL AUTO_INCREMENT,
 	uid INT NOT NULL, 
 	onekey VARCHAR(60) NOT NULL, 
+	purpose VARCHAR(20) NOT NULL DEFAULT 'register',
 	date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	UNIQUE (onekey), 
 	UNIQUE (uid), 

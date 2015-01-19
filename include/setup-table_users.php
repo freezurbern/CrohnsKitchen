@@ -56,6 +56,7 @@ else
 		email varchar(60),
 		pass varchar(60),
 		date_registered DATE,
+		privilege int NOT NULL DEFAULT 0,
 		unique (user),
 		unique (email),
 		primary key (uid)
