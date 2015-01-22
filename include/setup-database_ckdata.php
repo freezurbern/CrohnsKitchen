@@ -12,7 +12,7 @@
 		MySQL Host:
 			<input type="text" name="host" size="20" placeholder="" required><br>
 		<input type="hidden" name="op" value="database">
-		<input type="submit" value="Create Database">
+		<input type="submit" name="submit" value="Create Database">
 	</fieldset>
 </form>
 
