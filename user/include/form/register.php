@@ -41,23 +41,18 @@ if (mysqli_connect_errno())
 	fail('Unable to connect to the database server.', '');
 	exit();
 }
-else {
-	$myCount += 1;
-}
 
 if (!mysqli_set_charset($db, 'utf8'))
 {
 	fail('Unable to set database connection encoding.', '');
 	exit();
 }
-$myCount += 1;
 
 if (!mysqli_select_db($db, 'ckdata'))
 {
 	fail('Unable to locate the database.', '');
 	exit();
 }
-$myCount += 1;
 
 fail('Server and database connection established.', '');
 
@@ -128,10 +123,9 @@ if (!$stmt->execute()) {
  * definitely need to do that (or at least include code to do it) if we were
  * supporting multiple kinds of database backends, not just MySQL.  However,
  * the prepared statements interface we're using is MySQL-specific anyway. */
-		if ($db->errno === 1062 /* ER_DUP_ENTRY */)
-			fail('This username is already taken');
-		else
-			fail('MySQL execute', $db->error);
+	if ($db->errno === 1062 /* ER_DUP_ENTRY */) {
+		fail('This username or email is already taken'); exit();} else {
+			fail('MySQL execute', $db->error); exit(); }
 } else { 
 	fail('User created successfully.');
 }
@@ -160,21 +154,18 @@ if (!$stmt->execute()) {
 		fail('Server and database connection established.', '');
 	($stmt = $db->prepare('INSERT INTO onetime (onekey, uid) VALUES(?, (SELECT uid FROM users WHERE user=?))'))
 			|| fail('MySQL prepare', $db->error);
-		$stmt->bind_param('ss', $ot_string, $username_conv)
+	$stmt->bind_param('ss', $ot_string, $username_conv)
 			|| fail('MySQL bind_param', $db->error);
-		if (!$stmt->execute()) {
-			fail('MySQL execute', $db->error);
-		} else { 
-			fail('added one-time row to table successfully:'.$username_conv.'|'.$ot_string);
-			}
-	// send mail to new user
-	require($_SERVER['DOCUMENT_ROOT'] . "/include/PHPMailer/load.php"); // email functions
-	// send_user_mail($ADDRESS, $SUBJECT, $MESSAGE);
-	send_user_mail($useremail_conv, 'Welcome to Crohns Kitchen', 'account name: '.$username_conv.'. Please click here: <a href="'.$uniqueurl.'">'.$uniqueurl.'</a> to finish registration.') || fail('send mail failed.');
-	// done with sending email code.
-	exit();
+	if (!$stmt->execute()) {
+		fail('MySQL execute', $db->error);
+	} else { 
+		fail('added one-time row to table successfully:'.$username_conv.'|'.$ot_string);
+		// send mail to new user
+			require($_SERVER['DOCUMENT_ROOT'] . "/include/PHPMailer/load.php"); // email functions
+		// send_user_mail($ADDRESS, $SUBJECT, $MESSAGE);
+			send_user_mail($useremail_conv, 'Welcome to Crohns Kitchen', 'account name: '.$username_conv.'. Please click here: <a href="'.$uniqueurl.'">'.$uniqueurl.'</a> to finish registration.') || fail('send mail failed.');
 
-
+	}
 // end of code, finish off the theme.
 	require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
 ?>
