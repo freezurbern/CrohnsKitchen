@@ -5,10 +5,7 @@
 */
 
 if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); } // make sure we're using a form, first thing
-
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
-require 'PasswordHash.php'; // for creating the user passwords.
-include($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
+include($_SERVER['DOCUMENT_ROOT'] . "/template/output/header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
 $db = new mysqli(db_host, db_user, db_pass, db_name);
@@ -96,6 +93,12 @@ if ($hasher->CheckPassword($pass, $hash)) {
 			fail('MySQL fetch', $db->error);
 	fail('UPDATE done.');
 	fail('users affected: ', $stmt->affected_rows);
+	
+	// send mail to new address, showing email was changed
+	// send_user_mail($ADDRESS, $SUBJECT, $MESSAGE);
+	send_user_mail($user_new_email, 'Email changed at Crohns Kitchen', $user . '\'s account email has been changed to this address.');
+	// done with sending email code.
+	
 } else {
 	$output .= $user.'|'.$pass.'|'.$user_new_email;
 	fail('Authentication failed.', $output);
@@ -104,6 +107,6 @@ if ($hasher->CheckPassword($pass, $hash)) {
 
 // end of code, finish off the theme.
 if($allow_output) {
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
+	include($_SERVER['DOCUMENT_ROOT'] . "/template/output/footer.php");
 }
 ?>

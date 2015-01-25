@@ -3,16 +3,7 @@
  * author: freezurbern
  * date: Jan 2015
 */
-$myCount = 1;
-
-// Use this to clean up the post vars from the form a bit
-function get_post_var($var)
-{
-	$val = $_POST[$var];
-	if (get_magic_quotes_gpc())
-		$val = stripslashes($val);
-	return $val;
-}
+require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 $operation = filter_var(get_post_var('op'), FILTER_SANITIZE_STRING);
 
 switch ($operation)

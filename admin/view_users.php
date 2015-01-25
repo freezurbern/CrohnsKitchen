@@ -5,7 +5,7 @@
 */
 require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php");
 	if ($ul && $us) {} else { echo "not logged in." ; exit(); }
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/db_auth.php"); // grab the server connection details.
+require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
 
 /* Start DB connection */
 $db = new mysqli(db_host, db_user, db_pass, db_name);
