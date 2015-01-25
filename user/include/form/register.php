@@ -156,8 +156,6 @@ if (!$stmt->execute()) {
 		fail('MySQL execute', $db->error);
 	} else { 
 		fail('added one-time row to table successfully:'.$username_conv.'|'.$ot_string);
-		// send mail to new user
-			require($_SERVER['DOCUMENT_ROOT'] . "/include/PHPMailer/load.php"); // email functions
 		// send_user_mail($ADDRESS, $SUBJECT, $MESSAGE);
 			send_user_mail($useremail_conv, 'Welcome to Crohns Kitchen', 'account name: '.$username_conv.'. Please click here: <a href="'.$uniqueurl.'">'.$uniqueurl.'</a> to finish registration.') || fail('send mail failed.');
 
