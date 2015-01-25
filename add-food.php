@@ -1,10 +1,34 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php");?>
 <article id="pagecontent">
-	
-	
-	<h2>Add a FOOD HERE!</h2>
-	<p>more to come..</p>
-	
+	<?php if($ul) { ?>
+	<form action="include/form/new-food.php" method="POST" class="">
+	<fieldset>
+	<legend>Add a new food</legend>
+		<input type="text" name="name" size="25" placeholder="name of food" required><br>
+		<select name="group" required>
+			<option value="dairy">Dairy</option>
+			<option value="fruits">Fruits</option>
+			<option value="grains">Grains</option>
+			<option value="protein">Protein</option>
+			<option value="confections">Confections</option>
+			<option value="vegetables">Vegetables</option>
+		</select>
+			<select name="type" required>
+			<option value="breakfast">Breakfast</option>
+			<option value="lunch">Lunch</option>
+			<option value="dinner">Dinner</option>
+			<option value="snack">Snack</option>
+			<option value="fourthmeal">Fourth Meal</option>
+		</select>
+		
+		<input type="hidden" name="op" value="addfood">
+		<input type="submit" value="Add food!">
+	</fieldset>
+	</form>
+	<?php } else { ?>
+		<h2>You're not logged in!</h2>
+	<?php } ?>
 
 </article>
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php");?>
