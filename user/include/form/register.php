@@ -138,7 +138,7 @@ if (!$stmt->execute()) {
 	}
 	$ot_string = gen_str();
 	$uniqueurl = 'http://crohns.zachery.ninja/user/verify.php?ot='.$ot_string;
-	$uniqueurl .= '?un='.$username_conv;
+	$uniqueurl .= '&?un='.$username_conv;
 	// add to database
 	$db = new mysqli(db_host, db_user, db_pass, db_name);
 		if (mysqli_connect_errno())
