@@ -2,7 +2,7 @@
 <article id="pagecontent">
 
 <p>To create a database for Crohn's Kitchen, please login with your MySQL Administrator details.</p><br>
-<form action="setup-db-proc.php" method="POST" class="skinny">
+<form action="db-proc.php" method="POST" class="skinny">
 	<fieldset>
 	<legend>Credentials</legend>
 		MySQL User:
