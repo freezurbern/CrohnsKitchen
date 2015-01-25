@@ -1,6 +1,6 @@
 <?php
 
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
+require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 
 // construct a table for all the sessions
 function create_session_table()

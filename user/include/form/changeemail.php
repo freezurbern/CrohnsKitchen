@@ -5,11 +5,7 @@
 */
 
 if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); } // make sure we're using a form, first thing
-
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
-require($_SERVER['DOCUMENT_ROOT'] . "/include/PHPMailer/load.php"); // email functions
-require 'PasswordHash.php'; // for creating the user passwords.
-include($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
+include($_SERVER['DOCUMENT_ROOT'] . "/template/output/header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
 $db = new mysqli(db_host, db_user, db_pass, db_name);
@@ -111,6 +107,6 @@ if ($hasher->CheckPassword($pass, $hash)) {
 
 // end of code, finish off the theme.
 if($allow_output) {
-	include($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
+	include($_SERVER['DOCUMENT_ROOT'] . "/template/output/footer.php");
 }
 ?>

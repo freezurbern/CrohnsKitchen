@@ -1,8 +1,8 @@
 <?php
 /* Create the onetime table */
 
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
-include($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php"); // get our output destination ready
+require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
+include($_SERVER['DOCUMENT_ROOT'] . "/template/output/header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
 // construct a table for all the sessions
@@ -14,22 +14,17 @@ if (mysqli_connect_errno())
 	fail('Unable to connect to the database server.', '');
 	exit();
 }
-else {
-	$myCount += 1;
-}
 
 if (!mysqli_set_charset($db, 'utf8'))
 {
 	fail('Unable to set database connection encoding.', '');
 	exit();
 }
-
 if (!mysqli_select_db($db, 'ckdata'))
 {
 	fail('Unable to locate the database.', '');
 	exit();
 }
-
 fail('Server and database connection established.', '');
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* @@@@@	End DB Setup	@@@@@ */

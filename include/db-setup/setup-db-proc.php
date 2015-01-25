@@ -4,17 +4,8 @@
  * Must use MySQL admin account to create these, so ask for it them pass onto this file through a form.
  * 
 */
-
-// Use this to clean up the post vars from the form a bit
-function get_post_var($var)
-{
-	$val = $_POST[$var];
-	if (get_magic_quotes_gpc())
-		$val = stripslashes($val);
-	return $val;
-}
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
-require($_SERVER['DOCUMENT_ROOT'] . "/template/output.header.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
+require($_SERVER['DOCUMENT_ROOT'] . "/template/output/header.php");
 
 //if ($_POST['op'] == "database") {echo "form operation not found."; exit();} 
 
@@ -62,5 +53,5 @@ if (!$stmt->execute()) {
 
 fail('Done.');
 echo "</pre>";
-require($_SERVER['DOCUMENT_ROOT'] . "/template/output.footer.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/template/output/footer.php");
 ?>
