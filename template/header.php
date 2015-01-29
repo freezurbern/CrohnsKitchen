@@ -1,38 +1,51 @@
 <!DOCTYPE html><!-- @@ Begin header.php -->
 <?php // begin header comment goes behind doctype to prevent IE from complaining.. ?>
-<html>
+<html lang="en">
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Crohn's Kitchen</title>
-	<link rel="stylesheet" type="text/css" href="/style/reset.css" />
-	<link rel="stylesheet" type="text/css" href="/style/template.css" />
-	<link rel="stylesheet" type="text/css" href="/style/articles.css" />
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans" />
-	<script type="text/javascript" src="/js/features.js"></script>
-	<script type="text/javascript" src="/js/Chart.js"></script>
-	<script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
-	<meta charset="utf-8"/>
-</head>
-<?php
-	/* The body ID is found using the end of the url like so: http://crohns.zachery.ninja/index.php -> index */
-	$pagename = basename($_SERVER['REQUEST_URI'], ".php");
-	if (empty($pagename)) {$pagename = "index";}
-?>
-<body id="<?php echo $pagename;?>">
-	<header>
-		<h1>Crohn's Kitchen</h1>
-		<h2>eat bits, not bytes!</h2>
-		<ul>
-		<li><span class="special">Quick Links</span></li>
-		<li><a href="/user/manage.php">Profile</a></li>
-		<li><a href="/user/login.php">Login</a></li>
-		<li><a href="/user/logout.php">Logout</a></li>
-		</ul>
-		<nav>
-			<a href="/index.php" id="nav-index" class="navbtn">Main</a>
-			<a href="/add-meal.php" id="nav-meal" class="navbtn">Add Meal</a>
-			<a href="/add-food.php" id="nav-food" class="navbtn">Add Food</a>
-			<a href="/research.php" id="nav-research" class="navbtn">Research</a>
-		</nav>
-	</header>
-<!-- @@ End header.php -->
 
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+  <nav class="navbar navbar-default">
+	  <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="#"><img alt="BrandIcon" src="favicon.ico" width="25" height="25" style="display: inline; margin-top: -5px; margin-right: 5px;">Crohn's Kitchen</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
+			<li><a href="#">Add Meal</a></li>
+			<li><a href="#">Add Food</a></li>
+			<li><a href="#">Research</a></li>
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Link</a></li>
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Signed in as <?php if($ul) {echo 'for '.$un;} ?> <span class="caret"></span></a>
+			  <ul class="dropdown-menu" role="menu">
+				<li><a href="#">Profile</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Separated link</a></li>
+			  </ul>
+			</li>
+		  </ul>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+<body>
+<!-- @@ End header.php -->
