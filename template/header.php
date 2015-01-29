@@ -8,7 +8,7 @@
 	<title>Crohn's Kitchen</title>
 
 	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
   <nav class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -20,28 +20,33 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="#"><img alt="BrandIcon" src="favicon.ico" width="25" height="25" style="display: inline; margin-top: -5px; margin-right: 5px;">Crohn's Kitchen</a>
+		  <a class="navbar-brand" href="#"><img alt="BrandIcon" src="/favicon.ico" width="25" height="25" style="display: inline; margin-top: -5px; margin-right: 5px;">Crohn's Kitchen</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li class="active"><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
-			<li><a href="#">Add Meal</a></li>
-			<li><a href="#">Add Food</a></li>
-			<li><a href="#">Research</a></li>
+			<li class="active"><a href="/index.php">Dashboard <span class="sr-only">(current)</span></a></li>
+			<li><a href="/add-meal.php">Add Meal</a></li>
+			<li><a href="/add-food.php">Add Food</a></li>
+			<li><a href="/research.php">Research</a></li>
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right">
 			<li><a href="#">Link</a></li>
 			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Signed in as <?php if($ul) {echo 'for '.$un;} ?> <span class="caret"></span></a>
-			  <ul class="dropdown-menu" role="menu">
-				<li><a href="#">Profile</a></li>
-				<li><a href="#">Another action</a></li>
-				<li><a href="#">Something else here</a></li>
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php if($ul) {echo 'Signed in as '.$un;} else {echo "Profile";}?> <span class="caret"></span></a>
+			  <?php if ($ul) { echo '
+				<ul class="dropdown-menu" role="menu">
+				<li><a href="/user/manage.php">Manage</a></li>
+				<li><a href="/user/help.php">Help</a></li>
 				<li class="divider"></li>
-				<li><a href="#">Separated link</a></li>
+				<li><a href="/user/logout.php">Logout</a></li>
+			  </ul>';} else { echo '
+			    <ul class="dropdown-menu" role="menu">
+				<li><a href="/user/register.php">Sign up for CK!</a></li>
+				<li><a href="/user/login.php">Login</a></li>
 			  </ul>
+			  ';} ?>
 			</li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
