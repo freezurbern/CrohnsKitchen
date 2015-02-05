@@ -1,5 +1,7 @@
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");?>
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");
+	  require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); // user login
+?>
+
 <article id="pagecontent">
 	<?php if($ul) { ?>
 	<form action="include/form/new-food.php" method="POST" class="">
@@ -28,6 +30,7 @@
 	</form>
 	<?php } else { ?>
 		<h2>You're not logged in!</h2>
+		<?php echo "DEBUG:".$ul."|".$_SESSION['user'].":"; ?>
 	<?php } ?>
 
 </article>

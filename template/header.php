@@ -20,6 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/features.js"></script>
 	<script type="text/javascript" src="/js/Chart.min.js"></script>
 </head>
   <nav class="navbar navbar-default">
@@ -36,9 +37,9 @@
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="nav collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li class="active"><a href="/index.php">Dashboard <span class="sr-only">(current)</span></a></li>
+			<li><a href="/index.php">Dashboard <span class="sr-only">(current)</span></a></li>
 			<li><a href="/add-meal.php">Add Meal</a></li>
 			<li><a href="/add-food.php">Add Food</a></li>
 			<li><a href="/research.php">Research</a></li>

@@ -56,10 +56,12 @@ if (!$stmt->fetch() && $db->errno)
 	fail('MySQL fetch', $db->error);
 if ($hasher->CheckPassword($pass, $hash)) {
 	fail('Authentication succeeded.', '');
+	
 	require($_SERVER['DOCUMENT_ROOT'] . "/user/include/session-handler.php");
 	grant_session($user_uid, $myuser);
+	
 	$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-	echo '<META HTTP-EQUIV=REFRESH CONTENT="1; '.$root.'">';
+	echo '<META HTTP-EQUIV=REFRESH CONTENT="3; '.$root.'">';
 } else {
 	$output .= $user.'|'.$pass.'|'.$email;
 	fail('Authentication failed.', $output);

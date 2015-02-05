@@ -23,13 +23,16 @@ function gen_sid()
 
 function grant_session($uid, $username) {
 
-	//session_start();
+	if(!isset($_SESSION)) 
+	{ 
+		session_start(); 
+	}
 	$_SESSION['uid'] = $uid;
 	$_SESSION['user'] = $username;
 	$_SESSION['valid'] = 1;
 	$_SESSION['super'] = 1;
 	$_SESSION['sid'] = gen_sid();
-	//fail('Wrote session vars:'.$uid.'|'.$username.'|.');
+	fail('Wrote session vars:'.$uid.'|'.$username.'|.');
 }
 
 ?>

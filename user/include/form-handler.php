@@ -6,7 +6,7 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 
-//require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
+require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 $operation = filter_var(get_post_var('op'), FILTER_SANITIZE_STRING);
 $operation = "login";
 switch ($operation)
@@ -30,7 +30,7 @@ switch ($operation)
 	case "login":
 		// login a user
 		require('form/login.php');
-		//break;
+		break;
 	case "logout":
 		// logout a user
 		require('form/logout.php');
