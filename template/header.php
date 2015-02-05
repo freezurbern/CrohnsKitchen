@@ -1,7 +1,6 @@
 <!DOCTYPE html><!-- @@ Begin header.php -->
 <?php // begin header comment goes behind doctype to prevent IE from complaining.. ?>
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); ?>
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); ?>
 <html lang="en">
 <head>
 	<meta charset="utf-8">

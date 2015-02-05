@@ -1,5 +1,5 @@
 <?php 
-//require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); // user login
+require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); // user login
 
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
