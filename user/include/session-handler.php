@@ -23,7 +23,7 @@ function gen_sid()
 
 function grant_session($uid, $username) {
 
-	session_start();
+	//session_start();
 	$_SESSION['uid'] = $uid;
 	$_SESSION['user'] = $username;
 	$_SESSION['valid'] = 1;

@@ -1,6 +1,5 @@
 <?php // FUNCTIONS
 
-require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 require($_SERVER['DOCUMENT_ROOT'] . "/template/output/header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 

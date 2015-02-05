@@ -3,9 +3,7 @@
 <h2>Verifying your account...</h2>
 
 <?php 
-require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 echo '<pre>'; // prettify my output.part.php stuff
-
 $db = new mysqli(db_host, db_user, db_pass, db_name);
 if (mysqli_connect_errno())
 	{fail('Unable to connect to the database server.', ''); exit();}

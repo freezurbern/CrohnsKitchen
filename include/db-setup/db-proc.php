@@ -4,7 +4,8 @@
  * Must use MySQL admin account to create these, so ask for it them pass onto this file through a form.
  * 
 */
-require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
+
+echo "Database Processing Initiated.";
 require($_SERVER['DOCUMENT_ROOT'] . "/template/output/header.php");
 
 //if ($_POST['op'] == "database") {echo "form operation not found."; exit();} 

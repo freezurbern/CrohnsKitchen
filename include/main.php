@@ -1,5 +1,9 @@
 <?php 
 
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
 // common functions
 $debug = TRUE;
 function fail($pub, $pvt = '')
@@ -29,5 +33,6 @@ function get_post_var($var)
 require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
 require($_SERVER['DOCUMENT_ROOT'] . "/include/PasswordHash.php"); // for creating the user passwords.
 require($_SERVER['DOCUMENT_ROOT'] . "/include/PHPMailer/load.php"); // email functions
+require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); // user login
 
 ?>
