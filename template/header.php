@@ -1,6 +1,7 @@
 <!DOCTYPE html><!-- @@ Begin header.php -->
 <?php // begin header comment goes behind doctype to prevent IE from complaining.. ?>
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); ?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); ?>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -59,7 +60,7 @@
 				<li><a href="/user/register.php">Sign up for CK!</a></li>
 				<li><a href="/user/login.php">Login</a></li>
 			  </ul>
-			  ';} ?>
+			  ';}?>
 			</li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
