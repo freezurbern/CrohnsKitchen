@@ -25,6 +25,7 @@ legend {
 	background-color: #DDD;
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
+	border-bottom: 0;
 	padding-right: 0.5em;
 	line-height: 0.5em;
 }
