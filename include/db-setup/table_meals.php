@@ -50,14 +50,14 @@ else
 
 /* Create a table */
 	$sql = 'CREATE TABLE IF NOT EXISTS meals (
-		mid int NOT NULL AUTO_INCREMENT,
-		foods varchar(255),
-		type varchar(16),
-		rating tinyint, 
-		added_by int NOT NULL DEFAULT 0,
+		mid INT NOT NULL AUTO_INCREMENT,
+		foods VARCHAR(255),
+		type VARCHAR(16),
+		rating TINYINT, 
+		added_by INT NOT NULL DEFAULT 0,
 		date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		unique (name),
-		primary key (mid),
+		UNIQUE (name),
+		PRIMARY key (mid),
 		FOREIGN KEY (added_by) REFERENCES users(uid)
 		) DEFAULT CHARACTER SET utf8';
 	if (!mysqli_query($db, $sql))

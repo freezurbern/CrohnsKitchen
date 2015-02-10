@@ -3,9 +3,8 @@
  * author: freezurbern
  * date: Jan 2015
 */
-require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");
 	if ($ul && $us) {} else { echo "not logged in." ; exit(); }
-require($_SERVER['DOCUMENT_ROOT'] . "/../protected/authcodes.php"); // grab the server connection details.
 
 /* Start DB connection */
 $db = new mysqli(db_host, db_user, db_pass, db_name);
@@ -57,7 +56,6 @@ if (!$stmt->fetch() && $db->errno)
 //echo "<hr />";
 ?>
 
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");?>
 <article id="pagecontent">
 	<h2>View all users here.</h2>
 	<table>

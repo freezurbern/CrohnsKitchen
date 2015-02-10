@@ -48,13 +48,13 @@ if (!mysqli_query($db, $sql))
 
 /* Create a table */
 	$sql = 'CREATE TABLE IF NOT EXISTS foods (
-		fid int NOT NULL AUTO_INCREMENT,
-		name varchar(255),
-		group varchar(60),
-		added_by int NOT NULL DEFAULT 0,
+		fid INT NOT NULL AUTO_INCREMENT,
+		name VARCHAR(255),
+		group VARCHAR(60),
+		added_by INT NOT NULL DEFAULT 0,
 		date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		unique (name),
-		primary key (fid),
+		UNIQUE (name),
+		PRIMARY KEY (fid),
 		FOREIGN KEY (added_by) REFERENCES users(uid)
 		) DEFAULT CHARACTER SET utf8';
 	if (!mysqli_query($db, $sql))

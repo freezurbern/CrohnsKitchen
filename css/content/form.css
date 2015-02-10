@@ -37,7 +37,9 @@ fieldset {
 }
 
 input {
-	float: right;
+	/*float: right;
+	*/
+	display: block;
 }
 
 input[type="button"], 

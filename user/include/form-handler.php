@@ -8,7 +8,6 @@ ini_set('display_errors', 'On');
 
 require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 $operation = filter_var(get_post_var('op'), FILTER_SANITIZE_STRING);
-$operation = "login";
 switch ($operation)
 {
 	case "register":
