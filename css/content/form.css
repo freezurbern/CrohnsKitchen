@@ -15,25 +15,29 @@ form {
 	max-width: 48em;
 	min-width: 16em;
 	line-height: 2em;
+	margin: auto;
+	padding-top: 0;
 }
 
 legend {
 	font-family: 'Droid Sans', sans-serif;
-	font-size: 1.5em;
+	font-size: 1.75em;
 	padding-left: 0.5em;
-	padding-top: 0.5em;
+	padding-top: 0.25em;
 	background-color: #DDD;
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
 	border-bottom: 0;
 	padding-right: 0.5em;
 	line-height: 0.5em;
+	display: table;
 }
 
 fieldset {
 	background-color: #DDD;
 	padding: 0.5em;
 	border-radius: 5px;
+	padding-top: 0em;
 }
 
 input {
@@ -55,6 +59,8 @@ input[type="file"] {
 	padding: 0.25em;
 	border-radius: 8px;
 	border: 1px solid black;
+	
+	float: right;
 }
 
 label {
