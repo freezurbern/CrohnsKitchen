@@ -9,6 +9,11 @@
 @import url("content/preformatted.css");
 @import url("content/canvas.css");
 
+.ck-byline::after {
+	content: " \00BB eat bits, not bytes! ";
+	font-size: 0.75em;
+	}
+
 article h1, h2, h3, h4, h5 {
 	color: #000;
 	font-family: 'Droid Sans', sans-serif;

@@ -40,10 +40,10 @@ fieldset {
 	padding-top: 0em;
 }
 
-input {
+input, select {
 	/*float: right;
 	*/
-	display: block;
+	display: inline-block;
 }
 
 input[type="button"], 
@@ -65,8 +65,12 @@ input[type="file"] {
 
 label {
 	background-color: #A9A9A9;
-	padding: 0.25em;
+	padding: 0.05em;
 	border-radius: 5px;
+}
+
+label::after {
+	content: ":";
 }
 
 input[type="radio"]:checked+label 

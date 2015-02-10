@@ -8,6 +8,8 @@
 	<fieldset>
 	<legend>Add a new food</legend>
 		<input type="text" name="name" size="25" placeholder="name of food" required><br>
+		
+		<label for="group">Food group</label>
 		<select name="group" required>
 			<option value="dairy">Dairy</option>
 			<option value="fruits">Fruits</option>
@@ -15,13 +17,6 @@
 			<option value="protein">Protein</option>
 			<option value="confections">Confections</option>
 			<option value="vegetables">Vegetables</option>
-		</select>
-			<select name="type" required>
-			<option value="breakfast">Breakfast</option>
-			<option value="lunch">Lunch</option>
-			<option value="dinner">Dinner</option>
-			<option value="snack">Snack</option>
-			<option value="fourthmeal">Fourth Meal</option>
 		</select>
 		
 		<input type="hidden" name="op" value="addfood">
