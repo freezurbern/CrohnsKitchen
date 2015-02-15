@@ -3,37 +3,38 @@
  * author: freezurbern
  * date: Jan 2015
 */
+error_reporting(-1);
+ini_set('display_errors', 'On');
+
 require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 $operation = filter_var(get_post_var('op'), FILTER_SANITIZE_STRING);
-
 switch ($operation)
 {
 	case "register":
-		$myCount += 1;
 		// register a new user
 		require('form/register.php');
-		exit();
+		break;
 	case "recover":
 		// help user recover their account
 		require('form/recover.php');
-		exit();
+		break;
 	case "changepass":
 		// change a user's password
 		require('form/changepass.php');
-		exit();
+		break;
 	case "changeemail":
 		// change a user's email
 		require('form/changeemail.php');
-		exit();
+		break;
 	case "login":
 		// login a user
 		require('form/login.php');
-		exit();
+		break;
 	case "logout":
 		// logout a user
 		require('form/logout.php');
-		exit();
+		break;
 	default:
 		echo "Error. Invalid form operation.";
-		exit();
+		//exit();
 }

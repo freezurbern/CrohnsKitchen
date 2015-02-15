@@ -1,4 +1,9 @@
 <?php 
+require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); // user login
+
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
 
 // common functions
 $debug = TRUE;

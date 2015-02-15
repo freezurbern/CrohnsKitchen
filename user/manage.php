@@ -1,7 +1,7 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");?>
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php");?>
 
-<article id="pagecontent">
+<article class="container">
 
 	<h2>Manage your user profile here.</h2>
 		<p>Blahhh</p>

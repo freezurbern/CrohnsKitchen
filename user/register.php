@@ -1,9 +1,9 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");?>
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php");?>
 <article id="pagecontent">
-
+<script src='https://www.google.com/recaptcha/api.js'></script> <!-- Google reCAPTCHA -->
 <?php if(!$ul) { ?>
-<form action="include/form-handler.php" method="POST" class="skinny">
+<form action="include/form-handler.php" method="POST" class="skinny" style="width: 30%;">
 	<fieldset>
 	<legend>Create a new user</legend>
 		E-mail:

@@ -1,6 +1,5 @@
 <?php // FUNCTIONS
 
-require($_SERVER['DOCUMENT_ROOT'] . "/include/main.php"); // main functions, and references
 require($_SERVER['DOCUMENT_ROOT'] . "/template/output/header.php"); // get our output destination ready
 echo '<pre>'; // prettify my output.part.php stuff
 
@@ -28,21 +27,19 @@ fail('Server and database connection established.', '');
 /* Remove a table's contents */
 $sql = 'TRUNCATE TABLE foods';
 if (!mysqli_query($db, $sql))
-{
-	fail('Error truncating table: ', mysqli_error($db));
-	exit();
-}
-else
-{
-	fail('Truncated table successfully.');
-}
+	{
+		fail('Error truncating table: ', mysqli_error($db));
+	}
+	else
+	{
+		fail('Truncated table successfully.');
+	}
 
 /* Completely delete a table */
-	$sql = 'DROP TABLE foods';
-	if (!mysqli_query($db, $sql))
+$sql = 'DROP TABLE foods';
+if (!mysqli_query($db, $sql))
 	{
 		fail('Error dropping table: ', mysqli_error($db));
-		exit();
 	}
 	else
 	{
@@ -51,13 +48,13 @@ else
 
 /* Create a table */
 	$sql = 'CREATE TABLE IF NOT EXISTS foods (
-		fid int NOT NULL AUTO_INCREMENT,
-		name varchar(255),
-		group varchar(60),
-		added_by int NOT NULL DEFAULT 0,
+		fid INT NOT NULL AUTO_INCREMENT,
+		name VARCHAR(255),
+		group VARCHAR(60),
+		added_by INT NOT NULL DEFAULT 0,
 		date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		unique (name),
-		primary key (fid),
+		UNIQUE (name),
+		PRIMARY KEY (fid),
 		FOREIGN KEY (added_by) REFERENCES users(uid)
 		) DEFAULT CHARACTER SET utf8';
 	if (!mysqli_query($db, $sql))

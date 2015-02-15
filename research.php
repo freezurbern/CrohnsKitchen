@@ -38,7 +38,7 @@
 	<h2>H2: Creating a bar graph.</h2>
 	<p>P: Here is an example using Chart.js.</p>
 	<canvas id="myBarChart" width="400" height="400"></canvas>
-	<script>
+	<script type="text/javascript" defer>
 		// Get the context of the canvas element we want to select
 		var ctx = document.getElementById("myBarChart").getContext("2d");
 		var options = {};
@@ -68,7 +68,7 @@
 	<hr />
 	<h3>H3: Creating a line graph.</h3>
 	<canvas id="myLineChart" width="400" height="400"></canvas>
-	<script>
+	<script type="text/javascript" defer>
 		// Get the context of the canvas element we want to select
 		var ctx2 = document.getElementById("myLineChart").getContext("2d");
 		var options2 = {};
