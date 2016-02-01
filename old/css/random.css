@@ -1,0 +1,70 @@
+/* Page specific items */
+/* ******************* */
+
+#form {
+	/*background-color: #AAD;*/
+	margin: auto;
+	width: 90%;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #000;
+}
+
+#form ul {
+	margin: auto;
+	width: 20%;
+}
+
+table {
+	border-collapse: collapse;
+	}
+
+th, td, tr {
+	border: 2px solid black;
+}
+
+#smallform {
+	background-color: #f00;
+	margin: auto;
+	text-decoration: none;
+	vertical-align: middle;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	color: #0f0;
+	width: 50%;
+}
+
+#smallform h2 {
+	font-family: "Helvetica", sans-serif;
+	color: #020;
+}
+
+.leftalign {
+	text-align: left !important;
+}
+.rightalign {
+	text-align: right !important;
+}
+
+.indented {
+margin-left: 40%;
+}
+
+/* Override the Google Chrome 'useragent stylesheet' with very specific css */
+input[type="button"], input[type="submit"], button {
+	display: inline-block;
+	padding: 10px 25px;
+	background-color: #bfa739;
+	cursor: default;
+	margin: 0;
+	color: #000;
+	text-decoration: none;
+	border: 0;
+	font-family: "Helvetica", sans-serif;
+	width: 100%;
+}
