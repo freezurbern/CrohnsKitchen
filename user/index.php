@@ -5,11 +5,11 @@
 <div class="container">
 
   <div class="jumbotron">
-	<h1>Welcome!</h1>
-	<p>Here's some welcome text.
-	</p>
+	<h1>User Menu</h1>
 	<p>
 	  <a class="btn btn-lg btn-primary" href="/user/login.php" role="button">Login now &raquo;</a>
+	  <a class="btn btn-lg btn-primary" href="/user/login.php" role="button">Register &raquo;</a>
+	  <a class="btn btn-lg btn-primary" href="/user/login.php" role="button">Back to home &raquo;</a>
 	</p>
   </div>
 
