@@ -9,9 +9,26 @@
 <title>Crohn's Kitchen 2.0</title>
 <!-- Bootstrap Paper Theme CSS -->
 <link href="/css/paper_bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
 </head>
-<!-- Static navbar -->
+
 <nav class="navbar navbar-default">
+	<script>
+		$(document).ready(function() {
+			// get current URL path and assign 'active' class ; https://gist.github.com/daverogers/5375778
+			var pathname = window.location.pathname;
+			$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+			
+			// set page title
+			var pagetitle = pathname;
+			pagetitle = pagetitle.replace('.php', '');
+			pagetitle = pagetitle.replace('/', '');
+			//console.log('Page Title:'+pagetitle);
+			if (pagetitle) {
+			document.title = pagetitle+': Crohn\'s Kitchen';
+			} else { document.title = 'Crohn\'s Kitchen'; }
+		})
+	</script>
 <div class="container-fluid">
   <div class="navbar-header">
 	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -24,7 +41,7 @@
   </div>
   <div id="navbar" class="navbar-collapse collapse">
 	<ul class="nav navbar-nav">
-	  <li class="active"><a href="/">Dash</a></li>
+	  <li><a href="/">Dash</a></li>
 	  <li><a href="/about.php">About</a></li>
 	  <li><a href="/user/login.php">Login</a></li>
 	  <li class="dropdown">
