@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: ckitchen.db
--- Generation Time: Feb 03, 2016 at 06:31 PM
+-- Generation Time: Feb 04, 2016 at 05:17 PM
 -- Server version: 10.0.21-MariaDB-1~trusty
 -- PHP Version: 5.6.16-nfsn1
 
@@ -36,11 +36,6 @@ CREATE TABLE IF NOT EXISTS `foods` (
   `addby` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Truncate table before insert `foods`
---
-
-TRUNCATE TABLE `foods`;
 -- --------------------------------------------------------
 
 --
@@ -56,11 +51,6 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   `dateconsume` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Truncate table before insert `ratings`
---
-
-TRUNCATE TABLE `ratings`;
 -- --------------------------------------------------------
 
 --
@@ -72,14 +62,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `uID` int(11) NOT NULL,
   `email` varchar(254) NOT NULL,
   `passhash` varchar(254) NOT NULL,
-  `regdate` datetime DEFAULT CURRENT_TIMESTAMP
+  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `verifykey` char(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Truncate table before insert `users`
---
-
-TRUNCATE TABLE `users`;
 --
 -- Indexes for dumped tables
 --
