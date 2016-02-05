@@ -14,6 +14,6 @@
   </div>
 
 </div> <!-- /container -->
-<?php require($_SERVER['DOCUMENT_ROOT'] . "include/bootstrap-end.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/bootstrap-end.php");?>
 </body>
 </html>

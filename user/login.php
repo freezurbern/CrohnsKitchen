@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require($_SERVER['DOCUMENT_ROOT'] . "include/head-nav.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/head-nav.php");?>
 <link href="/css/login.css" rel="stylesheet">
 <body>
 
@@ -20,6 +20,6 @@
       </form>
 
     </div> <!-- /container -->
-<?php require($_SERVER['DOCUMENT_ROOT'] . "include/bootstrap-end.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/bootstrap-end.php");?>
 </body>
 </html>

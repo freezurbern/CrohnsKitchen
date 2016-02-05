@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require($_SERVER['DOCUMENT_ROOT'] . "include/head-nav.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/head-nav.php");?>
 <script src='https://www.google.com/recaptcha/api.js'></script> <!-- Google reCAPTCHA -->
 <link href="/css/login.css" rel="stylesheet">
 <body>
@@ -21,6 +21,6 @@
 <?php } ?>
 </div> <!-- /container -->
 
-<?php require($_SERVER['DOCUMENT_ROOT'] . "include/bootstrap-end.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/bootstrap-end.php");?>
 </body>
 </html>
