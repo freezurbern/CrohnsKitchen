@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require($_SERVER['DOCUMENT_ROOT'] . "include/head-nav.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/head-nav.php");?>
 <body>
 <div class="container">
 
