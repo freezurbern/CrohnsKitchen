@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   `score` char(1) DEFAULT '0',
   `foodID` int(11) NOT NULL,
   `rateby` int(11) NOT NULL,
-  `dateconsume` datetime DEFAULT CURRENT_TIMESTAMP
+  `dateconsume` datetime 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `uID` int(11) NOT NULL,
   `email` varchar(254) NOT NULL,
   `passhash` varchar(254) NOT NULL,
-  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `regdate` datetime ,
   `verifykey` char(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
