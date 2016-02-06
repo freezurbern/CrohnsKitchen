@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/head-nav.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");?>
 <link href="/css/login.css" rel="stylesheet">
-<body>
+<article>
 
     <div class="container">
       <form class="form-signin">
@@ -20,6 +18,5 @@
       </form>
 
     </div> <!-- /container -->
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/bootstrap-end.php");?>
-</body>
-</html>
+</article>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-end.php");?>

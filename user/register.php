@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/head-nav.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");?>
 <script src='https://www.google.com/recaptcha/api.js'></script> <!-- Google reCAPTCHA -->
 <link href="/css/login.css" rel="stylesheet">
-<body>
+<article>
+
 <?php if(!$userloggedin) { ?>
 <div class="container">
-  <form class="form-signin" action="/include/createuser.php" method="POST">
+  <form class="form-signin" action="/sql/formhandler.php" method="POST">
 	<h2 class="form-signin-heading">Create an account</h2>
 	<label for="inputEmail" class="sr-only">Email address</label>
 		<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
@@ -21,6 +20,6 @@
 <?php } ?>
 </div> <!-- /container -->
 
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/include/bootstrap-end.php");?>
-</body>
-</html>
+</article>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-end.php");?>
+
