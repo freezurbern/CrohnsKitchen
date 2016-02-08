@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `uID` int(11) NOT NULL,
-  `email` varchar(254) NOT NULL,
+  `email` varchar(190) NOT NULL UNIQUE,
   `passhash` varchar(254) NOT NULL,
   `regdate` datetime ,
   `verifykey` char(64) DEFAULT NULL
@@ -122,6 +122,24 @@ ADD CONSTRAINT `FK_foods_addby` FOREIGN KEY (`addby`) REFERENCES `users` (`uID`)
 --
 ALTER TABLE `ratings`
 ADD CONSTRAINT `FK_ratings_rateby` FOREIGN KEY (`rateby`) REFERENCES `users` (`uID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+INSERT INTO `users` (`uID`, `email`, `passhash`, `regdate`, `verifykey`) VALUES
+(0, 'admin@freezurbern.com', '0', '2016-02-08 00:00:00', '000');
+
+INSERT INTO `foods` (`fID`, `fname`, `fgroup`, `addby`) VALUES
+(0, 'None', 'None', 0),
+(1, 'Pizza', 'Oil', 0),
+(2, 'Pepperoni', 'Oil', 0),
+(3, 'Milk Shake', 'Dairy', 0),
+(4, 'French Fries', 'Oil', 0),
+(5, 'Toast', 'Grain', 0),
+(6, 'Garlic Bread', 'Grain', 0),
+(7, 'Apple Juice', 'Fruit', 0),
+(8, 'Water', 'Liquid', 0),
+(9, 'CocaCola', 'Soda', 0),
+(10, 'Mtn Dew', 'Soda', 0),
+(14, 'Pasta Sauce', 'Oil', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
