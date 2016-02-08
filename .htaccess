@@ -1,5 +1,10 @@
 RewriteEngine on
 
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+php_flag  log_errors on
+
 # Stop hotlinking.
 RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} ^https?://([^/]+)/ [NC]
@@ -12,10 +17,10 @@ RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
 </FilesMatch>
 
 # Custom error pages.
-ErrorDocument 404 /error/404.html
-ErrorDocument 400 /error/400.html
-ErrorDocument 401 /error/401.html
-ErrorDocument 500 /error/501.html
+ErrorDocument 404 template/error/404.html
+ErrorDocument 400 template/error/400.html
+ErrorDocument 401 template/error/401.html
+ErrorDocument 500 template/error/501.html
 
 # Prevent viewing of htaccess file.
 <Files .htaccess>
