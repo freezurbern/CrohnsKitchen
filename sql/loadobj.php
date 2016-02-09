@@ -51,19 +51,24 @@ class ckdb {
         $stmt->bindValue(':regdate', $regdate, PDO::PARAM_STR);
         $stmt->bindValue(':verifykey', $verifykey, PDO::PARAM_STR);
 
+        try {
         $stmt->execute();
+        } catch(PDOException $ex) {
+            return $ex->getMessage();
+        }
 
-        echo "<hr />";
-        echo $email;
-        echo "<br />";
-        echo $password;
-        echo "<br />";
-        echo $passHash;
-        echo "<br />";
-        echo $verifykey;
-        echo "<br />";
-        echo $regdate;
-        echo "<hr />";
+
+        //echo "<hr />";
+        //echo $email;
+        //echo "<br />";
+        //echo $password;
+        //echo "<br />";
+        //echo $passHash;
+        //echo "<br />";
+        //echo $verifykey;
+        //echo "<br />";
+        //echo $regdate;
+        //echo "<hr />";
 
     }
     public function loginUser($email, $password) {
@@ -140,7 +145,7 @@ class ckdb {
     }
 
     public function __destruct() {
-        $this->db = NUL;
+        // Somehow destroy things here? not needed..
     }
 }
 

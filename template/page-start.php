@@ -13,11 +13,6 @@
 <title>Crohn's Kitchen 2.0</title>
 <!-- Bootstrap Paper Theme CSS -->
 <link href="/css/paper_bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/dt/dt-1.10.10/datatables.min.css"/>
-	<script type="text/javascript" src="https://cdn.datatables.net/s/dt/dt-1.10.10/datatables.min.js"></script>
-	<script type="text/javascript">$().DataTable();</script>
 </head>
 
 <nav class="navbar navbar-default">
