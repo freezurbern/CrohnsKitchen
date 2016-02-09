@@ -31,9 +31,14 @@ class ckdb {
     public function connect() {
 
         require_once("dbconfig.inc.php");
-        $this->db = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
-        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        try {
+            $this->db = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        } catch(PDOException $ex) {
+            return $ex->getMessage();
+        }
+        return "connected to database";
 
     }
 
@@ -50,26 +55,12 @@ class ckdb {
         $stmt->bindValue(':passhash',$passHash, PDO::PARAM_STR);
         $stmt->bindValue(':regdate', $regdate, PDO::PARAM_STR);
         $stmt->bindValue(':verifykey', $verifykey, PDO::PARAM_STR);
-
         try {
         $stmt->execute();
         } catch(PDOException $ex) {
             return $ex->getMessage();
         }
-
-
-        //echo "<hr />";
-        //echo $email;
-        //echo "<br />";
-        //echo $password;
-        //echo "<br />";
-        //echo $passHash;
-        //echo "<br />";
-        //echo $verifykey;
-        //echo "<br />";
-        //echo $regdate;
-        //echo "<hr />";
-
+        return "<br>" . $email . "<br>" . $password . "<br>" . $passHash . "<br>" . $verifykey . "<br>" . $regdate . "<br>";
     }
     public function loginUser($email, $password) {
         // User provides the password in plain text: $password
@@ -90,7 +81,13 @@ class ckdb {
         return $result;
     }
 
-    public function getUser($username, $email, $uid, $createdate) {
+    public function getUser($uid, $email, $createdate) {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE uid=:uid");
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($rows);
+        return $rows;
     }
 
     public function changeUser($uid, $email, $password) {
@@ -125,9 +122,9 @@ class ckdb {
         return $rows;
     }
 
-    public function getRatings($uid) {
-        $stmt = $this->db->prepare("SELECT * FROM foods WHERE uid=:uid");
-        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+    public function getRatings($rateby) {
+        $stmt = $this->db->prepare("SELECT * FROM foods WHERE rateby=:rateby");
+        $stmt->bindValue(':rateby', $rateby, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //print_r($rows);
@@ -140,7 +137,6 @@ class ckdb {
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //print_r($rows);
-
         return $rows;
     }
 

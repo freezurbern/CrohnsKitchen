@@ -30,7 +30,7 @@ USE `ckdb`;
 
 DROP TABLE IF EXISTS `foods`;
 CREATE TABLE IF NOT EXISTS `foods` (
-  `fID` int(11) NOT NULL,
+  `fid` int(11) NOT NULL,
   `fname` varchar(254) NOT NULL,
   `fgroup` varchar(24) NOT NULL,
   `addby` int(11) DEFAULT '0'
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `foods` (
 
 DROP TABLE IF EXISTS `ratings`;
 CREATE TABLE IF NOT EXISTS `ratings` (
-  `rID` int(11) NOT NULL,
+  `rid` int(11) NOT NULL,
   `score` char(1) DEFAULT '0',
-  `foodID` int(11) NOT NULL,
+  `foodid` int(11) NOT NULL,
   `rateby` int(11) NOT NULL,
   `dateconsume` datetime 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -74,13 +74,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Indexes for table `foods`
 --
 ALTER TABLE `foods`
-  ADD PRIMARY KEY (`fID`), ADD KEY `FK_foods_addby` (`addby`);
+  ADD PRIMARY KEY (`fid`), ADD KEY `FK_foods_addby` (`addby`);
 
 --
 -- Indexes for table `ratings`
 --
 ALTER TABLE `ratings`
-  ADD PRIMARY KEY (`rID`), ADD KEY `FK_ratings_rateby` (`rateby`);
+  ADD PRIMARY KEY (`rid`), ADD KEY `FK_ratings_rateby` (`rateby`);
 
 --
 -- Indexes for table `users`
@@ -96,12 +96,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `fID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `rID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -127,7 +127,7 @@ ADD CONSTRAINT `FK_ratings_rateby` FOREIGN KEY (`rateby`) REFERENCES `users` (`u
 INSERT INTO `users` (`uid`, `email`, `passhash`, `regdate`, `verifykey`) VALUES
 (0, 'admin@freezurbern.com', '0', '2016-02-08 00:00:00', '000');
 
-INSERT INTO `foods` (`fID`, `fname`, `fgroup`, `addby`) VALUES
+INSERT INTO `foods` (`fid`, `fname`, `fgroup`, `addby`) VALUES
 (0, 'None', 'None', 0),
 (1, 'Pizza', 'Oil', 0),
 (2, 'Pepperoni', 'Oil', 0),

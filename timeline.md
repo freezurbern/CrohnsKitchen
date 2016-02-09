@@ -2,22 +2,23 @@
 ##### Order in which code needs to be written
 
 #### 1. Environment
-- [ ] error-handler.php
+- [X] error-handler.php
 - [ ] email-handler.php / LAST
 - [ ] ?? data-sanitize.php ??
 
 #### 2. SQL Objects
-- [ ] Database Object
+- [X] Database Object
 - [ ] Insert Food Method
 - [ ] Insert Rating Method
-- [ ] Create / Set User Data Method (email, passhash)
+- [X] Create / Set User Data Method (email, passhash)
 - [ ] Query User Data Method (id, email, passhash, create date)
-- [ ] Add Verify Key Method
+- [X] Add Verify Key Method
 - [ ] Check Verify Key Method
 - [ ] Remove Verify Key Method
-- [ ] List Foods Method
-- [ ] List Ratings Method
-- [ ] List Users Method
+- [X] List Foods Method
+- [X] List Ratings Method
+- [X] List Users Method
+- [X] Login Check Method
 
 #### 4. Sessions
 - [ ] Session Start
