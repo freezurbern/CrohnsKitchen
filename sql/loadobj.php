@@ -55,13 +55,19 @@ class ckdb {
         $stmt->bindValue(':passhash',$passHash, PDO::PARAM_STR);
         $stmt->bindValue(':regdate', $regdate, PDO::PARAM_STR);
         $stmt->bindValue(':verifykey', $verifykey, PDO::PARAM_STR);
+
+        //echo "<br>" . $email . "<br>" . $password . "<br>" . $passHash . "<br>" . $verifykey . "<br>" . $regdate . "<br>";
+
         try {
         $stmt->execute();
         } catch(PDOException $ex) {
+            echo "Exception!";
             return $ex->getMessage();
         }
-        return "<br>" . $email . "<br>" . $password . "<br>" . $passHash . "<br>" . $verifykey . "<br>" . $regdate . "<br>";
+        echo "good to go.";
+        return 0;
     }
+
     public function loginUser($email, $password) {
         // User provides the password in plain text: $password
         // Password hash created when user signed up is now retireved from database
@@ -117,17 +123,15 @@ class ckdb {
         $stmt = $this->db->prepare("SELECT * FROM foods");
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        //print_r($rows);
 
         return $rows;
     }
 
     public function getRatings($rateby) {
-        $stmt = $this->db->prepare("SELECT * FROM foods WHERE rateby=:rateby");
+        $stmt = $this->db->prepare("SELECT * FROM ratings WHERE rateby=:rateby");
         $stmt->bindValue(':rateby', $rateby, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        //print_r($rows);
 
         return $rows;
     }
