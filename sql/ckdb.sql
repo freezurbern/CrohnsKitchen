@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `uID` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
   `email` varchar(190) NOT NULL UNIQUE,
   `passhash` varchar(254) NOT NULL,
   `regdate` datetime ,
@@ -86,7 +86,7 @@ ALTER TABLE `ratings`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`uID`);
+  ADD PRIMARY KEY (`uid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -106,7 +106,7 @@ ALTER TABLE `ratings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -115,16 +115,16 @@ ALTER TABLE `users`
 -- Constraints for table `foods`
 --
 ALTER TABLE `foods`
-ADD CONSTRAINT `FK_foods_addby` FOREIGN KEY (`addby`) REFERENCES `users` (`uID`);
+ADD CONSTRAINT `FK_foods_addby` FOREIGN KEY (`addby`) REFERENCES `users` (`uid`);
 
 --
 -- Constraints for table `ratings`
 --
 ALTER TABLE `ratings`
-ADD CONSTRAINT `FK_ratings_rateby` FOREIGN KEY (`rateby`) REFERENCES `users` (`uID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_ratings_rateby` FOREIGN KEY (`rateby`) REFERENCES `users` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-INSERT INTO `users` (`uID`, `email`, `passhash`, `regdate`, `verifykey`) VALUES
+INSERT INTO `users` (`uid`, `email`, `passhash`, `regdate`, `verifykey`) VALUES
 (0, 'admin@freezurbern.com', '0', '2016-02-08 00:00:00', '000');
 
 INSERT INTO `foods` (`fID`, `fname`, `fgroup`, `addby`) VALUES

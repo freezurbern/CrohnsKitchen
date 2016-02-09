@@ -89,10 +89,20 @@ class ckdb {
     }
 
     public function changeUser($uid, $email, $password) {
-        $stmt = $this->db->prepare("UPDATE users SET email=:email WHERE uid=:uid");
-        $stmt->execute(array($name, $id));
+        $stmt = $this->db->prepare("UPDATE users SET email=:email, passhash=:passhash WHERE uid=:uid");
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':passhash', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
         $affected_rows = $stmt->rowCount();
 
+        return $affected_rows;
+    }
+    public function deleteUser($uid, $email) {
+        $stmt = $db->prepare("DELETE FROM users WHERE uid=:uid AND email=:email");
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $affected_rows = $stmt->rowCount();
         return $affected_rows;
     }
 
@@ -111,21 +121,27 @@ class ckdb {
     }
 
     public function getRatings($uid) {
+        $stmt = $this->db->prepare("SELECT * FROM foods WHERE uid=:uid");
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($rows);
+
+        return $rows;
     }
 
     public function getUsers() {
+        $stmt = $this->db->prepare("SELECT * FROM users");
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($rows);
+
+        return $rows;
     }
 
     public function __destruct() {
-
+        $this->db = NUL;
     }
 }
 
-$mydb = new ckdb;
-$mydb->connect();
-//$mydb->getFoods();
-//$mydb->createUser("zachery@freezurbern.com","MyPassword@123");
-
-$mydb->loginUser("zachery@freezurbern.com","MyWrongPassword");
-$mydb->loginUser("zachery@freezurbern.com","MyPassword@123");
 ?>
