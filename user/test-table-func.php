@@ -14,8 +14,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/php/table.php");
 $mydb = new ckdb;
 $mydb->connect();
 $output = $mydb->getRatings('0');
-genDataTable("mydata",$output);
-
+echo genDataTable("mydata",$output);
 
 ?>
 

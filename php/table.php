@@ -8,61 +8,46 @@
 
 
 function genDataTable($name, $dataArray) {
+    $output = "";
+    if (!is_array($dataArray)) {
+        $output .= "Error. No data array given";
+        return $output;
+    }
+    //print_r($dataArray);
+
     // print JavaScript for DataTables
-    echo <<<EOT
+$output .= <<<EOT
     <script type="text/javascript" language="javascript" class="init">
         $(document).ready(function() {
             $('#$name').DataTable();
         } );
     </script>
+
 <table id="$name" class="display">
     <thead>
     <tr>
-        <th>Rating ID</th>
-        <th>Score</th>
-        <th>Food ID</th>
-        <th>Rated By ID</th>
-        <th>Date Consumed</th>
+EOT;
+
+$heads = array_keys($dataArray[0]);
+$length = count($heads);
+    for ($i = 0; $i < $length; $i++) {
+        $output .= "<th>".$heads[$i]."</th>";
+    }
+
+$output .= <<<EOT
     </tr>
     </thead>
 EOT;
-    if (is_array($dataArray)) {
         foreach ($dataArray as $row) {
-            echo "<tr>";
-            echo "<td>" . $row['rid'] . "</td>";
-            echo "<td>" . $row['score'] . "</td>";
-            echo "<td>" . $row['foodid'] . "</td>";
-            echo "<td>" . $row['rateby'] . "</td>";
-            echo "<td>" . $row['dateconsume'] . "</td>";
-            echo "</tr>";
+            $output .= "<tr>";
+            $output .= "<td>" . $row['rid'] . "</td>";
+            $output .= "<td>" . $row['score'] . "</td>";
+            $output .= "<td>" . $row['foodid'] . "</td>";
+            $output .= "<td>" . $row['rateby'] . "</td>";
+            $output .= "<td>" . $row['dateconsume'] . "</td>";
+            $output .= "</tr>";
         }
-    } else {
-        print " $dataArray ";
-    }
-    echo "</table>";
+    $output .= "</table>";
 
+    return $output;
 }
-/*
-
-<table id="example" class="display">
-    <thead>
-    <tr>
-        <th>Rating ID</th>
-        <th>Score</th>
-        <th>Food ID</th>
-        <th>Rated By ID</th>
-        <th>Date Consumed</th>
-    </tr>
-    </thead>
-    <?php foreach($output as $row) : ?>
-        <tr>
-            <td><?php echo $row['rid']; ?></td>
-            <td><?php echo $row['score']; ?></td>
-            <td><?php echo $row['foodid']; ?></td>
-            <td><?php echo $row['rateby']; ?></td>
-            <td><?php echo $row['dateconsume']; ?></td>
-        </tr>
-    <?php endforeach;?>
-
-
-*/
