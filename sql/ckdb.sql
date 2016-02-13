@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `foods` (
 DROP TABLE IF EXISTS `ratings`;
 CREATE TABLE IF NOT EXISTS `ratings` (
   `rid` int(11) NOT NULL,
-  `score` char(1) DEFAULT '0',
+  `score` int(11) DEFAULT '0',
   `foodid` int(11) NOT NULL,
   `rateby` int(11) NOT NULL,
   `dateconsume` datetime 
@@ -123,6 +123,12 @@ ADD CONSTRAINT `FK_foods_addby` FOREIGN KEY (`addby`) REFERENCES `users` (`uid`)
 ALTER TABLE `ratings`
 ADD CONSTRAINT `FK_ratings_rateby` FOREIGN KEY (`rateby`) REFERENCES `users` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+ALTER TABLE `ratings`
+ADD CONSTRAINT `CK_ratings_score` CHECK (score in (-1,0,1));
+
+--
+-- Add example data
+--
 
 INSERT INTO `users` (`uid`, `email`, `passhash`, `regdate`, `verifykey`) VALUES
 (0, 'admin@freezurbern.com', '0', '2016-02-08 00:00:00', '000');
