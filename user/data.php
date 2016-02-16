@@ -3,14 +3,14 @@
 $mydb = new ckdb;
 $mydb->connect();
 $output = $mydb->getRatings('0');
-echo print_r($output);
+//echo print_r($output);
 ?>
+<article>
 <script type="text/javascript" language="javascript" class="init">
     $(document).ready(function() {
         $('#example').DataTable();
     } );
 </script>
-<article>
 <div class="container">
     <table id="example" class="display">
         <thead>

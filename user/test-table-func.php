@@ -9,7 +9,7 @@
  * Time: 7:36 AM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/php/table.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/php/notworking_table_func.php");
 
 $mydb = new ckdb;
 $mydb->connect();
