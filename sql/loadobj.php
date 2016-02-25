@@ -114,9 +114,9 @@ class ckdb {
         return $affected_rows;
     }
 
-    public function addUserVerify($username) {
+    public function addUserVerify($email) {
     }
-    public function delUserVerify($username) {
+    public function delUserVerify($email) {
     }
 
     public function getFoods() {
