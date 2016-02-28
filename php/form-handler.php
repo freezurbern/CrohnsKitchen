@@ -5,6 +5,8 @@
  * Date: 2/9/2016
  * Time: 7:48 AM
  */
+require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");
+
 
 function cleanInput($input) {
     $search = array(
@@ -21,31 +23,60 @@ function sanitize($input) {
             $output[$var] = sanitize($val);
         }
     } else {
-        if (get_magic_quotes_gpc()) { $input = stripslashes($input); }
+        $input = stripslashes($input);
         $input  = cleanInput($input);
-        $output = mysql_real_escape_string($input);
+        $output = $input;
     }
     filter_var($output, FILTER_SANITIZE_STRING);
     return $output;
+}
+// Use this to clean up the post vars from the form a bit
+function get_post_var($var)
+{
+    $val = $_POST[$var];
+    return sanitize($val);
 }
 
 $mydb = new ckdb;
 $mydb->connect();
 
-$operation = sanitize(get_post_var('type'));
-$email = sanitize(get_post_var('email'));
-$password = sanitize(get_post_var('password'));
+$operation = get_post_var('type');
+$email = get_post_var('email');
+$password = get_post_var('password');
+
+//printArray($_POST);
+function printArray($array){
+    foreach ($array as $key => $value){
+        echo "$key => $value";
+        if(is_array($value)){ //If $value is an array, print it as well!
+            printArray($value);
+        }
+    }
+}
+
 
 switch ($operation) {
     case "register":
         // register a new user
         //require('/php/form/register.php');
-        if ( $mydb->createUser($email, $password) ) {return "Register Success";} else {return "Register Failure";}
+        if ( $mydb->createUser($email, $password) ) {echo "Register Success";} else {echo "Register Failure";}
         break;
     case "login":
         // login a user
         //require('/php/form/login.php');
-        if ( $mydb->loginUser($email,$password) ) {return "Login Success";} else {return "Login Failure";}
+        if ( $mydb->loginUser($email,$password) ) {
+            $success = 1;
+            echo "Login Success";
+
+            $uid = $mydb->getUserUID($email)[0]['uid'];
+
+            $_SESSION['uid'] = $uid;
+            $_SESSION['email'] = $email;
+        } else {
+            $success = 0;
+            echo "Login Failure";
+        }
+
         break;
     case "logout":
         // logout a user
@@ -74,3 +105,6 @@ switch ($operation) {
         echo "Error. Invalid form operation.";
         exit();
 }
+
+
+require($_SERVER['DOCUMENT_ROOT'] . "/template/page-end.php");

@@ -30,7 +30,8 @@ class ckdb {
 
     public function connect() {
 
-        require_once("dbconfig.inc.php");
+        //require_once("dbconfig.inc.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/sql/dbconfig.inc.php");
         try {
             $this->db = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -70,26 +71,44 @@ class ckdb {
 
     public function loginUser($email, $password) {
         // User provides the password in plain text: $password
-        // Password hash created when user signed up is now retireved from database
+        // Password hash created when user signed up is now retrieved from database
 
         $stmt = $this->db->prepare("SELECT passhash FROM users WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $passFromDB = $rows[0]['passhash'];
-        // The application will now use password_verify() to recreate the hash and test
-        // it against the hash in the database.
-        $result = password_verify($password, $passFromDB);
-        $success = ($result) ? 'True': 'False';
-        //echo "<br><hr>Successful Login?: ".$success."<br>";
+        if (isset($rows[0]['passhash'])) {
+            $passFromDB = $rows[0]['passhash'];
+            // The application will now use password_verify() to recreate the hash and test
+            // it against the hash in the database.
+            $result = password_verify($password, $passFromDB);
+            //if ($result) {
+            //    echo 'Password is valid!';
+            //} else {
+            //    echo 'Invalid password.';
+            //}
+        } else {
+            // No data returned from query, login not successful.
+            $result = FALSE;
+        }
 
+        $success = ($result) ? 'TRUE': 'FALSE';
+        //echo "<br><hr>Successful Login?: ".$success."<br>";
         return $result;
     }
 
     public function getUser($uid, $email, $createdate) {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE uid=:uid");
         $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($rows);
+        return $rows;
+    }
+    public function getUserUID($email) {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE email=:email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //print_r($rows);

@@ -37,6 +37,11 @@
         } else {
             echo "Login FAILURE.";
         }
+    echo "<h5><br>Getting uid for zachery@freezurbern.com<br></h5>";
+    $uidrows = $mydb->getUserUID("zachery@freezurbern.com");
+    //print_r( $uidrows );
+    echo "Should be 1.<br>";
+    echo "UID = ".$uidrows[0]['uid'];
     echo "</pre>";
     ?>
 
