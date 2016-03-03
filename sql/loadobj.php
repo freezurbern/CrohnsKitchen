@@ -36,6 +36,7 @@ class ckdb {
             $this->db = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $this->db->setAttribute(PDO::ATTR_PERSISTENT, true);
         } catch(PDOException $ex) {
             return $ex->getMessage();
         }
@@ -147,7 +148,39 @@ class ckdb {
     }
 
     public function getRatings($rateby) {
-        $stmt = $this->db->prepare("SELECT * FROM ratings WHERE rateby=:rateby");
+        $stmt = $this->db->prepare("SELECT ratings.rid, ratings.score, ratings.foodid,
+            ratings.rateby, ratings.dateconsume, foods.fname, foods.fgroup
+            FROM ratings
+            INNER JOIN foods
+            ON ratings.foodid = foods.fid
+            WHERE rateby=:rateby");
+        $stmt->bindValue(':rateby', $rateby, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rows;
+    }
+    public function getAVGRatingByFood($foodid, $rateby) {
+        $stmt = $this->db->prepare("SELECT ratings.foodid, ratings.rateby, foods.fname, foods.fgroup, ROUND(AVG(score),3) AS 'Average Score'
+            FROM ratings
+            INNER JOIN foods
+            ON ratings.foodid = foods.fid
+            WHERE rateby=:rateby AND foodid=:foodid");
+        $stmt->bindValue(':rateby', $rateby, PDO::PARAM_STR);
+        $stmt->bindValue(':foodid', $foodid, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rows;
+    }
+    public function getAVGRatingAllFoods($rateby) {
+        $stmt = $this->db->prepare("SELECT ratings.foodid, ratings.rateby, foods.fname, foods.fgroup, ROUND(AVG(score),3) AS 'avgscore'
+            FROM ratings
+            INNER JOIN foods
+            ON ratings.foodid = foods.fid
+            WHERE rateby=:rateby
+            GROUP BY ratings.foodid, ratings.rateby
+            ORDER BY foods.fname;");
         $stmt->bindValue(':rateby', $rateby, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -1,5 +1,4 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/header.php");
-	  require($_SERVER['DOCUMENT_ROOT'] . "/include/check_login.php"); // user login
 ?>
 
 <article id="pagecontent">
