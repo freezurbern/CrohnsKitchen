@@ -5,6 +5,24 @@
 
       <form class="form-signin" action="/php/form-handler.php" method="post" >
         <h2 class="form-signin-heading">Log in</h2>
+            <?php
+            if (isset($_GET['error'])) {
+                echo '<div class="alert alert-warning"><strong>Failure.</strong> Incorrect email or password.</div>';
+            }
+            if (isset($_SESSION['uid'])) {
+                echo '<div class="alert alert-warning"><strong>Failure.</strong> You are already logged in!</div>';
+                echo 'UID:'.$_SESSION['uid'].'  Email:'.$_SESSION['email'];
+                $jqHideFormElements = <<<HEREDOC
+                    <script>
+                        $('#inputEmail').hide();
+                        $('#inputPassword').hide();
+                        $('.checkbox').hide();
+                        $('#inputSubmit').hide();
+HEREDOC;
+                echo $jqHideFormElements;
+
+            }
+            ?>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -15,7 +33,7 @@
           </label>
         </div>
         <input type="hidden" name="type" value="login">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="inputSubmit">Sign in</button>
       </form>
 
     </div> <!-- /container -->

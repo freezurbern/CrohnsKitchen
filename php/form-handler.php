@@ -59,22 +59,27 @@ switch ($operation) {
     case "register":
         // register a new user
         //require('/php/form/register.php');
-        if ( $mydb->createUser($email, $password) ) {echo "Register Success";} else {echo "Register Failure";}
+        if ( $mydb->createUser($email, $password) ) {
+            echo "Register Success";
+        } else {
+            echo "Register Failure";
+        }
         break;
     case "login":
         // login a user
         //require('/php/form/login.php');
+        //echo $email . ' ' . $password;
         if ( $mydb->loginUser($email,$password) ) {
-            $success = 1;
             echo "Login Success";
+            header('Location: /about.php');
 
             $uid = $mydb->getUserUID($email)[0]['uid'];
-
             $_SESSION['uid'] = $uid;
             $_SESSION['email'] = $email;
         } else {
-            $success = 0;
-            echo "Login Failure";
+            //echo "Login Failure";
+            header('Location: /user/login.php?error=1');
+
         }
 
         break;

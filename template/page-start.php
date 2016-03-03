@@ -1,5 +1,6 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/php/loadobj.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/sql/loadobj.php");?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +53,7 @@
 	<ul class="nav navbar-nav">
 	  <li><a href="/">Dash</a></li>
 	  <li><a href="/about.php">About</a></li>
-	  <li><a href="/user/login.php">Login</a></li>
+
 	  <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown<span class="caret"></span></a>
 		<ul class="dropdown-menu">
@@ -67,7 +68,11 @@
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-	  <li class="active"><a href="./"><?php require($_SERVER['DOCUMENT_ROOT'] . "/sitenotice.txt");?><span class="sr-only">(current)</span></a></li>
+	  	<?php if (isset($_SESSION['email'])) {
+			echo '<li class="active"><a href="/user/">'.$_SESSION['email'].'<span class="sr-only">(current)</span></a></li>';
+			} else { echo '<li class="active"><a href="/user/login.php">Login<span class="sr-only">(current)</span></a></li>';}
+		?>
+		<li class="active"><a href="./"><?php require($_SERVER['DOCUMENT_ROOT'] . "/sitenotice.txt");?><span class="sr-only">(current)</span></a></li>
 	</ul>
   </div><!--/.nav-collapse -->
 </div><!--/.container-fluid -->
