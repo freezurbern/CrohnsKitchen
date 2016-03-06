@@ -14,12 +14,13 @@
 <title>Crohn's Kitchen 2.0</title>
 <!-- Bootstrap Paper Theme CSS -->
 <link href="/css/paper_bootstrap.min.css" rel="stylesheet">
+<!-- Javascript jQuery & BootStrap -->
 <script src="/js/jquery-2.2.0.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- DataTables CSS and JS -->
 <link rel="stylesheet" type="text/css" href="/DataTables-1.10.10/css/jquery.dataTables.css"/>
 <link rel="stylesheet" type="text/css" href="/DataTables-1.10.10/css/dataTables.bootstrap.css"/>
 <script type="text/javascript" src="/DataTables-1.10.10/js/jquery.dataTables.js"></script>
-
 </head>
 
 <nav class="navbar navbar-default">
@@ -53,14 +54,39 @@
 	<ul class="nav navbar-nav">
 	  <li><a href="/">Dash</a></li>
 	  <li><a href="/about.php">About</a></li>
+	  <li><a href="/user/addrating.php">Rate foods</a></li>
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li role="separator" class="divider"></li>
+				<li class="dropdown-header">Nav header</li>
+				<li><a href="#">Separated link</a></li>
+				<li><a href="#">One more separated link</a></li>
+			</ul>
+		</li>
 	</ul>
+
 	<ul class="nav navbar-nav navbar-right">
 		<li class="active"><a href="./"><?php require($_SERVER['DOCUMENT_ROOT'] . "/sitenotice.txt");?><span class="sr-only">(current)</span></a></li>
-        <?php if (isset($_SESSION['email'])) {
-            echo '<li><a href="/user/">'.$_SESSION['email'].'<span class="sr-only">(current)</span></a></li>';
-        } else {
-            echo '<li><a href="/user/login.php" class="btn-xs btn-primary">Login<span class="sr-only">(current)</span></a></li>';}
-        ?>
+        <?php if(isset($_SESSION['email'])) { ?>
+            <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">
+                            <?php echo $_SESSION['email']; ?>
+                    </li>
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">My Data</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Logout now</a></li>
+                </ul>
+            </li>
+        <?php } else { ?>
+            <li><a href="/user/login.php" class="btn-xs btn-primary">Login<span class="sr-only">(current)</span></a></li>
+        <?php } ?>
 	</ul>
   </div><!--/.nav-collapse -->
 </div><!--/.container-fluid -->

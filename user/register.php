@@ -22,7 +22,6 @@
             <div class="alert alert-warning"><strong>Failure.</strong> You are already logged in!</div>
             <a class="btn btn-lg btn-primary" href="/user/index.php" role="button">Return to your profile</a>
 		</form>
-	<div class="container">
 <?php } ?>
 
 </article>
