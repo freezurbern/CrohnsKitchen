@@ -11,7 +11,8 @@
             }
             if (isset($_SESSION['uid'])) {
                 echo '<div class="alert alert-warning"><strong>Failure.</strong> You are already logged in!</div>';
-                echo 'UID:'.$_SESSION['uid'].'  Email:'.$_SESSION['email'];
+                echo '<a class="btn btn-lg btn-primary" href="/user/index.php" role="button">Return to your profile</a>';
+                echo '<br /><br />UID:'.$_SESSION['uid'].'<br />Email:'.$_SESSION['email'];
                 $jqHideFormElements = <<<HEREDOC
                     <script>
                         $('#inputEmail').hide();

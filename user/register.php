@@ -3,7 +3,7 @@
 <link href="/css/login.css" rel="stylesheet">
 <article>
 
-<?php if(!$userloggedin) { ?>
+<?php if(!$_SESSION['uid']) { ?>
 <div class="container">
   <form class="form-signin" action="/sql/formhandler.php" method="POST">
 	<h2 class="form-signin-heading">Create an account</h2>
@@ -16,9 +16,14 @@
 	<button class="btn btn-lg btn-primary btn-block" type="submit">Register account</button>
   </form>
 <?php } else { ?>
-	<h2>You're already logged in!</h2>
+	<div class="container">
+		<form class="form-signin" action="" method="POST">
+            <h2 class="form-signin-heading">Create an account</h2>
+            <div class="alert alert-warning"><strong>Failure.</strong> You are already logged in!</div>
+            <a class="btn btn-lg btn-primary" href="/user/index.php" role="button">Return to your profile</a>
+		</form>
+	<div class="container">
 <?php } ?>
-</div> <!-- /container -->
 
 </article>
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-end.php");?>
