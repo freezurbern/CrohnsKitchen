@@ -85,7 +85,6 @@ switch ($operation) {
         break;
     case "logout":
         // logout a user
-        //require('/php/form/logout.php');
         header('Location: /user/logout.php');
         break;
     case "recover":
