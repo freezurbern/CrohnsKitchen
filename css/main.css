@@ -1,8 +1,14 @@
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.ckorangebg {
+  background-color: #ff8000 !important;
+}
+.ckorangetxt {
+    color: #ff8000 !important;
+}
+.cktxt {
+    color: #000000 !important;
 }
 
-.navbar {
-  margin-bottom: 20px;
+.cklightbg {
+    background-color: #f9f9f9 !important;
 }
+

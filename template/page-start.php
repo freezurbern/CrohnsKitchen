@@ -14,6 +14,8 @@
 <title>Crohn's Kitchen 2.0</title>
 <!-- Bootstrap Paper Theme CSS -->
 <link href="/css/paper_bootstrap.min.css" rel="stylesheet">
+<!-- custom css -->
+<link href="/css/main.css" rel="stylesheet">
 <!-- Javascript jQuery & BootStrap -->
 <script src="/js/jquery-2.2.0.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -48,6 +50,7 @@
 	  <span class="icon-bar"></span>
 	  <span class="icon-bar"></span>
 	</button>
+	  <a href="/" class="pull-left"><img src="favicon.ico"></a>
 	<a class="navbar-brand" href="/">Crohn's Kitchen</a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
@@ -58,7 +61,7 @@
 	</ul>
 
 	<ul class="nav navbar-nav navbar-right">
-		<li class="active"><a href="./"><?php require($_SERVER['DOCUMENT_ROOT'] . "/sitenotice.txt");?><span class="sr-only">(current)</span></a></li>
+		<li><a href="./" class="ckorangetxt cklightbg" style="cursor: default !important;"><?php require($_SERVER['DOCUMENT_ROOT'] . "/sitenotice.txt");?><span class="sr-only">(current)</span></a></li>
         <?php if(isset($_SESSION['email'])) { ?>
             <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User<span class="caret"></span></a>
@@ -73,7 +76,7 @@
                 </ul>
             </li>
         <?php } else { ?>
-            <li><a href="/user/login.php" class="btn-xs btn-primary">Login<span class="sr-only">(current)</span></a></li>
+            <li><a href="/user/login.php" class="btn-xs btn-primary" style="color: white !important;">Login<span class="sr-only">(current)</span></a></li>
         <?php } ?>
 	</ul>
   </div><!--/.nav-collapse -->
