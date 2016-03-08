@@ -63,10 +63,9 @@ class ckdb {
         try {
         $stmt->execute();
         } catch(PDOException $ex) {
-            echo "Exception!";
             return $ex->getMessage();
         }
-        echo "good to go.";
+        //echo "good to go.";
         return 0;
     }
 

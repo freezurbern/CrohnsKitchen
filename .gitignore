@@ -1,2 +1,3 @@
 .idea
 dbconfig.inc.php
+recaptcha-secret.php

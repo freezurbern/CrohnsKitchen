@@ -1,0 +1,5 @@
+<Files "register.php">
+    Order deny,allow
+    Deny from all
+    Allow from 172.72.247.219 freezurbern.com 152.15
+</Files>

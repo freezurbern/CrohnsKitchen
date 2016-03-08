@@ -5,8 +5,8 @@
  * Date: 2/9/2016
  * Time: 7:48 AM
  */
-require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");
 
+if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); } // make sure we're using a form, first thing.
 
 function cleanInput($input) {
     $search = array(
@@ -37,13 +37,6 @@ function get_post_var($var)
     return sanitize($val);
 }
 
-$mydb = new ckdb;
-$mydb->connect();
-
-$operation = get_post_var('type');
-$email = get_post_var('email');
-$password = get_post_var('password');
-
 //printArray($_POST);
 function printArray($array){
     foreach ($array as $key => $value){
@@ -54,15 +47,63 @@ function printArray($array){
     }
 }
 
+require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");
+
+$mydb = new ckdb;
+$mydb->connect();
+
+$operation = get_post_var('type');
+$email = get_post_var('email');
+$password = get_post_var('password');
+
+
+
 
 switch ($operation) {
     case "register":
         // register a new user
-        //require('/php/form/register.php');
-        if ( $mydb->createUser($email, $password) ) {
-            echo "Register Success";
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/recaptcha-secret.php");
+        //$recaptcha_secret
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// Google ReCAPTCHA
+        if(isset($_POST['g-recaptcha-response'])) { $captcha=$_POST['g-recaptcha-response']; }
+        if(!$captcha){
+            //fail('reCAPTCHA error.');
+            //echo 'recaptcha error';
+            header('Location: /user/register.php?error=captcha');
+            //exit();
         } else {
-            echo "Register Failure";
+            $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=" . $recaptcha_secret . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
+            $response = json_decode($response, true);
+            if($response["success"] == true) {
+                //fail('reCAPTCHA is okay. Carrying on.');
+                $notspam = TRUE;
+                echo 'not a robot'.$response["success"];
+            } else {
+                //fail('reCAPTCHA marked as robot.');
+                $notspam = FALSE;
+                echo 'You are a robot.'.$response["success"];
+                //exit();
+            }
+        }
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        if($notspam) {
+
+            $regoutput = $mydb->createUser($email, $password);
+
+            if( strpos($regoutput, 'Duplicate entry' !== false) ) {
+                //echo "Register Failure: " . $output;
+                header('Location: /user/register.php?error=dupemail');
+            } else {
+                header('Location: /template/success.php');
+                //echo 'Success.'.$notspam;
+                //print_r($response);
+                //echo $notspam.$regoutput.$operation;
+            }
+        } else {
+            //echo 'Error: Invalid Captcha:'.$notspam.$operation;
+            //print_r($response);
+            header('Location: /user/register.php?error=captcha');
         }
         break;
     case "login":
@@ -79,9 +120,7 @@ switch ($operation) {
         } else {
             //echo "Login Failure";
             header('Location: /user/login.php?error=1');
-
         }
-
         break;
     case "logout":
         // logout a user
