@@ -4,7 +4,6 @@
 #### 1. Environment
 - [X] error-handler.php
 - [ ] email-handler.php / LAST
-- [ ] ?? data-sanitize.php ??
 
 #### 2. SQL Objects
 - [X] Database Object
@@ -21,20 +20,21 @@
 - [X] Login Check Method
 
 #### 4. Sessions
-- [ ] Session Start
-- [ ] Destroy
-- [ ] Store username
+- [X] Session Start
+- [X] Destroy
+- [X] Store username
 - [ ] Check for username and permission
-- [ ] Set user ID for db lookup
+- [X] Set user ID for db lookup
 
 #### 5. Data Visualization
-- [ ] Tables: http://datatables.net/manual/styling/bootstrap
+- [X] Tables: http://datatables.net/manual/styling/bootstrap
 - [ ] Charts: Chart.js ??
 - [ ] Dashboard:
+- [X] Data Page
 
 #### 6. Pages
-- [ ] Login
-- [ ] Register
+- [X] Login
+- [X] Register
 - [ ] Forgot Password
 - [ ] Change Email / Password
 - [ ] Create food
