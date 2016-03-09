@@ -145,6 +145,26 @@ class ckdb {
 
         return $rows;
     }
+    public function addFood($fname = "None", $fgroup = "None", $addby = "0") {
+        /** single insert with bindValue, then execute **/
+        $stmt = $this->db->prepare("INSERT INTO foods (fname, fgroup, addby) VALUES (:fname, :fgroup, :addby) ON DUPLICATE KEY UPDATE fname = fname");
+
+        $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+        $stmt->bindValue(':fgroup', $fgroup, PDO::PARAM_STR);
+        $stmt->bindValue(':addby', $addby, PDO::PARAM_STR);
+
+        try {
+            $stmt->execute();
+        } catch(PDOException $ex) {
+            return $ex->getMessage();
+        }
+        //echo "good to go.";
+        return 0;
+
+
+
+        $stmt->execute();
+    }
 
     public function getRatings($rateby) {
         $stmt = $this->db->prepare("SELECT ratings.rid, ratings.score, ratings.foodid,

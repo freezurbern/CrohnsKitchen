@@ -31,8 +31,8 @@ USE `ckdb`;
 DROP TABLE IF EXISTS `foods`;
 CREATE TABLE IF NOT EXISTS `foods` (
   `fid` int(11) NOT NULL,
-  `fname` varchar(254) NOT NULL,
-  `fgroup` varchar(24) NOT NULL,
+  `fname` varchar(64) NOT NULL,
+  `fgroup` varchar(12) NOT NULL,
   `addby` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Indexes for table `foods`
 --
 ALTER TABLE `foods`
-  ADD PRIMARY KEY (`fid`), ADD KEY `FK_foods_addby` (`addby`);
+  ADD PRIMARY KEY (`fid`, `fname`, `fgroup`), ADD KEY `FK_foods_addby` (`addby`);
 
 --
 -- Indexes for table `ratings`
