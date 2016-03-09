@@ -50,7 +50,7 @@
 	  <span class="icon-bar"></span>
 	  <span class="icon-bar"></span>
 	</button>
-	  <a href="/" class="pull-left"><img src="favicon.ico"></a>
+	  <a href="/" class="pull-left"><img src="/favicon.ico"></a>
 	<a class="navbar-brand" href="/">Crohn's Kitchen</a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">

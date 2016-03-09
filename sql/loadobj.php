@@ -139,7 +139,7 @@ class ckdb {
     }
 
     public function getFoods() {
-        $stmt = $this->db->prepare("SELECT * FROM foods");
+        $stmt = $this->db->prepare("SELECT * FROM foods ORDER BY fname, fgroup");
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

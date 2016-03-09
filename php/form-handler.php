@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zachery
- * Date: 2/9/2016
- * Time: 7:48 AM
- */
 
 if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); } // make sure we're using a form, first thing.
 
@@ -53,14 +47,12 @@ $mydb = new ckdb;
 $mydb->connect();
 
 $operation = get_post_var('type');
-$email = get_post_var('email');
-$password = get_post_var('password');
 
-
-
-
+// Start the actual process of handling form input.
 switch ($operation) {
     case "register":
+        $email = get_post_var('email');
+        $password = get_post_var('password');
         // register a new user
         require_once($_SERVER['DOCUMENT_ROOT'] . "/recaptcha-secret.php");
         //$recaptcha_secret
@@ -107,6 +99,8 @@ switch ($operation) {
         }
         break;
     case "login":
+        $email = get_post_var('email');
+        $password = get_post_var('password');
         // login a user
         //require('/php/form/login.php');
         //echo $email . ' ' . $password;
@@ -138,6 +132,17 @@ switch ($operation) {
         // change a user's email
         //require('/php/form/changeemail.php');
         break;
+
+    case "addrating":
+        print_r($_POST);
+        if(isset($_POST['bad']))
+        {
+            echo 'bad clicked';
+        }
+
+        break;
+
+
     default:
         echo "Error. Invalid form operation.";
         exit();
