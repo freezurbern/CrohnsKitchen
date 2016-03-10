@@ -92,7 +92,7 @@ $foodlist = $mydb->getFoods();
                 </div>
             <!-- --><br />
                 <label for="food5">Food:</label>
-                <input list="food5" name="food5 autocomplete="off"">
+                <input list="food5" name="food5" autocomplete="off">
                 <datalist id="food5">
                     <?php
                     foreach ($foodlist as $row) {echo '<option value="'.$row['fname'].'"/>('.$row['fgroup'].')</option>';}
