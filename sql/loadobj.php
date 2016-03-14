@@ -145,7 +145,9 @@ class ckdb {
 
         return $rows;
     }
-    public function addFood($fname = "None", $fgroup = "None", $addby = "0") {
+    public function addFood($fname, $fgroup, $addby = "0") {
+        if(!isset($fname)) { return "Name not set.";}
+        if(!isset($fgroup)) { return "Group not set.";}
         /** single insert with bindValue, then execute **/
         $stmt = $this->db->prepare("INSERT INTO foods (fname, fgroup, addby) VALUES (:fname, :fgroup, :addby) ON DUPLICATE KEY UPDATE fname = fname");
 
@@ -160,10 +162,6 @@ class ckdb {
         }
         //echo "good to go.";
         return 0;
-
-
-
-        $stmt->execute();
     }
 
     public function getRatings($rateby) {

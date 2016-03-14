@@ -2,9 +2,6 @@
 
 if(!$_SERVER['REQUEST_METHOD'] == 'POST') { exit(); } // make sure we're using a form, first thing.
 
-// form utilities
-require($_SERVER['DOCUMENT_ROOT'] . "/php/formcleanup.php");
-
 // start the page
 require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");
 
