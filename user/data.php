@@ -1,4 +1,5 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");?>
+
 <article>
 <script type="text/javascript" language="javascript" class="init">
     $(document).ready(function() {

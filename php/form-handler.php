@@ -16,9 +16,7 @@ switch ($operation) {
         $email = get_post_var('email');
         $password = get_post_var('password');
         // register a new user
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/recaptcha-secret.php");
-        //$recaptcha_secret
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/recaptcha-secret.php"); //$recaptcha_secret
 // Google ReCAPTCHA
         if(isset($_POST['g-recaptcha-response'])) { $captcha=$_POST['g-recaptcha-response']; }
         if(!$captcha){
@@ -61,25 +59,10 @@ switch ($operation) {
         }
         break;
     case "login":
-        $email = get_post_var('email');
-        $password = get_post_var('password');
-        // login a user
-        //require('/php/form/login.php');
-        //echo $email . ' ' . $password;
-        if ( $mydb->loginUser($email,$password) ) {
-            echo "Login Success";
-            header('Location: /about.php');
-
-            $uid = $mydb->getUserUID($email)[0]['uid'];
-            $_SESSION['uid'] = $uid;
-            $_SESSION['email'] = $email;
-        } else {
-            //echo "Login Failure";
-            header('Location: /user/login.php?error=1');
-        }
+        // moved to login.php
         break;
     case "logout":
-        // logout a user
+        // moved to logout.php
         header('Location: /user/logout.php');
         break;
     case "recover":

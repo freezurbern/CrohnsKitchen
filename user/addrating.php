@@ -1,20 +1,9 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/template/loginwarning.php"); ?>
 
 <?php
 $mydb = new ckdb; $mydb->connect();
 $foodlist = $mydb->getFoods();
-?>
-<?php
-if (!isset($_SESSION['uid'])) {
-    echo '<div class="container">';
-    echo '<div class="jumbotron">';
-        echo '<div class="alert alert-warning"><strong>Failure.</strong> You must be logged in to use this page.</div>';
-        echo '<a class="btn btn-lg btn-primary" href="/user/login.php" role="button">Login now</a>';
-    echo '</div></div>';
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/template/page-end.php");
-    exit(); // prevent rest of page from loading. Only showing the above notice.
-}
-
 ?>
 
 <?php if (!empty($_POST)): ?>

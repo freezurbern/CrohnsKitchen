@@ -45,6 +45,8 @@ class ckdb {
     }
 
     public function createUser($email, $password) {
+        if( (strlen($password) >= 8) && (strlen($password) <= 64)) { /* echo "password good"; */ }
+            else {return "Password outside minmax 8 to 64";}
         /** single insert with bindValue, then execute **/
         $sql_prepare = "INSERT INTO `users` (`email`, `passhash`, `regdate`, `verifykey`) VALUES (:email, :passhash, :regdate, :verifykey)";
         $stmt = $this->db->prepare($sql_prepare);
@@ -61,10 +63,8 @@ class ckdb {
         //echo "<br>" . $email . "<br>" . $password . "<br>" . $passHash . "<br>" . $verifykey . "<br>" . $regdate . "<br>";
 
         try {
-        $stmt->execute();
-        } catch(PDOException $ex) {
-            return $ex->getMessage();
-        }
+            $stmt->execute();
+        } catch(PDOException $ex) { return $ex->getMessage(); }
         //echo "good to go.";
         return 0;
     }
