@@ -1,5 +1,6 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/sql/loadobj.php");?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/php/formcleanup.php");?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/php/mail-handler.php");?>
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
