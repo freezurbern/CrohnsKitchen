@@ -31,7 +31,7 @@ class ckdb {
     public function connect() {
 
         //require_once("dbconfig.inc.php");
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/sql/dbconfig.inc.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/config/dbconfig.inc.php");
         try {
             $this->db = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

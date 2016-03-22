@@ -16,7 +16,7 @@ switch ($operation) {
         $email = get_post_var('email');
         $password = get_post_var('password');
         // register a new user
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/recaptcha-secret.php"); //$recaptcha_secret
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/config/recaptcha-secret.php"); //$recaptcha_secret
 // Google ReCAPTCHA
         if(isset($_POST['g-recaptcha-response'])) { $captcha=$_POST['g-recaptcha-response']; }
         if(!$captcha){

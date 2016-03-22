@@ -10,7 +10,7 @@
     $email = get_post_var('email');
     $password = get_post_var('password');
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/recaptcha-secret.php"); //$recaptcha_secret
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/recaptcha-secret.php"); //$recaptcha_secret
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // Google ReCAPTCHA
