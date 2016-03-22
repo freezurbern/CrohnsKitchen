@@ -39,7 +39,7 @@ $foodlist = $mydb->getFoods();
     echo "<h3>For-Each Loop</h3>";
     foreach ($food as $fitem) {
         if (IsNullOrEmptyString($fitem)) {break;}
-        echo "Input: <b>".$fitem."</b><br />";
+        echo "<br />Input: <b>".$fitem."</b><br />";
         if (strpos($fitem, ' (') !== false) {
             // Contains a group, break out group to new var
             $fbreak = explode(" (", $fitem );
@@ -47,14 +47,16 @@ $foodlist = $mydb->getFoods();
             if(isset($fbreak[1])) { $fgroup = str_replace(")","",$fbreak[1]); }
         } else {$fname = $fitem; $fgroup = "";}
 
-        echo "Food Name: <b>".$fname."</b><br />&nbsp;&nbsp;&nbsp;&nbsp;Food Group (if specified): <b>".$fgroup."</b><br /><br />";
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;Food Name: <b>".$fname.
+             "</b><br />&nbsp;&nbsp;&nbsp;&nbsp;Food Group (if specified): <b>".$fgroup."</b><br />";
 
-        if(!in_array($fname, $foodlist)) {
-            echo "New food not in list: <b>".$fname."</b>";
+        if(!in_array_r($fname, $foodlist)) {
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;New food not in list: <b>".$fname."</b>";
             $mydb->addFood($fname, $fgroup, $_SESSION['uid']);
-        }
+        } else {echo "&nbsp;&nbsp;&nbsp;&nbsp;Food found in database.";}
 
     }
+    //printArray($foodlist);
 ?>
 
 </div>

@@ -12,8 +12,8 @@
     <?php
     $mydb = new ckdb;
     $mydb->connect();
-    //$output = $mydb->getRatings($_SESSION['uid']); // get ratings for uID (rateby)
-    $output1 = $mydb->getRatings('0'); // get ratings for uID (rateby)
+    $output1 = $mydb->getRatings($_SESSION['uid']); // get ratings for uID (rateby)
+    //$output1 = $mydb->getRatings('0'); // get ratings for uID (rateby)
     //echo print_r($output);
     ?>
     <table id="all-ratings" class="display">
