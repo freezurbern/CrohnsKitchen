@@ -1,4 +1,4 @@
 .idea
 dbconfig.inc.php
-recaptcha-secret.php
+recaptcha-secret.inc.php
 config

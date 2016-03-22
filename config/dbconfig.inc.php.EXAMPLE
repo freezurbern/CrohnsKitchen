@@ -1,0 +1,9 @@
+<?php
+//echo '<br>dbconfig complete<br>';
+$dbhost = 'YOURHOST';
+$dbuser = 'YOURDBUSER';
+$dbpass = 'YOURDBPASSWORD';
+$dbname = 'YOURDBNAME';
+
+
+?>
