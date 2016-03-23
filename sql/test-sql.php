@@ -13,10 +13,12 @@
         echo $mydb->createUser("zachery@freezurbern.com","MyPassword@123");
     
     echo "<h5><br>Creating duplicate test user...<br></h5>";
-        if( $mydb->createUser("zachery@freezurbern.com","MyPassword@123") ) {
-            echo "User Created!";
+        $dupuserout = $mydb->createUser("zachery@freezurbern.com","MyPassword@123");
+        echo $dupuserout;
+        if( $dupuserout === TRUE ) {
+            echo "<br />User Created!";
         } else {
-            echo "User not created.";
+            echo "<br />User not created.";
         }
     echo "<h5><br>Getting foods...<br></h5>";
         echo print_r($mydb->getFoods());
