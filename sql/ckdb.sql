@@ -115,7 +115,7 @@ ALTER TABLE `users`
 -- Constraints for table `foods`
 --
 ALTER TABLE `foods`
-ADD CONSTRAINT `FK_foods_addby` FOREIGN KEY (`addby`) REFERENCES `users` (`uid`);
+ADD CONSTRAINT `FK_foods_addby` FOREIGN KEY (`addby`) REFERENCES `users` (`uid`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `ratings`

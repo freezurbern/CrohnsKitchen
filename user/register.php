@@ -39,20 +39,21 @@
             //echo "Registration Failure: " . $regoutput;
             header('Location: /user/register.php?error=badpass');
         } elseif ($regoutput) {
-
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/template/emails/regverify.php");
             $userverifycode = $mydb->getUserVerify($email);
-            $EMAILregverify = $EMAILregverifyStart . $userverifycode . '&email=' . $email . $EMAILregverifyFinish;
-
-            $mailoutput = cksendmail($email, "Crohn's Kitchen Registration", $EMAILregverify);
-
-            header('Location: /template/success.php');
-
-            //echo 'If 1, NOT SPAM: '.$notspam;
-            //print_r($response);
-            //echo 'regoutput: '.$regoutput;
-            //echo $EMAILregverify;
-            //echo $mailoutput;
+            $regemail = genRegEmail($userverifycode, $email);
+            $mailoutput = cksendmail($email, "Crohn's Kitchen Registration", $regemail);
+            if ($mailoutput === TRUE) {
+                header('Location: /template/success.php');
+                // email sent successfully
+            } else {
+                header('Location: /user/register.php?error=unspecified');
+                // email did not send.
+                //echo 'If 1, NOT SPAM: '.$notspam;
+                //print_r($response);
+                //echo 'regoutput: '.$regoutput;
+                //echo $EMAILregverify;
+                //echo $mailoutput;
+            }
         } else {
             //echo "Registration Failure: " . $regoutput . '<br />';
             //echo 'not spam = ' . $notspam . '<br />';

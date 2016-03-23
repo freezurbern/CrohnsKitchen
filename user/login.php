@@ -35,13 +35,14 @@
                                 <legend>Log in</legend>
                                 <?php
                                 if (isset($_GET['error'])) {
-                                    echo '<div class="alert alert-warning"><strong>Failure.</strong> Incorrect email or password.</div>';
+                                    echo '<div class="alert alert-warning"><strong>Failure.</strong> Incorrect email or password, or account not verified.</div>';
                                 }
                                 if (isset($_SESSION['uid'])) {
                                     echo '<script type="text/javascript" src="/js/hideLoginFields.js"></script>';
                                     echo '<div class="alert alert-warning"><strong>Failure.</strong> You are already logged in!</div>';
                                     echo '<a class="btn btn-lg btn-primary" href="/user/index.php" role="button">Return to your profile</a>';
                                     echo '<br /><br />UID:' . $_SESSION['uid'] . '<br />Email:' . $_SESSION['email'];
+                                    exit(); // dont show rest of page
                                 }
                                 ?>
                                 <?php if (isset($_GET['error'])) {

@@ -1,4 +1,5 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/template/loginwarning.php"); ?>
 
 <article>
 <script type="text/javascript" language="javascript" class="init">

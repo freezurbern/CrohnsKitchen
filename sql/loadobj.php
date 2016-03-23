@@ -21,7 +21,7 @@ class ckdb
 
     public function connect()
     {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/config/dbconfig.inc.php");
+        require($_SERVER['DOCUMENT_ROOT'] . "/config/dbconfig.inc.php");
         try {
             $this->db = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -78,12 +78,12 @@ class ckdb
     {
         // User provides the password in plain text: $password
         // Password hash created when user signed up is now retrieved from database
-
-        $stmt = $this->db->prepare("SELECT passhash FROM users WHERE email=:email");
+        $stmt = $this->db->prepare("SELECT passhash, verifykey FROM users WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        // If user has verifykey then stop login
+        if (isset($rows[0]['verifykey'])) {return FALSE;}
         if (isset($rows[0]['passhash'])) {
             $passFromDB = $rows[0]['passhash'];
             // The application will now use password_verify() to recreate the hash and test
@@ -121,7 +121,14 @@ class ckdb
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //print_r($rows);
-        return $rows;
+
+        if(!isset($rows[0]['uid'])) {
+            return FALSE;
+            // if nothing comes back, return false.
+        } else {
+            // if we got something, give it
+            return $rows[0]['uid'];
+        }
     }
 
     public function changeUser($uid, $email, $password)
@@ -141,7 +148,13 @@ class ckdb
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
-        return $affected_rows;
+        try {
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+        //echo "good to go.";
+        return TRUE;
     }
 
     public function addUserVerify($email)
@@ -164,7 +177,11 @@ class ckdb
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $rows[0]['verifykey'];
+        if ($rows[0]['verifykey'] == NULL) {
+            return FALSE;
+        } else {
+            return $rows[0]['verifykey'];
+        }
     }
 
     public function chkUserVerify($email, $verifykey)

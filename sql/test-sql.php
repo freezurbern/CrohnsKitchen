@@ -9,8 +9,27 @@
         $mydb = new ckdb;
         echo "<h5><br>Connecting to database...<br></h5>";
         echo $mydb->connect();
+
+        echo "<h5>Deleting previous test user...</h5>";
+        $prevUserID = $mydb->getUserUID("zachery@freezurbern.com");
+        echo "Previous user ID: " . $prevUserID;
+        echo "<br>Success?: ";
+        echo var_export($mydb->deleteUser($prevUserID, "zachery@freezurbern.com"), true);
+
+        echo "<h5>Closing link.</h5>";
+        echo $mydb = NULL;
+
+        echo "<h5>Reconnecting to database...</h5>";
+        $mydb = new ckdb;
+        echo $mydb->connect();
+
+        echo "<h5>Does user still exist?</h5>";
+        $newuserprevid = $mydb->getUserUID("zachery@freezurbern.com");
+        echo "User ID: " . $newuserprevid;
+
         echo "<h5><br>Creating test user...<br></h5>";
-        echo $mydb->createUser("zachery@freezurbern.com", "MyPassword@123");
+        echo "Success?: ";
+        echo var_export($mydb->createUser("zachery@freezurbern.com", "MyPassword@123"), true);
 
         echo "<h5><br>Creating duplicate test user...<br></h5>";
         $dupuserout = $mydb->createUser("zachery@freezurbern.com", "MyPassword@123");
@@ -40,18 +59,19 @@
             echo "Login FAILURE.";
         }
         echo "<h5><br>Getting uid for zachery@freezurbern.com<br></h5>";
-        $uidrows = $mydb->getUserUID("zachery@freezurbern.com");
+        $uid = $mydb->getUserUID("zachery@freezurbern.com");
         //print_r( $uidrows );
-        echo "Should be 1.<br>";
-        echo "UID = " . $uidrows[0]['uid'];
+        echo "Should be > 0: <br>";
+        echo "UID = " . $uid;
 
 
         echo "<h5><br>Getting verifykey for email zachery@freezurbern.com<br></h5>";
         $userverifycode = $mydb->getUserVerify("zachery@freezurbern.com");
-        echo $userverifycode;
-        print_r($userverifycode);
-        echo $userverifycode[0]['verifykey'];
-
+        if($userverifycode) {echo "key present: true<br>";} else {echo "key present: false<br>";}
+        echo "Verifykey: ".$userverifycode;
+        echo "<h5><br>Verifying user zachery@freezurbern.com<br /></h5>";
+        $verified = $mydb->chkUserVerify("zachery@freezurbern.com", $userverifycode);
+        echo "Verified: " . $verified;
         echo "</pre>";
         ?>
 
