@@ -18,29 +18,47 @@ if(!$mail->send()) {
 }
 */
 
-function cksendmail($email, $subject, $message) {
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/mailconfig.inc.php");
+function cksendmail($email, $subject, $message)
+{
     $mail = new PHPMailer;
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/config/mailconfig.inc.php");
     // Extra config here
-        //Enable SMTP debugging
-        // 0 = off (for production use)
-        // 1 = client messages
-        // 2 = client and server messages
-        $mail->SMTPDebug = 2;
-        //Ask for HTML-friendly debug output
-        $mail->Debugoutput = 'html';
+    //Enable SMTP debugging
+    // 0 = off (for production use)
+    // 1 = client messages
+    // 2 = client and server messages
+    //$mail->SMTPDebug = 2;
+    //Ask for HTML-friendly debug output
+    $mail->Debugoutput = 'html';
 
     // Actual email contents
     $mail->addAddress($email);
-    $mail->Subject($subject);
-    $mail->Body($message);
+    $mail->Subject = $subject;
+    $mail->Body = $message;
 
-    if(!$mail->send()) {
-        echo 'Message could not be sent.';
+    if (!$mail->send()) {
+        //echo 'Message could not be sent.';
         //echo 'Mailer Error: ' . $mail->ErrorInfo;
         return $mail->ErrorInfo;
     } else {
-        echo 'Message has been sent';
-        return 0;
+        //echo 'Message has been sent';
+        return TRUE;
+    }
+}
+
+function test_cksendmail()
+{
+    $testmail = cksendmail('freezurbern@gmail.com', 'Testing Crohn\'s Kitchen Email', 'This is a test message.');
+    //echo 'TESTMAIL: '.$testmail;
+    if ($testmail) {
+        //echo 'Message sent.';
+        //echo $testmail;
+        //return $testmail;
+        return TRUE;
+    } else {
+        //echo 'Message not sent.';
+        //echo $testmail;
+        //return $testmail;
+        return $testmail;
     }
 }

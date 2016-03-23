@@ -42,6 +42,14 @@
     //print_r( $uidrows );
     echo "Should be 1.<br>";
     echo "UID = ".$uidrows[0]['uid'];
+
+
+    echo "<h5><br>Getting verifykey for email zachery@freezurbern.com<br></h5>";
+    $userverifycode = $mydb->getUserVerify("zachery@freezurbern.com");
+    echo $userverifycode;
+    print_r($userverifycode);
+    echo $userverifycode[0]['verifykey'];
+
     echo "</pre>";
     ?>
 

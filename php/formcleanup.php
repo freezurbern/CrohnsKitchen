@@ -39,6 +39,15 @@ function get_post_var($var)
     }
 }
 
+function get_get_var($var)
+{
+    if (isset($_GET[$var])) {
+        return sanitize($_GET[$var]);
+    }else{
+        return '';
+    }
+}
+
 //printArray($_POST);
 function printArray($array){
     echo '<code>';
