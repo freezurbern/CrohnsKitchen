@@ -40,7 +40,7 @@
             header('Location: /user/register.php?error=badpass');
         } elseif ($regoutput) {
 
-            require_once($_SERVER['DOCUMENT_ROOT'] . "/config/emails/regverify.php");
+            require_once($_SERVER['DOCUMENT_ROOT'] . "/template/emails/regverify.php");
             $userverifycode = $mydb->getUserVerify($email);
             $EMAILregverify = $EMAILregverifyStart . $userverifycode . '&email=' . $email . $EMAILregverifyFinish;
 
