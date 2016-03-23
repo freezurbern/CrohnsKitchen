@@ -144,10 +144,12 @@ class ckdb
         return $affected_rows;
     }
 
-    public function addUserVerify($email) {
+    public function addUserVerify($email)
+    {
     }
 
-    public function delUserVerify($email) {
+    public function delUserVerify($email)
+    {
         $stmt = $this->db->prepare("UPDATE users SET verifykey = NULL WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -155,7 +157,8 @@ class ckdb
         return $affected_rows;
     }
 
-    public function getUserVerify($email) {
+    public function getUserVerify($email)
+    {
         $stmt = $this->db->prepare("SELECT verifykey FROM users WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -164,16 +167,19 @@ class ckdb
         return $rows[0]['verifykey'];
     }
 
-    public function chkUserVerify($email, $verifykey) {
+    public function chkUserVerify($email, $verifykey)
+    {
         $stmt = $this->db->prepare("SELECT verifykey FROM users WHERE email=:email AND verifykey=:verifykey");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->bindValue(':verifykey', $verifykey, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        if(isset ($rows[0]['verifykey']) ) {
+
+        if (isset ($rows[0]['verifykey'])) {
             $dbKey = $rows[0]['verifykey'];
-        } else { return FALSE; }
+        } else {
+            return FALSE;
+        }
         //echo 'dbkey    : '.$dbKey.'<br />';
         //echo 'verifykey: '.$verifykey;
         if ($dbKey == $verifykey) {

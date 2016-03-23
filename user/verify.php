@@ -1,6 +1,6 @@
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php"); ?>
 
-<?php 
+<?php
 
 $verifykey = get_get_var('code');
 $verifyemail = get_get_var('email');
@@ -22,25 +22,25 @@ if ($verified) {
             <div class="jumbotron">
                 <h1>Account Verification</h1>
                 <p>
-                    <?php if($result) { ?>
-                        <div class="alert alert-success">
-                            <strong>Verification complete!</strong> You may now login.
-                        </div>
-                        <a class="btn btn-lg btn-primary" href="/user/login.php" role="button">Login now &raquo;</a>
-                    <?php } else { ?>
+                    <?php if ($result) { ?>
+                <div class="alert alert-success">
+                    <strong>Verification complete!</strong> You may now login.
+                </div>
+                <a class="btn btn-lg btn-primary" href="/user/login.php" role="button">Login now &raquo;</a>
+                <?php } else { ?>
                     <div class="alert alert-warning">
                         <strong>Invalid pair.</strong>Please reset your password.
                     </div>
                     <a class="btn btn-lg btn-primary" href="/" role="button">Go home &raquo;</a>
-                    <?php } ?>
+                <?php } ?>
                 </p>
                 <?php
-                echo '<p><pre>'.$verifyemail.'</pre>';
-                echo '<pre>'.$verifykey.'</pre>';
+                echo '<p><pre>' . $verifyemail . '</pre>';
+                echo '<pre>' . $verifykey . '</pre>';
                 //echo '<pre>'.$dbKey.'</pre>';
                 echo '</p>';
                 ?>
             </div>
         </div> <!-- /container -->
     </article>
-<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-end.php");?>
+<?php require($_SERVER['DOCUMENT_ROOT'] . "/template/page-end.php"); ?>

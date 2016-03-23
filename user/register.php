@@ -47,7 +47,7 @@
             $mailoutput = cksendmail($email, "Crohn's Kitchen Registration", $EMAILregverify);
 
             header('Location: /template/success.php');
-            
+
             //echo 'If 1, NOT SPAM: '.$notspam;
             //print_r($response);
             //echo 'regoutput: '.$regoutput;
@@ -94,7 +94,8 @@
                                     <div class="form-group">
                                         <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                                         <div class="col-lg-10">
-                                            <input type="email" name="email" id="inputEmail" class="form-control" aria-describedby="inputEmail" placeholder="email" required
+                                            <input type="email" name="email" id="inputEmail" class="form-control" aria-describedby="inputEmail"
+                                                   placeholder="email" required
                                                    autofocus>
                                             <span class="label label-default">user@domain.tld</span>
                                         </div>
@@ -118,7 +119,7 @@
                                             <span class="label label-default">reenter</span>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <div class="col-lg-10 col-lg-offset-2">
                                             <b>Prove you're not a robot</b>
@@ -129,7 +130,7 @@
                                         <div class="col-lg-10 col-lg-offset-2">
                                             <input type="hidden" name="type" value="register">
                                             <button type="submit" class="btn btn-primary">Register</button>
-                                            <br /><span class="label label-default">click register when done</span>
+                                            <br/><span class="label label-default">click register when done</span>
                                         </div>
                                     </div>
                             </form>
