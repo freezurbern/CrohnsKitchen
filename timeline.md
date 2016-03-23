@@ -3,7 +3,7 @@
 
 #### 1. Environment
 - [X] error-handler.php
-- [ ] email-handler.php / LAST
+- [X] email-handler.php
 
 #### 2. SQL Objects
 - [X] Database Object
@@ -12,8 +12,8 @@
 - [X] Create / Set User Data Method (email, passhash)
 - [ ] Query User Data Method (id, email, passhash, create date)
 - [X] Add Verify Key Method
-- [ ] Check Verify Key Method
-- [ ] Remove Verify Key Method
+- [X] Check Verify Key Method
+- [X] Remove Verify Key Method
 - [X] List Foods Method
 - [X] List Ratings Method
 - [X] List Users Method
@@ -41,3 +41,14 @@
 - [ ] Create rating
 - [ ] User Dashboard
 - [ ] Delete Account
+
+#### 7. Admin
+- [ ] Disallow registrations
+- [ ] Allow admin approved registrations
+- [ ] Remove accounts
+- [ ] masquerade as account
+- [ ] logging table (IP, datetime, event, page)
+- [ ] maintenance mode
+- [ ] maintenance page
+- [ ] food approval for all users
+- [ ] move approved foods to admin user ID
