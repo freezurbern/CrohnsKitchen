@@ -46,8 +46,8 @@
 
     <h4>Rating summary per food:</h4>
     <?php
-    //$output = $mydb->getRatings($_SESSION['uid']); // get ratings for uID (rateby)
-    $output2 = $mydb->getAVGRatingAllFoods('0'); // get ratings for uID (rateby)
+    $output2 = $mydb->getAVGRatingAllFoods($_SESSION['uid']); // get ratings for uID (rateby)
+    //$output2 = $mydb->getAVGRatingAllFoods('0'); // get ratings for uID (rateby)
     //echo print_r($output);
     ?>
     <table id="all-foods" class="display">

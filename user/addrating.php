@@ -37,9 +37,9 @@ $foodlist = $mydb->getFoods();
     //$tryAddFood1 = $mydb->addFood();
 
     echo "<h3>For-Each Loop</h3>";
-    foreach ($food as $fitem) {
+    foreach ($food as $key => $fitem) {
         if (IsNullOrEmptyString($fitem)) {break;}
-        echo "<br />Input: <b>".$fitem."</b><br />";
+        echo "<br />".$key." Input: <b>".$fitem."</b><br />";
         if (strpos($fitem, ' (') !== false) {
             // Contains a group, break out group to new var
             $fbreak = explode(" (", $fitem );
@@ -53,7 +53,34 @@ $foodlist = $mydb->getFoods();
         if(!in_array_r($fname, $foodlist)) {
             echo "&nbsp;&nbsp;&nbsp;&nbsp;New food not in list: <b>".$fname."</b>";
             $mydb->addFood($fname, $fgroup, $_SESSION['uid']);
-        } else {echo "&nbsp;&nbsp;&nbsp;&nbsp;Food found in database.";}
+        } else {
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;Food found in database.";
+            $score = $rating[$key];
+            switch($score) {
+                case "bad":
+                    $score = -1;
+                    break;
+                case "neutral":
+                    $score = 0;
+                    break;
+                case "good":
+                    $score = 1;
+                    break;
+                default:
+                    $score = 0;
+                    break;
+            }
+            echo "<br /><i>|Key: ".$key." |Item: ".$fitem." |Group: ".$fgroup." |Rating: ".$rating[$key]." |RateInt: ".$score."</i>";
+            //$consumeDate = "2016-03-24 09:50:26";
+            $consumeDate = date("Y-m-d H:i:s");
+            echo "<br />Date: ".$consumeDate;
+            $targetFoodID = $mydb->getFoodID($fitem);
+            echo "<br />Target Food ID: " . $targetFoodID;
+            echo "<br />UID: " . $_SESSION['uid'];
+            // finally add rating now that we have all the information needed.
+            $tryrate = $mydb->addRating($score, $targetFoodID, $_SESSION['uid'], $consumeDate);
+            echo "<br />RateOutput: " . $tryrate;
+        }
 
     }
     //printArray($foodlist);

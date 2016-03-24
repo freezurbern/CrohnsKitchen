@@ -9,7 +9,7 @@
     $password = get_post_var('password');
     if ($mydb->loginUser($email, $password)) {
         //echo "Login Success";
-        $uid = $mydb->getUserUID($email)[0]['uid'];
+        $uid = $mydb->getUserUID($email);
         $_SESSION['uid'] = $uid;
         $_SESSION['email'] = $email;
         // redirect

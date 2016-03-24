@@ -214,14 +214,26 @@ class ckdb
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     }
+    public function getFoodID($fname) {
+        $stmt = $this->db->prepare("SELECT * FROM foods WHERE fname=:fname ORDER BY fname, fgroup");
+        $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($rows[0]['fid'] == NULL) {
+            return FALSE;
+        } else {
+            return $rows[0]['fid'];
+        }
+    }
 
     public function addFood($fname, $fgroup, $addby = "0")
     {
         if (!isset($fname)) {
-            return "Name not set.";
+            return FALSE;
         }
         if (!isset($fgroup)) {
-            return "Group not set.";
+            return FALSE;
         }
         /** single insert with bindValue, then execute **/
         $stmt = $this->db->prepare("INSERT INTO foods (fname, fgroup, addby) VALUES (:fname, :fgroup, :addby) ON DUPLICATE KEY UPDATE fname = fname");
@@ -229,6 +241,33 @@ class ckdb
         $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
         $stmt->bindValue(':fgroup', $fgroup, PDO::PARAM_STR);
         $stmt->bindValue(':addby', $addby, PDO::PARAM_STR);
+
+        try {
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+        //echo "good to go.";
+        return TRUE;
+    }
+
+    public function addRating($score, $fid, $rateby, $dateconsume = NULL) {
+        if (!isset($score) OR !isset($fid) OR !isset($rateby)) {
+            return FALSE;
+        }
+        if ($dateconsume == NULL) {
+            $stmt = $this->db->prepare("INSERT INTO ratings (score,foodid,rateby,dateconsume) VALUES (:score, :fid, :rateby, NOW())");
+        } else {
+            $stmt = $this->db->prepare("INSERT INTO ratings (score,foodid,rateby,dateconsume) VALUES (:score, :fid, :rateby, :dateconsume)");
+        }
+        /** single insert with bindValue, then execute **/
+
+        // TODO: Convert $datetime to correct format.
+
+        $stmt->bindValue(':score', $score, PDO::PARAM_INT);
+        $stmt->bindValue(':fid', $fid, PDO::PARAM_INT);
+        $stmt->bindValue(':rateby', $rateby, PDO::PARAM_INT);
+        $stmt->bindValue(':dateconsume', $dateconsume, PDO::PARAM_STR);
 
         try {
             $stmt->execute();
