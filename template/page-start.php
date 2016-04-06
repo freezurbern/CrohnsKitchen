@@ -58,7 +58,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Dash</a></li>
+                <li><a href="/user/index.php">Dash</a></li>
                 <li><a href="/about.php">About</a></li>
                 <li><a href="/user/addrating.php">Rate foods</a></li>
             </ul>

@@ -80,3 +80,23 @@ HEREDOC;
 
 return $EMAILregverifyStart . urlencode($code) . '&email=' . urlencode($email) . $EMAILregverifyFinish;
 }
+
+function genUpdateEmail($code, $email) {
+    // This function returns the user profile change verification email with the verify code and email added correctly.
+    $EMAILUpdverifyStart = <<<HEREDOC
+Thank you for updating your profile!
+===========================
+To complete your change request, please click the link below:
+http://crohns.freezurbern.com/user/verify.php?code=
+HEREDOC;
+
+    $EMAILUpdverifyFinish = <<<HEREDOC
+
+Thank you,
+- Crohn's Kitchen
+
+PS: If you did not request this change, please contact us via our website.
+HEREDOC;
+
+    return $EMAILUpdverifyStart . urlencode($code) . '&email=' . urlencode($email) . $EMAILUpdverifyFinish;
+}

@@ -7,10 +7,10 @@
 
 #### 2. SQL Objects
 - [X] Database Object
-- [ ] Insert Food Method
-- [ ] Insert Rating Method
+- [X] Insert Food Method
+- [X] Insert Rating Method
 - [X] Create / Set User Data Method (email, passhash)
-- [ ] Query User Data Method (id, email, passhash, create date)
+- [X] Query User Data Method (id, email, passhash, create date)
 - [X] Add Verify Key Method
 - [X] Check Verify Key Method
 - [X] Remove Verify Key Method
@@ -29,7 +29,7 @@
 #### 5. Data Visualization
 - [X] Tables: http://datatables.net/manual/styling/bootstrap
 - [ ] Charts: Chart.js ??
-- [ ] Dashboard:
+- [ ] Dashboard
 - [X] Data Page
 
 #### 6. Pages

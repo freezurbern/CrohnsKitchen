@@ -104,7 +104,7 @@ class ckdb
         return $result;
     }
 
-    public function getUser($uid, $email, $createdate)
+    public function getUser($uid)
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE uid=:uid");
         $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
@@ -133,12 +133,19 @@ class ckdb
 
     public function changeUser($uid, $email, $password)
     {
+
         $stmt = $this->db->prepare("UPDATE users SET email=:email, passhash=:passhash WHERE uid=:uid");
         $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->bindValue(':passhash', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-        $affected_rows = $stmt->rowCount();
-        return $affected_rows;
+
+        $this->addUserVerify($email);
+        
+        try {
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function deleteUser($uid, $email)
@@ -159,6 +166,13 @@ class ckdb
 
     public function addUserVerify($email)
     {
+        $verifykey = $this->genRndString();
+
+        $stmt = $this->db->prepare("UPDATE users SET verifykey=:verifykey WHERE email=:email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':verifykey', $verifykey, PDO::PARAM_STR);
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
     }
 
     public function delUserVerify($email)

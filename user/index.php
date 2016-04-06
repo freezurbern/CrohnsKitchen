@@ -9,6 +9,7 @@
 	  <a class="btn btn-lg btn-primary" href="/user/logout.php" role="button">Logout of Account</a>
 	  <a class="btn btn-lg btn-primary" href="/user/register.php" role="button">Register &raquo;</a>
 	  <a class="btn btn-lg btn-primary" href="/user/data.php" role="button">Data &raquo;</a>
+	  <a class="btn btn-lg btn-primary" href="/user/changeuser.php" role="button">Change User Info &raquo;</a>
 	  <a class="btn btn-lg btn-primary" href="/" role="button">Back to home &raquo;</a>
 	</p>
   </div>
