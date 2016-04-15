@@ -38,12 +38,12 @@
 - [ ] Forgot Password
 - [ ] Change Email / Password
 - [ ] Create food
-- [ ] Create rating
+- [X] Create rating
 - [ ] User Dashboard
 - [ ] Delete Account
 
 #### 7. Admin
-- [ ] Disallow registrations
+- [X] Disallow registrations
 - [ ] Allow admin approved registrations
 - [ ] Remove accounts
 - [ ] masquerade as account
