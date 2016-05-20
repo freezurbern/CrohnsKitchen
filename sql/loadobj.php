@@ -89,11 +89,11 @@ class ckdb
             // The application will now use password_verify() to recreate the hash and test
             // it against the hash in the database.
             $result = password_verify($password, $passFromDB);
-            //if ($result) {
-            //    echo 'Password is valid!';
-            //} else {
-            //    echo 'Invalid password.';
-            //}
+/*            if ($result) {
+                echo 'Password is valid!';
+            } else {
+                echo 'Invalid password.';
+            }*/
         } else {
             // No data returned from query, login not successful.
             $result = FALSE;

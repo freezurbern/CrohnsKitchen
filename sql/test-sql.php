@@ -46,6 +46,21 @@
         echo "<h5><br>Getting users...<br></h5>";
         echo print_r($mydb->getUsers());
 
+        echo "<h5><br>Logging in without verification...<br></h5>";
+        if ($mydb->loginUser("zachery@freezurbern.com", "MyPassword@123")) {
+            echo "Login Successful!";
+        } else {
+            echo "Login FAILURE.";
+        }
+
+        echo "<h5><br>Getting verifykey for email zachery@freezurbern.com<br></h5>";
+        $userverifycode = $mydb->getUserVerify("zachery@freezurbern.com");
+        if($userverifycode) {echo "key present: true<br>";} else {echo "key present: false<br>";}
+        echo "Verifykey: ".$userverifycode;
+        echo "<h5><br>Verifying user zachery@freezurbern.com<br /></h5>";
+        $verified = $mydb->chkUserVerify("zachery@freezurbern.com", $userverifycode);
+        echo "Verified: " . $verified;
+
         echo "<h5><br>Logging in with incorrect password...<br></h5>";
         if ($mydb->loginUser("zachery@freezurbern.com", "MyWrongPassword")) {
             echo "Login Successful!";
@@ -58,6 +73,7 @@
         } else {
             echo "Login FAILURE.";
         }
+
         echo "<h5><br>Getting uid for zachery@freezurbern.com<br></h5>";
         $uid = $mydb->getUserUID("zachery@freezurbern.com");
         //print_r( $uidrows );
@@ -65,13 +81,7 @@
         echo "UID = " . $uid;
 
 
-        echo "<h5><br>Getting verifykey for email zachery@freezurbern.com<br></h5>";
-        $userverifycode = $mydb->getUserVerify("zachery@freezurbern.com");
-        if($userverifycode) {echo "key present: true<br>";} else {echo "key present: false<br>";}
-        echo "Verifykey: ".$userverifycode;
-        echo "<h5><br>Verifying user zachery@freezurbern.com<br /></h5>";
-        $verified = $mydb->chkUserVerify("zachery@freezurbern.com", $userverifycode);
-        echo "Verified: " . $verified;
+
         echo "</pre>";
         ?>
 
