@@ -13,7 +13,7 @@ if (isset($_SESSION['uid'])) {
     //clear session from disk
     session_destroy();
 } else {
-    header('Location: /user/logout.php');
+    //header('Location: /user/logout.php');
 }
 ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/template/page-start.php"); ?>

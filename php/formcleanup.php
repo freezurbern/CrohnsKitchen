@@ -41,7 +41,7 @@ function get_post_var($var)
         $val = $_POST[$var];
         return sanitize($val);
     } else {
-        return '';
+        return null;
     }
 }
 

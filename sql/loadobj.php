@@ -37,7 +37,7 @@ class ckdb
     {
         if ((strlen($password) >= 4) && (strlen($password) <= 64)) { /* echo "password good"; */
         } else {
-            return "Password outside minmax 4 to 64";
+            return "minmax";
         }
         /** single insert with bindValue, then execute **/
         $sql_prepare = "INSERT INTO `users` (`email`, `passhash`, `regdate`, `verifykey`) VALUES (:email, :passhash, :regdate, :verifykey)";
@@ -131,21 +131,31 @@ class ckdb
         }
     }
 
-    public function changeUser($uid, $email, $password)
+    public function changeUserPass($uid,$password)
     {
-
-        $stmt = $this->db->prepare("UPDATE users SET email=:email, passhash=:passhash WHERE uid=:uid");
+        $stmt = $this->db->prepare("UPDATE users SET passhash=:passhash WHERE uid=:uid");
         $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->bindValue(':passhash', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-
-        $this->addUserVerify($email);
         
         try {
             $stmt->execute();
         } catch (PDOException $ex) {
             return $ex->getMessage();
         }
+        return TRUE;
+    }
+    public function changeUserEmail($uid,$email)
+    {
+        $stmt = $this->db->prepare("UPDATE users SET email=:email WHERE uid=:uid");
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+
+        try {
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+        return TRUE;
     }
 
     public function deleteUser($uid, $email)
@@ -171,6 +181,7 @@ class ckdb
         $stmt = $this->db->prepare("UPDATE users SET verifykey=:verifykey WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->bindValue(':verifykey', $verifykey, PDO::PARAM_STR);
+        $stmt->execute();
         $affected_rows = $stmt->rowCount();
         return $affected_rows;
     }
@@ -209,7 +220,7 @@ class ckdb
         if (isset ($rows[0]['verifykey'])) {
             $dbKey = $rows[0]['verifykey'];
         } else {
-            return FALSE;
+            return FALSE; // nothing found
         }
         //echo 'dbkey    : '.$dbKey.'<br />';
         //echo 'verifykey: '.$verifykey;
@@ -217,7 +228,7 @@ class ckdb
             $this->delUserVerify($email, $verifykey);
             return TRUE;
         } else {
-            return FALSE;
+            return FALSE; // key not match
         }
     }
 

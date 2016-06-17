@@ -80,7 +80,15 @@
         echo "Should be > 0: <br>";
         echo "UID = " . $uid;
 
-
+        echo "<h5><br>Adding verifykey for email zachery@freezurbern.com<br></h5>";
+        $userverifyadd = $mydb->addUserVerify("zachery@freezurbern.com");
+        echo "Rows affected by addUserVerify: ".$userverifyadd."<br>";
+        $userverifycode2 = $mydb->getUserVerify("zachery@freezurbern.com");
+        if($userverifycode2) {echo "key present: true<br>";} else {echo "key present: false<br>";}
+        echo "Verifykey: ".$userverifycode2;
+        echo "<h5><br>Verifying user zachery@freezurbern.com<br /></h5>";
+        $verified2 = $mydb->chkUserVerify("zachery@freezurbern.com", $userverifycode2);
+        echo "Verified: " . $verified2;
 
         echo "</pre>";
         ?>

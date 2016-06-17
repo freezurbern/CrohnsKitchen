@@ -37,7 +37,7 @@
 - [X] Register
 - [ ] Forgot Password
 - [ ] Change Email / Password
-- [ ] Create food
+- [ ] Create multiple foods: upload .csv?
 - [X] Create rating
 - [ ] User Dashboard
 - [ ] Delete Account
