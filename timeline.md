@@ -36,7 +36,7 @@
 - [X] Login
 - [X] Register
 - [ ] Forgot Password
-- [ ] Change Email / Password
+- [X] Change Email / Password
 - [ ] Create multiple foods: upload .csv?
 - [X] Create rating
 - [ ] User Dashboard
@@ -48,7 +48,7 @@
 - [ ] Remove accounts
 - [ ] masquerade as account
 - [ ] logging table (IP, datetime, event, page)
-- [ ] maintenance mode
-- [ ] maintenance page
+- [X] maintenance mode
+- [X] maintenance page
 - [ ] food approval for all users
 - [ ] move approved foods to admin user ID

@@ -160,18 +160,35 @@ class ckdb
 
     public function deleteUser($uid, $email)
     {
-        $stmt = $this->db->prepare("DELETE FROM users WHERE uid=:uid AND email=:email");
-        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
-        $affected_rows = $stmt->rowCount();
+        $userDelete = TRUE;
+        $ratingsDelete = TRUE;
+
+        $stmtu = $this->db->prepare("DELETE FROM users WHERE uid=:uid AND email=:email");
+        $stmtu->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmtu->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmtu->execute();
+        $affected_rows = $stmtu->rowCount();
         try {
-            $stmt->execute();
+            $stmtu->execute();
         } catch (PDOException $ex) {
+            $userDelete = FALSE;
             return $ex->getMessage();
         }
-        //echo "good to go.";
-        return TRUE;
+
+        $stmtr = $this->db->prepare("DELETE FROM ratings WHERE rateby=:rateby");
+        $stmtr->bindValue(':rateby', $uid, PDO::PARAM_STR);
+        $stmtr->execute();
+        $affected_rows = $stmtr->rowCount();
+        try {
+            $stmtr->execute();
+        } catch (PDOException $ex) {
+            $ratingsDelete = FALSE;
+            return $ex->getMessage();
+        }
+
+        // ================================================
+        return ($userDelete === TRUE && $ratingsDelete === TRUE);
+
     }
 
     public function addUserVerify($email)
