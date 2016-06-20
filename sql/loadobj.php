@@ -107,7 +107,7 @@ class ckdb
     public function getUser($uid)
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE uid=:uid");
-        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_INT);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //print_r($rows);
@@ -134,7 +134,7 @@ class ckdb
     public function changeUserPass($uid,$password)
     {
         $stmt = $this->db->prepare("UPDATE users SET passhash=:passhash WHERE uid=:uid");
-        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_INT);
         $stmt->bindValue(':passhash', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
         
         try {
@@ -147,7 +147,7 @@ class ckdb
     public function changeUserEmail($uid,$email)
     {
         $stmt = $this->db->prepare("UPDATE users SET email=:email WHERE uid=:uid");
-        $stmt->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_INT);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
 
         try {
@@ -164,7 +164,7 @@ class ckdb
         $ratingsDelete = TRUE;
 
         $stmtu = $this->db->prepare("DELETE FROM users WHERE uid=:uid AND email=:email");
-        $stmtu->bindValue(':uid', $uid, PDO::PARAM_STR);
+        $stmtu->bindValue(':uid', $uid, PDO::PARAM_INT);
         $stmtu->bindValue(':email', $email, PDO::PARAM_STR);
         $stmtu->execute();
         $affected_rows = $stmtu->rowCount();
@@ -176,7 +176,7 @@ class ckdb
         }
 
         $stmtr = $this->db->prepare("DELETE FROM ratings WHERE rateby=:rateby");
-        $stmtr->bindValue(':rateby', $uid, PDO::PARAM_STR);
+        $stmtr->bindValue(':rateby', $uid, PDO::PARAM_INT);
         $stmtr->execute();
         $affected_rows = $stmtr->rowCount();
         try {
@@ -246,6 +246,39 @@ class ckdb
             return TRUE;
         } else {
             return FALSE; // key not match
+        }
+    }
+
+    public function addUserApproval($approvedbyuid)
+    {
+        $stmt = $this->db->prepare("UPDATE users SET approvedby=:approvedbyuid WHERE email=:email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':approvedbyuid', $approvedbyuid, PDO::PARAM_INT);
+        $stmt->execute();
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
+    }
+
+    public function delUserApproval($email)
+    {
+        $stmt = $this->db->prepare("UPDATE users SET approvedby = -1 WHERE email=:email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $affected_rows = $stmt->rowCount();
+        return $affected_rows;
+    }
+
+    public function getUserApproval($email)
+    {
+        $stmt = $this->db->prepare("SELECT approvedby FROM users WHERE email=:email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($rows[0]['approvedby'] == NULL) {
+            return FALSE;
+        } else {
+            return $rows[0]['approvedby'];
         }
     }
 
@@ -366,6 +399,25 @@ class ckdb
     public function getUsers()
     {
         $stmt = $this->db->prepare("SELECT * FROM users");
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($rows);
+        return $rows;
+    }
+
+    public function getUsersClean()
+    {
+        $stmt = $this->db->prepare("
+            SELECT uid, email, regdate, 
+            CASE 
+                WHEN LENGTH(verifykey) <= 0 THEN 'TRUE'
+                WHEN LENGTH(verifykey) >= 1 THEN 'FALSE'
+            END AS isverified,
+            CASE
+                WHEN approvedby = -1 THEN 'system'
+            END AS whoapproved
+            FROM `users`");
+        // CASE tests for verify key. if key has a length, account is not yet verified.
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //print_r($rows);

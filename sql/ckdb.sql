@@ -63,7 +63,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(190) NOT NULL UNIQUE,
   `passhash` varchar(254) NOT NULL,
   `regdate` datetime ,
-  `verifykey` char(64) DEFAULT NULL
+  `verifykey` char(64) DEFAULT NULL,
+  `approvedby` int(11) DEFAULT -1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
