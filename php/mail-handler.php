@@ -23,13 +23,7 @@ function cksendmail($email, $subject, $message)
     $mail = new PHPMailer;
     require_once($_SERVER['DOCUMENT_ROOT'] . "/config/mailconfig.inc.php");
     // Extra config here
-    //Enable SMTP debugging
-    // 0 = off (for production use)
-    // 1 = client messages
-    // 2 = client and server messages
-    //$mail->SMTPDebug = 2;
-    //Ask for HTML-friendly debug output
-    $mail->Debugoutput = 'html';
+    
 
     // Actual email contents
     $mail->addAddress($email);
@@ -39,7 +33,9 @@ function cksendmail($email, $subject, $message)
     if (!$mail->send()) {
         //echo 'Message could not be sent.';
         //echo 'Mailer Error: ' . $mail->ErrorInfo;
+        //error_log($mail->ErrorInfo, 0);
         return $mail->ErrorInfo;
+
     } else {
         //echo 'Message has been sent';
         return TRUE;
@@ -54,11 +50,13 @@ function test_cksendmail()
         //echo 'Message sent.';
         //echo $testmail;
         //return $testmail;
+        //error_log("Email Test Successful:".$testmail, 0);
         return TRUE;
     } else {
         //echo 'Message not sent.';
         //echo $testmail;
         //return $testmail;
+        //error_log("Email Test failure:".$testmail, 0);
         return $testmail;
     }
 }

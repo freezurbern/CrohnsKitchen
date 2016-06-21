@@ -8,13 +8,12 @@
 
 	<div class="panel panel-default">
 		<h5>Running cksendmail. Output below.</h5>
-		<?php
-		$output = test_cksendmail();
-		echo '<pre>'.$output.'</pre>';
-		?>
-	</div>
-	<div class="panel panel-default">
-		<h5>Test Panel</h5>
+		<hr />
+			<?php $output = test_cksendmail(); ?>
+		<hr />
+		<pre>
+			<?php echo $output; ?>
+		</pre>
 	</div>
 
 </div> <!-- /container -->

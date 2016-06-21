@@ -18,9 +18,11 @@
         $response = json_decode($response, true);
         if ($response["success"] == true) { // got a captcha reply, is it a robot?
             $notspam = TRUE;
+            //error_log("Register User: Not Spam", 0);
             //echo 'not a robot' . $response["success"];
         } else {
             $notspam = FALSE;
+            //error_log("Register User: SPAM", 0);
             //echo 'You are a robot.' . $response["success"];
             exit();
         }
@@ -46,6 +48,7 @@
                 header('Location: /template/success.php');
                 // email sent successfully
             } else {
+                //error_log("Register User: Email Failure:".$mailoutput, 0);
                 header('Location: /user/register.php?error=unspecified');
                 // email did not send.
                 //echo 'If 1, NOT SPAM: '.$notspam;
@@ -59,6 +62,7 @@
             //echo 'not spam = ' . $notspam . '<br />';
             //echo 'captcha response: <br />';
             //print_r($response);
+            //error_log("Register User: DB Call failure: ".$regoutput, 0);
             header('Location: /user/register.php?error=unspecified');
         }
     } else {
