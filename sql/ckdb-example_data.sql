@@ -2,6 +2,8 @@
 -- Add example data
 --
 
+USE ckdb;
+
 INSERT INTO `users` (`uid`, `email`, `passhash`, `regdate`, `verifykey`) VALUES
 (0, 'admin@freezurbern.com', '0', '2016-02-08 00:00:00', '000');
 
