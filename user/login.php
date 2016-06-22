@@ -10,8 +10,10 @@
     if ($mydb->loginUser($email, $password)) {
         //echo "Login Success";
         $uid = $mydb->getUserUID($email);
+        $privlevel = $mydb->getUserPriv($uid);
         $_SESSION['uid'] = $uid;
         $_SESSION['email'] = $email;
+        $_SESSION['privlevel'] = $privlevel;
         // redirect
         header('Location: /about.php');
     } else {
