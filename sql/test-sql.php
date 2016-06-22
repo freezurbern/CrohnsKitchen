@@ -90,6 +90,22 @@
         $verified2 = $mydb->chkUserVerify("zachery@freezurbern.com", $userverifycode2);
         echo "Verified: " . $verified2;
 
+        echo "<h5><br>Getting privlevel for zachery@freezurbern.com<br></h5>";
+        $privlevel1 = $mydb->getUserPriv($uid);
+        //print_r( $uidrows );
+        echo "Should be = 0: <br>";
+        echo "privlevel = " . $privlevel1;
+
+        echo "<h5><br>Setting privlevel to 2 for zachery@freezurbern.com<br></h5>";
+        $privlevel2out = $mydb->changeUserPriv($uid, 2);
+        echo "priv level change output: ".$privlevel2out."<br>";
+        //print_r( $uidrows );
+        echo "Should be = 2: <br>";
+        $privlevel3 = $mydb->getUserPriv($uid);
+        echo "privlevel after update = " . $privlevel3;
+        
+
+        echo "<br>TRUE = ".TRUE."<br>";
         echo "</pre>";
         ?>
 

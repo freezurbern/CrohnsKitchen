@@ -83,17 +83,19 @@ class ckdb
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // If user has verifykey then stop login
-        if (isset($rows[0]['verifykey'])) {return FALSE;}
+        if (isset($rows[0]['verifykey'])) {
+            return FALSE;
+        }
         if (isset($rows[0]['passhash'])) {
             $passFromDB = $rows[0]['passhash'];
             // The application will now use password_verify() to recreate the hash and test
             // it against the hash in the database.
             $result = password_verify($password, $passFromDB);
-/*            if ($result) {
-                echo 'Password is valid!';
-            } else {
-                echo 'Invalid password.';
-            }*/
+            /*            if ($result) {
+                            echo 'Password is valid!';
+                        } else {
+                            echo 'Invalid password.';
+                        }*/
         } else {
             // No data returned from query, login not successful.
             $result = FALSE;
@@ -122,7 +124,7 @@ class ckdb
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //print_r($rows);
 
-        if(!isset($rows[0]['uid'])) {
+        if (!isset($rows[0]['uid'])) {
             return FALSE;
             // if nothing comes back, return false.
         } else {
@@ -131,12 +133,12 @@ class ckdb
         }
     }
 
-    public function changeUserPass($uid,$password)
+    public function changeUserPass($uid, $password)
     {
         $stmt = $this->db->prepare("UPDATE users SET passhash=:passhash WHERE uid=:uid");
         $stmt->bindValue(':uid', $uid, PDO::PARAM_INT);
         $stmt->bindValue(':passhash', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-        
+
         try {
             $stmt->execute();
         } catch (PDOException $ex) {
@@ -144,7 +146,8 @@ class ckdb
         }
         return TRUE;
     }
-    public function changeUserEmail($uid,$email)
+
+    public function changeUserEmail($uid, $email)
     {
         $stmt = $this->db->prepare("UPDATE users SET email=:email WHERE uid=:uid");
         $stmt->bindValue(':uid', $uid, PDO::PARAM_INT);
@@ -190,6 +193,8 @@ class ckdb
         return ($userDelete === TRUE && $ratingsDelete === TRUE);
 
     }
+
+    
 
     public function addUserVerify($email)
     {
@@ -249,26 +254,36 @@ class ckdb
         }
     }
 
-    public function addUserApproval($approvedbyuid)
+    public function addApprovalUser($approvedbyuid)
     {
         $stmt = $this->db->prepare("UPDATE users SET approvedby=:approvedbyuid WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->bindValue(':approvedbyuid', $approvedbyuid, PDO::PARAM_INT);
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
-        return $affected_rows;
+        if ($affected_rows == 1) {
+            return TRUE;
+        } else {
+            error_log("add approval error: affected rows not = 1::" . $affected_rows, 0);
+            return FALSE;
+        }
     }
 
-    public function delUserApproval($email)
+    public function delApprovalUser($email)
     {
         $stmt = $this->db->prepare("UPDATE users SET approvedby = -1 WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $affected_rows = $stmt->rowCount();
-        return $affected_rows;
+        if ($affected_rows == 1) {
+            return TRUE;
+        } else {
+            error_log("del approval error: affected rows not = 1::" . $affected_rows, 0);
+            return FALSE;
+        }
     }
 
-    public function getUserApproval($email)
+    public function getApprovalUser($email)
     {
         $stmt = $this->db->prepare("SELECT approvedby FROM users WHERE email=:email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
@@ -289,7 +304,9 @@ class ckdb
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     }
-    public function getFoodID($fname) {
+
+    public function getFoodID($fname)
+    {
         $stmt = $this->db->prepare("SELECT * FROM foods WHERE fname=:fname ORDER BY fname, fgroup");
         $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
         $stmt->execute();
@@ -326,7 +343,8 @@ class ckdb
         return TRUE;
     }
 
-    public function addRating($score, $fid, $rateby, $dateconsume = NULL) {
+    public function addRating($score, $fid, $rateby, $dateconsume = NULL)
+    {
         if (!isset($score) OR !isset($fid) OR !isset($rateby)) {
             return FALSE;
         }
@@ -396,6 +414,39 @@ class ckdb
         return $rows;
     }
 
+    public function getUserPriv($uid)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE uid=:uid");
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($rows);
+
+        if (!isset($rows[0]['privlevel'])) {
+            return -1;
+            // if nothing comes back, return -1.
+        } else {
+            // if we got something, give it
+            return $rows[0]['privlevel'];
+        }
+    }
+
+    public function changeUserPriv($uid, $privlevel)
+    {
+        $stmt = $this->db->prepare("UPDATE users SET privlevel=:privlevel WHERE uid=:uid");
+        $stmt->bindValue(':uid', $uid, PDO::PARAM_INT);
+        $stmt->bindValue(':privlevel', $privlevel, PDO::PARAM_INT);
+        $stmt->execute();
+        $affected_rows = $stmt->rowCount();
+        echo "<br>AFFECTED_ROWS: " . $affected_rows . "<br>";
+        if ($affected_rows == 1) {
+            // changed one user
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     public function getUsers()
     {
         $stmt = $this->db->prepare("SELECT * FROM users");
@@ -408,7 +459,7 @@ class ckdb
     public function getUsersClean()
     {
         $stmt = $this->db->prepare("
-            SELECT uid, email, regdate, 
+            SELECT uid, email, regdate, privlevel, 
             CASE 
                 WHEN LENGTH(verifykey) <= 0 THEN 'TRUE'
                 WHEN LENGTH(verifykey) >= 1 THEN 'FALSE'
